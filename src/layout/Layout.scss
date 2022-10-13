@@ -1,0 +1,33 @@
+.layout-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .sidebar-container{
+        position: fixed;
+        top: 50px;
+        left: 0;
+        bottom: 0;
+       background: #212121;
+        height: 100vh;
+        border-right: 2px solid black;
+        color: white;
+        z-index: 100;
+        overflow-y: auto;
+        img{
+            filter: invert(1);
+        }
+    }
+    .home-container{
+      
+        position: absolute;
+        right: 0;
+        top: 50px;
+        display: flex;
+        justify-content: center;
+        
+        min-height: 100vh;
+      
+
+    }
+}

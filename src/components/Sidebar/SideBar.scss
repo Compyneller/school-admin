@@ -1,0 +1,17 @@
+.sideBar-link{
+    transition: 250ms ease-out;
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 1rem;
+        padding: .5rem 0;
+        text-decoration: none;
+        color: #ffff;
+    &:hover{
+        background: #424242;
+        border-left: 3px solid #2962FF;
+        
+    }
+    
+   
+}
