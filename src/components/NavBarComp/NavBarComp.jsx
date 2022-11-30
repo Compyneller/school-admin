@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Container, Navbar } from "react-bootstrap";
+import { Button, Container, Navbar } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-
+import Login from "../../pages/Login/Login";
+import { useNavigate } from "react-router-dom";
 const NavBarComp = () => {
   const toggleState = useContext(ToggleState);
   const { toggleSidebar, setToggleSidebar } = toggleState;
+  const navigate = useNavigate();
   return (
     <Navbar
       bg="dark"
@@ -16,14 +18,14 @@ const NavBarComp = () => {
         zIndex: "100",
       }}>
       <Container fluid>
-        <Navbar.Brand className="d-flex align-items-center" href="#home">
+        <Navbar.Brand className="d-flex align-items-center">
           <img
             src="https://img.icons8.com/ios-glyphs/344/menu.png"
             width="30"
             height="30"
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
-            style={{ filter: "invert(1)" }}
+            style={{ filter: "invert(1)", cursor: "pointer" }}
             onClick={() => setToggleSidebar(!toggleSidebar)}
           />
           <h3
@@ -32,6 +34,14 @@ const NavBarComp = () => {
             Admin
           </h3>
         </Navbar.Brand>
+        <Button
+          variant="outline-danger"
+          onClick={() => {
+            localStorage.removeItem("user");
+            window.location.href = "/";
+          }}>
+          logout
+        </Button>
       </Container>
     </Navbar>
   );

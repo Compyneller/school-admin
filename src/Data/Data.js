@@ -1,12 +1,21 @@
+import {
+  FaHome,
+  FaTools,
+  FaBook,
+  FaFingerprint,
+  FaShoppingCart,
+} from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5";
+import { HiDocumentReport } from "react-icons/hi";
 export const SideBarData = [
   {
     name: "Home",
-    link: "/",
-    icon: "https://img.icons8.com/laces/344/home.png",
+    link: "/home",
+    icon: <FaHome />,
   },
   {
     name: "Tools",
-    icon: "https://img.icons8.com/ios/344/maintenance.png",
+    icon: <FaTools />,
     subMenu: [
       {
         subName: "Change Password",
@@ -28,7 +37,7 @@ export const SideBarData = [
   },
   {
     name: "Master",
-    icon: "https://img.icons8.com/fluency-systems-regular/344/master.png",
+    icon: <FaBook />,
     subMenu: [
       {
         subName: "School Master",
@@ -54,7 +63,7 @@ export const SideBarData = [
   },
   {
     name: "Verification",
-    icon: "https://img.icons8.com/ios/344/remove-fingerprint.png",
+    icon: <FaFingerprint />,
     subMenu: [
       {
         subName: "Product Verification",
@@ -72,7 +81,7 @@ export const SideBarData = [
   },
   {
     name: "Orders",
-    icon: "https://img.icons8.com/windows/344/purchase-order.png",
+    icon: <FaShoppingCart />,
     subMenu: [
       {
         subName: "Place Order",
@@ -90,7 +99,7 @@ export const SideBarData = [
   },
   {
     name: "Report",
-    icon: "https://img.icons8.com/dotty/344/stop-graph-report.png",
+    icon: <HiDocumentReport />,
     subMenu: [
       {
         subName: "Sale Report",
@@ -116,6 +125,6 @@ export const SideBarData = [
   },
   {
     name: "Logout",
-    icon: "https://img.icons8.com/ios/344/emergency-exit.png",
+    icon: <IoLogOut />,
   },
 ];

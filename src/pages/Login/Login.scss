@@ -1,0 +1,25 @@
+.login-container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #212121;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  
+    .login-card{
+        width: 50%;
+    }
+}
+.login-heading{
+    font-size: 5vw;
+}
+@media screen and (max-width : 950px) {
+    .login-card{
+        width: 100% !important;
+    }
+    .login-heading{
+        font-size: 15vw;
+    }
+    
+}

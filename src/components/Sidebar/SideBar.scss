@@ -1,17 +1,17 @@
-.sideBar-link{
-    transition: 250ms ease-out;
+.sidebar-items{
     display: flex;
-    justify-content: start;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    margin-bottom: 1rem;
-        padding: .5rem 0;
-        text-decoration: none;
-        color: #ffff;
+    transition: 250ms ease-out;
+    padding: .5rem .3rem ;
+    cursor: pointer;
     &:hover{
-        background: #424242;
-        border-left: 3px solid #2962FF;
-        
+        transition: 250ms ease-in;
+        background-color: #424242;
+
     }
-    
-   
+    i{
+        font-size: 45px;
+    }
 }
