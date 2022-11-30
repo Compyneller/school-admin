@@ -3,13 +3,17 @@ import { IoLogOut, IoCaretDownOutline, IoCaretUp } from "react-icons/io5";
 import "./SideBar.scss";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ToggleState } from "../../context/Toggle";
 const SidebarItems = ({ items }) => {
   const [open, setOpen] = useState(false);
-  const style = {
-    fontSize: "30px",
-  };
+  const toggleState = useContext(ToggleState);
+  const { toggleSidebar, setToggleSidebar } = toggleState;
 
   if (items.subMenu) {
+    const handleLinks = () => {
+      return window.innerWidth <= 950 ? setToggleSidebar(!toggleSidebar) : null;
+    };
     return (
       <>
         <div className="sidebar-items my-1" onClick={() => setOpen(!open)}>
@@ -32,7 +36,7 @@ const SidebarItems = ({ items }) => {
             }}>
             {items.subMenu.map((items, index) => {
               return (
-                <li className="my-2" key={index}>
+                <li className="my-2" key={index} onClick={() => handleLinks()}>
                   <Link
                     style={{ textDecoration: "none", color: "#ffff" }}
                     to={items.subLink}>

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import Login from "../../pages/Login/Login";
 import { useNavigate } from "react-router-dom";
 const NavBarComp = () => {
   const toggleState = useContext(ToggleState);

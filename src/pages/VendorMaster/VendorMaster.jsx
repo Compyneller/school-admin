@@ -15,8 +15,7 @@ const VendorMaster = () => {
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/vendor_list.php");
   }, []);
-  console.log(radio.vid);
-  console.log(radio.vname);
+
   const handleDelete = async () => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
@@ -27,7 +26,7 @@ const VendorMaster = () => {
       "https://dstservices.in/api/vendor_del.php",
       body
     );
-    console.log(data);
+
     if (data?.vendor_del?.response_desc === "Data Removed Successfully") {
       fetchAllMaster("https://dstservices.in/api/vendor_list.php");
     }

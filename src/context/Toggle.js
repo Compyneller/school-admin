@@ -5,7 +5,7 @@ const Toggle = ({ children }) => {
   const [allMaster, setAllMaster] = useState([]);
   const [state, setState] = useState([]);
   const [toggleSidebar, setToggleSidebar] = useState(
-    JSON.parse(localStorage.getItem("user")) ? false : true
+    window.innerWidth <= 950 ? true : false
   );
   const [auth, setAuth] = useState(false);
   const fetchAllMaster = async (api) => {
