@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-.card, .btn, .modal, input{
+body{
+  overflow-x: hidden;
+}
+.card, .btn, .modal, input, select{
   border-radius: 0 !important;
 }

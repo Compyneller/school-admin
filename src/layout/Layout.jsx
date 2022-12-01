@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { routes } from "../routes";
 import "./Layout.scss";
@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ToggleState } from "../context/Toggle";
 import NavBarComp from "../components/NavBarComp/NavBarComp";
 const Layout = () => {
+  const location = useLocation();
   const sidebarToggle = useContext(ToggleState);
   const { toggleSidebar } = sidebarToggle;
   const navigate = useNavigate();
@@ -39,8 +40,8 @@ const Layout = () => {
               duration: 0.5,
             }}
             className="home-container">
-            <AnimatePresence>
-              <Routes>
+            <AnimatePresence exitBeforeEnter>
+              <Routes location={location} key={location.key}>
                 {routes.map((items, index) => {
                   return (
                     <Route

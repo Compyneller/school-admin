@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    
     .sidebar-container{
         position: fixed;
         top: 50px;
@@ -25,7 +26,7 @@
         top: 50px;
         display: flex;
         justify-content: center;
-        
+    
         min-height: 100vh;
       
 
