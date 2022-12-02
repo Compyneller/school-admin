@@ -53,7 +53,7 @@ const ProductMaster = () => {
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
-            <h1>Product Master</h1>
+            <h1>Brand Master</h1>
             <div
               className="d-flex align-items-center"
               style={{ gap: "0.5rem" }}>
@@ -68,7 +68,7 @@ const ProductMaster = () => {
         <Card style={{ borderRadius: "0" }}>
           <Card.Body className="d-flex  align-items-center">
             <i className="fa-solid fa-list my-auto"></i>
-            <h5 className="my-auto ms-3">Product List</h5>
+            <h5 className="my-auto ms-3">Brand List</h5>
           </Card.Body>
         </Card>
         <ProductMasterTable

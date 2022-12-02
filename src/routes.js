@@ -37,7 +37,7 @@ export const routes = [
     element: <VendorList />,
   },
   {
-    path: "/product-master",
+    path: "/brand-master",
     element: <ProductMaster />,
   },
 ];

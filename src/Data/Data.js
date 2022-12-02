@@ -56,8 +56,8 @@ export const SideBarData = [
         subLink: "/category-master",
       },
       {
-        subName: "Product Master",
-        subLink: "/product-master",
+        subName: "Brand Master",
+        subLink: "/brand-master",
       },
     ],
   },
