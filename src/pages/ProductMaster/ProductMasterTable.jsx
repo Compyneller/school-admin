@@ -31,7 +31,7 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
               <td>{items.bid}</td>
               <td>{items?.bname}</td>
               <td>
-                <img src={items.bimg} height={50} alt="" />
+                <img src={`${items.bimg}?${Date.now()}`} height={50} alt="" />
               </td>
               <td>
                 <Button

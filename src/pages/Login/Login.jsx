@@ -1,20 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, Card, Container, Form } from "react-bootstrap";
-import wave from "../../assets/wave.svg";
 import "./Login.scss";
 import axios from "axios";
-import { ToggleState } from "../../context/Toggle";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const authState = useContext(ToggleState);
   const [msg, setMsg] = useState({
     state: false,
     des: "",
   });
   const navigate = useNavigate();
-  //   const { auth, setAuth } = authState;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/home");
+    } else {
+      navigate("/");
+    }
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
