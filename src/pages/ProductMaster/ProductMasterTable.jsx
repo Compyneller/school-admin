@@ -1,8 +1,8 @@
 import React from "react";
 import { Table, Form, Button } from "react-bootstrap";
-import { motion } from "framer-motion";
 
 const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
+  console.log(data);
   return (
     <Table responsive bordered hover>
       <thead>
@@ -29,15 +29,9 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
                 />
               </td>
               <td>{items.bid}</td>
-              <td>{items.bname}</td>
+              <td>{items?.bname}</td>
               <td>
-                <motion.img
-                  src={items.bimg}
-                  alt={items.bimg}
-                  height={50}
-                  width={50}
-                  style={{ objectFit: "cover" }}
-                />
+                <img src={items.bimg} height={50} alt="" />
               </td>
               <td>
                 <Button
@@ -46,6 +40,7 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
                     setDetail({
                       bid: `${items.bid}`,
                       bname: `${items.bname}`,
+                      img: `${items.bimg}`,
                     });
                     setUpdateBrand(true);
                   }}>

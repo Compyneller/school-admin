@@ -85,7 +85,7 @@ const UpdateBrandModal = (props) => {
               <Form.Label>Brand Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Brand Name"
+                placeholder={props.detail.bname}
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
                 required
@@ -104,11 +104,7 @@ const UpdateBrandModal = (props) => {
               </Col>
               <Col xs={4} sm={4} md={4} lg={4} className="d-flex">
                 <img
-                  src={
-                    logo === ""
-                      ? "https://img.icons8.com/fluency/512/image.png"
-                      : prevImage
-                  }
+                  src={logo === "" ? props.detail.img : prevImage}
                   alt=""
                   className="w-100 my-auto"
                 />
