@@ -104,7 +104,11 @@ const UpdateBrandModal = (props) => {
               </Col>
               <Col xs={4} sm={4} md={4} lg={4} className="d-flex">
                 <img
-                  src={logo === "" ? props.detail.img : prevImage}
+                  src={
+                    logo === ""
+                      ? `${props.detail.img}?${Date.now()}`
+                      : prevImage
+                  }
                   alt=""
                   className="w-100 my-auto"
                 />
