@@ -31,7 +31,13 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
               <td>{items.bid}</td>
               <td>{items.bname}</td>
               <td>
-                <motion.img src={items.bimg} alt={items.bimg} height={50} />
+                <motion.img
+                  src={items.bimg}
+                  alt={items.bimg}
+                  height={50}
+                  width={50}
+                  style={{ objectFit: "cover" }}
+                />
               </td>
               <td>
                 <Button
