@@ -99,6 +99,7 @@ const SchoolMaster = () => {
               <th>Contact Person</th>
               <th>Mobile</th>
               <th>School Image</th>
+              <th>Certificate</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -123,6 +124,15 @@ const SchoolMaster = () => {
                   <td>
                     <img
                       src={`${items.sch_img}?${Date.now()}`}
+                      width={50}
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                      alt={items.sch_img}
+                    />
+                  </td>
+                  <td>
+                    <img
+                      src={`${items.agr_img}?${Date.now()}`}
                       width={50}
                       height={50}
                       style={{ objectFit: "cover" }}

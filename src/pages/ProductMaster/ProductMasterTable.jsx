@@ -2,7 +2,6 @@ import React from "react";
 import { Table, Form, Button } from "react-bootstrap";
 
 const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
-  console.log(data);
   return (
     <Table responsive bordered hover>
       <thead>

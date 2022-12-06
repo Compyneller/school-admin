@@ -26,7 +26,6 @@ const UpdateBrandModal = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(props.detail.bid);
     try {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
@@ -36,7 +35,6 @@ const UpdateBrandModal = (props) => {
         "https://dstservices.in/api/brand_edit.php",
         body
       );
-      console.log(data);
       if (
         data?.data?.brand_edit?.response_desc === "Data Updated Successfully"
       ) {
