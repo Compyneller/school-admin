@@ -110,6 +110,8 @@ const UpdateBrandModal = (props) => {
                       : prevImage
                   }
                   alt=""
+                  height={70}
+                  style={{ objectFit: "cover" }}
                   className="w-100 my-auto"
                 />
               </Col>

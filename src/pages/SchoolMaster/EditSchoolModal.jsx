@@ -1,16 +1,14 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Form, Modal, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { Col, Form, Modal, Row, Button } from "react-bootstrap";
 import SuccessfullModal from "../../components/SuccessfullModal/SuccessfullModal";
 import { ToggleState } from "../../context/Toggle";
 
-const AddSchoolModal = (props) => {
+const EditSchoolModal = (props) => {
   const [district, setDistrict] = useState([]);
-
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
-  const [logo, setLogo] = useState("");
-  const [prevImage, setPrevImage] = useState("");
   const [allInputs, setAllInputs] = useState({
     sch_name: "",
     affno: "",
@@ -22,11 +20,7 @@ const AddSchoolModal = (props) => {
     city: "",
     pinno: "",
   });
-  const stateContext = useContext(ToggleState);
-  const { fetchAllMaster, fetchState, state } = stateContext;
-  useEffect(() => {
-    fetchState();
-  }, []);
+  const { fetchAllMaster, state } = useContext(ToggleState);
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
@@ -41,20 +35,6 @@ const AddSchoolModal = (props) => {
     };
     fetchDistrict();
   }, [allInputs.state]);
-  const handleFile = (e) => {
-    if (e.target.files[0].size > 2097152) {
-      window.alert("Image must be under 2 M.B");
-    } else {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = function () {
-        setPrevImage(reader.result);
-        var strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
-        setLogo(strImage);
-      };
-    }
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAllInputs((prev) => {
@@ -69,28 +49,34 @@ const AddSchoolModal = (props) => {
     try {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
-      body.append("sch_name", allInputs.sch_name);
-      body.append("affno", allInputs.affno);
-      body.append("contact_person", allInputs.contact_person);
-      body.append("mob", allInputs.mob);
+      body.append("sch_id", props.data.sch_id);
+      body.append("sch_name", allInputs.sch_name || props.data.sch_name);
+      body.append("affno", allInputs.affno || props.data.affno);
+      body.append(
+        "contact_person",
+        allInputs.contact_person || props.data.contact_person
+      );
+      body.append("mob", allInputs.mob || props.data.mob);
       body.append("alt_mob", allInputs.alt_mob);
       body.append("state", allInputs.state);
       body.append("district", allInputs.district);
       body.append("city", allInputs.city);
       body.append("pinno", allInputs.pinno);
       const data = await axios.post(
-        "https://dstservices.in/api/sch_add.php",
+        "https://dstservices.in/api/sch_edit.php",
         body
       );
-      if (data?.data?.schadd?.response_desc === "Data Saved Successfully") {
+      console.log(data);
+      if (data?.data?.sch_edit?.response_desc === "Data Updated Successfully") {
         fetchAllMaster("https://dstservices.in/api/sch_list.php");
-        setMsg(data?.data?.schadd?.response_desc);
+        setMsg(data?.data?.sch_edit?.response_desc);
         props.onHide();
         setSuccess(true);
       } else {
-        setMsg(data?.data?.schadd?.response_desc);
+        setMsg(data?.data?.sch_edit?.response_desc);
         props.onHide();
       }
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -116,9 +102,8 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="sch_name"
-                    placeholder="Enter School Name"
+                    placeholder={props.data.sch_name}
                     onChange={(e) => handleChange(e)}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -128,9 +113,8 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="affno"
-                    placeholder="Enter Affiliated Number"
+                    placeholder={props.data.affno}
                     onChange={(e) => handleChange(e)}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -140,9 +124,8 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="contact_person"
-                    placeholder="Enter Contact Person"
+                    placeholder={props.data.contact_person}
                     onChange={(e) => handleChange(e)}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -152,9 +135,8 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="tel"
                     name="mob"
-                    placeholder="Enter Contact Number"
+                    placeholder={props.data.mob}
                     onChange={(e) => handleChange(e)}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -221,32 +203,6 @@ const AddSchoolModal = (props) => {
                   />
                 </Form.Group>
               </Col>
-              <Col xs={6} sm={6} md={6} lg={6}>
-                <Row className="g-3">
-                  <Col xs={9} sm={9} md={9} lg={9}>
-                    <Form.Group controlId="formFile" className="mb-3">
-                      <Form.Label>Choose Logo</Form.Label>
-                      <Form.Control
-                        type="file"
-                        onChange={(e) => handleFile(e)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
-                    <img
-                      src={
-                        logo === ""
-                          ? "https://img.icons8.com/fluency/512/image.png"
-                          : prevImage
-                      }
-                      alt=""
-                      height={50}
-                      style={{ objectFit: "cover" }}
-                      className="w-100 my-auto"
-                    />
-                  </Col>
-                </Row>
-              </Col>
             </Row>
             <Button variant="primary" className="mt-3" type="submit">
               Submit
@@ -263,4 +219,4 @@ const AddSchoolModal = (props) => {
   );
 };
 
-export default AddSchoolModal;
+export default EditSchoolModal;

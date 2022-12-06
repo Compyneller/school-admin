@@ -3,6 +3,8 @@ import { Button, Card, Container, Table, Form } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
 import AddSchoolModal from "./AddSchoolModal";
 import { motion } from "framer-motion";
+import axios from "axios";
+import EditSchoolModal from "./EditSchoolModal";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -44,6 +46,20 @@ const SchoolMaster = () => {
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/sch_list.php");
   }, []);
+  const handleDelete = async () => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("sch_id", radio.sch_id);
+    body.append("sch_name", radio.sch_name);
+    body.append("affno", radio.affno);
+    const { data } = await axios.post(
+      "https://dstservices.in/api/sch_del.php",
+      body
+    );
+    if (data?.sch_del?.response_desc === "Data Removed Successfully") {
+      fetchAllMaster("https://dstservices.in/api/sch_list.php");
+    }
+  };
   return (
     <motion.div
       className="w-100"
@@ -61,7 +77,7 @@ const SchoolMaster = () => {
               <Button variant="primary" onClick={() => setModalShow(true)}>
                 <i className="fa-solid fa-plus"></i>
               </Button>
-              <Button variant="danger">
+              <Button variant="danger" onClick={() => handleDelete()}>
                 <i className="fa-solid fa-trash-can"></i>
               </Button>
             </div>
@@ -97,25 +113,35 @@ const SchoolMaster = () => {
                       type="radio"
                       id={`${items.category}`}
                       value={items.category}
-                      onChange={(e) => setRadio(e.target.value)}
+                      onChange={() => setRadio(items)}
                     />
                   </td>
-                  <td>{items.sch_id}</td>
+                  <td>{index + 1}</td>
                   <td>{items.sch_name}</td>
                   <td>{items.contact_person}</td>
                   <td>{items.mob}</td>
                   <td>
-                    <img src={items.sch_img} width={100} alt={items.sch_img} />
+                    <img
+                      src={`${items.sch_img}?${Date.now()}`}
+                      width={50}
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                      alt={items.sch_img}
+                    />
                   </td>
                   <td>
                     <Button
                       variant="outline-primary"
                       onClick={() => {
                         setDetail({
-                          cat: `${items.category}`,
-                          catid: `${items.catid}`,
-                          pcatid: `${items.pcatid}`,
-                          sortno: `${items.sortno}`,
+                          sch_id: `${items.sch_id}`,
+                          sch_name: `${items.sch_name}`,
+                          affno: `${items.affno}`,
+                          contact_person: `${items.contact_person}`,
+                          mob: `${items.mob}`,
+                          alt_mob: `${items.alt_mob}`,
+                          city: `${items.city}`,
+                          pinno: `${items.pinno}`,
                         });
                         setEditModal(true);
                       }}>
@@ -129,6 +155,11 @@ const SchoolMaster = () => {
         </Table>
         <AddSchoolModal show={modalShow} onHide={() => setModalShow(false)} />
       </Container>
+      <EditSchoolModal
+        data={detail}
+        show={editModal}
+        onHide={() => setEditModal(false)}
+      />
     </motion.div>
   );
 };
