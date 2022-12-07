@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import ProductMaster from "./pages/ProductMaster/ProductMaster";
 import SchoolMaster from "./pages/SchoolMaster/SchoolMaster";
+import UserAllocation from "./pages/UserAllocation/UserAllocation";
 import VendorList from "./pages/VendorList/VendorList";
 import VendorMaster from "./pages/VendorMaster/VendorMaster";
 
@@ -39,5 +40,9 @@ export const routes = [
   {
     path: "/brand-master",
     element: <ProductMaster />,
+  },
+  {
+    path: "/user-allocation",
+    element: <UserAllocation />,
   },
 ];

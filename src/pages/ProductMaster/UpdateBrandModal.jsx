@@ -39,25 +39,31 @@ const UpdateBrandModal = (props) => {
         data?.data?.brand_edit?.response_desc === "Data Updated Successfully"
       ) {
         setMsg(data?.data?.brand_edit?.response_desc);
-        const file = new FormData();
-        file.append("imagefor", "BRAND");
-        file.append("imageid", props.detail.bid);
-        file.append("image", logo || props.detail.img);
-        const fileData = await axios.post(
-          "https://dstservices.in/api/filesup.php",
-          file
-        );
 
-        if (fileData?.data?.msg === "Successful") {
+        // ===========file upload=====================
+        if (logo === "") {
           props.onHide();
           setSuccess(true);
-          setBrand("");
           fetchAllMaster("https://dstservices.in/api/brand_list.php");
         } else {
-          window.alert("Something Wrong");
+          const file = new FormData();
+          file.append("imagefor", "BRAND");
+          file.append("imageid", props.detail.bid);
+          file.append("image", logo || props.detail.img);
+          const fileData = await axios.post(
+            "https://dstservices.in/api/filesup.php",
+            file
+          );
+          if (fileData?.data?.msg === "Successful") {
+            props.onHide();
+            setSuccess(true);
+            setBrand("");
+            fetchAllMaster("https://dstservices.in/api/brand_list.php");
+          } else {
+            window.alert("Something Wrong");
+          }
         }
-        props.onHide();
-        fetchAllMaster("https://dstservices.in/api/brand_list.php");
+        // ====================file upload end====================
       } else {
         setMsg(data?.data?.brand_edit?.response_desc);
         props.onHide();

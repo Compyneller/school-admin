@@ -35,7 +35,6 @@ const EditVendorModal = (props) => {
   useEffect(() => {
     fetchState();
   }, []);
-  console.log(props.data);
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {
       window.alert("Image must be under 2 M.B");
@@ -74,6 +73,7 @@ const EditVendorModal = (props) => {
     fetchDistrict();
   }, [allInputs.state]);
   const handleSubmit = async (e) => {
+    console.log(allInputs.gstReg);
     e.preventDefault();
     try {
       const body = new FormData();
@@ -93,7 +93,7 @@ const EditVendorModal = (props) => {
       body.append("district", allInputs.district || props.data.district);
       body.append("city", allInputs.city || props.data.city);
       body.append("pinno", allInputs.pinno || props.data.pinno);
-      body.append("aadhar", allInputs.aadhar);
+      body.append("aadhar", allInputs.aadhar || props.data.aadharno);
       body.append("regtype", allInputs.gstReg);
       const data = await axios.post(
         "https://dstservices.in/api/vendor_edit.php",
@@ -103,17 +103,23 @@ const EditVendorModal = (props) => {
         data?.data?.vendor_edit?.response_desc === "Data Updated Successfully"
       ) {
         setMsg(data?.data?.vendor_edit?.response_desc);
-        // =============file uplaod ===================
+        if (logo === "") {
+          fetchAllMaster("https://dstservices.in/api/vendor_list.php");
+          props.onHide();
+          setSuccess(true);
+        } else {
+          // =============file uplaod ===================
 
-        const file = new FormData();
-        file.append("imagefor", "VENDOR");
-        file.append("imageid", props.data.vid);
-        file.append("image", logo);
-        await axios.post("https://dstservices.in/api/filesup.php", file);
+          const file = new FormData();
+          file.append("imagefor", "VENDOR");
+          file.append("imageid", props.data.vid);
+          file.append("image", logo);
+          await axios.post("https://dstservices.in/api/filesup.php", file);
 
-        // ===============file upload end ==================
-        fetchAllMaster("https://dstservices.in/api/vendor_list.php");
-        props.onHide();
+          // ===============file upload end ==================
+          fetchAllMaster("https://dstservices.in/api/vendor_list.php");
+          props.onHide();
+        }
         setSuccess(true);
       } else {
         setError(true);
@@ -260,8 +266,8 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="tel"
                     name="aadhar"
-                    placeholder="Enter Aadhar"
-                    required
+                    maxLength={12}
+                    placeholder={props.data.aadharno}
                   />
                 </Form.Group>
               </Col>

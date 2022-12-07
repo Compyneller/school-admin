@@ -97,7 +97,6 @@ const AddVendor = (props) => {
         "https://dstservices.in/api/vendor_add.php",
         body
       );
-      console.log(data);
       if (data?.data?.vendoradd?.response_desc === "Data Saved Successfully") {
         // =============file uplaod ===================
 
@@ -230,8 +229,15 @@ const AddVendor = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>GST Type</Form.Label>
-                <Form.Select name="gsttype" onChange={(e) => handleChange(e)}>
-                  <option>Select GST Type</option>
+                <Form.Select
+                  name="gsttype"
+                  disabled={allInputs.gstReg === "Unregistered" ? true : false}
+                  onChange={(e) => handleChange(e)}>
+                  <option>
+                    {allInputs.gstReg === "Unregistered"
+                      ? "Nill"
+                      : "Select GST Type"}
+                  </option>
                   <option value="Including">Including</option>
                   <option value="Excluding">Excluding</option>
                 </Form.Select>
@@ -266,6 +272,7 @@ const AddVendor = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="tel"
                     name="aadhar"
+                    maxLength={12}
                     placeholder="Enter Aadhar"
                     required
                   />

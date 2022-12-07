@@ -42,7 +42,6 @@ const VendorMaster = () => {
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/vendor_list.php");
   }, []);
-  console.log(allMaster);
   const handleDelete = async () => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
@@ -97,7 +96,7 @@ const VendorMaster = () => {
               <th>Firm Name</th>
               <th>Father Name</th>
               <th>GST Type</th>
-              <th>GST No.</th>
+              <th>GST / Certificate No.</th>
               <th>Image</th>
               <th>Action</th>
             </tr>
@@ -120,7 +119,11 @@ const VendorMaster = () => {
                   <td>{items.vmob}</td>
                   <td>{items.firm_name}</td>
                   <td>{items.father_name}</td>
-                  <td>{items.gsttype}</td>
+                  <td>
+                    {items.gst_reg_type === "Unregistered"
+                      ? "Nill"
+                      : items.gsttype}
+                  </td>
                   <td>{items.gstno}</td>
                   <td>
                     <img
@@ -153,6 +156,7 @@ const VendorMaster = () => {
                           pinno: `${items.pinno}`,
                           panno: `${items.panno}`,
                           fimg: `${items.fimg}`,
+                          aadharno: `${items.aadharno}`,
                         });
                         setEditModal(true);
                       }}>
