@@ -27,12 +27,15 @@ const EditVendorModal = (props) => {
     district: "",
     city: "",
     pinno: "",
+    aadhar: "",
+    gstReg: "",
   });
   const stateContext = useContext(ToggleState);
   const { fetchAllMaster, fetchState, state } = stateContext;
   useEffect(() => {
     fetchState();
   }, []);
+  console.log(props.data);
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {
       window.alert("Image must be under 2 M.B");
@@ -77,19 +80,21 @@ const EditVendorModal = (props) => {
       body.append("api", "sajdh23jd823m023uierur32");
       body.append("vid", props.data.vid);
       body.append("vname", allInputs.vname || props.data.vname);
-      body.append("fname", allInputs.fname || props.data.firm_name);
+      body.append("father", allInputs.fname || props.data.father_name);
       body.append("vmob", allInputs.vmob || props.data.vmob);
       body.append("firm_name", allInputs.firm_name);
-      body.append("fmob", allInputs.fmob);
-      body.append("fadd", allInputs.fadd);
-      body.append("ftype", allInputs.ftype);
-      body.append("panno", allInputs.panno);
-      body.append("gsttype", allInputs.gsttype);
+      body.append("fmob", allInputs.fmob || props.data.fmob);
+      body.append("fadd", allInputs.fadd || props.data.fadd);
+      body.append("ftype", allInputs.ftype || props.data.ftype);
+      body.append("panno", allInputs.panno || props.data.panno);
+      body.append("gsttype", allInputs.gsttype || props.data.gsttype);
       body.append("gstno", allInputs.gstno || props.data.gstno);
-      body.append("state", allInputs.state);
-      body.append("district", allInputs.district);
-      body.append("city", allInputs.city);
-      body.append("pinno", allInputs.pinno);
+      body.append("state", allInputs.state || props.data.state);
+      body.append("district", allInputs.district || props.data.district);
+      body.append("city", allInputs.city || props.data.city);
+      body.append("pinno", allInputs.pinno || props.data.pinno);
+      body.append("aadhar", allInputs.aadhar);
+      body.append("regtype", allInputs.gstReg);
       const data = await axios.post(
         "https://dstservices.in/api/vendor_edit.php",
         body
@@ -147,13 +152,12 @@ const EditVendorModal = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Firm Name</Form.Label>
+                  <Form.Label>Father's Name</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="fname"
-                    placeholder="Enter"
-                    required
+                    placeholder={props.data.father_name}
                   />
                 </Form.Group>
               </Col>
@@ -186,8 +190,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="tel"
                     name="fmob"
-                    placeholder="Firm Mobile"
-                    required
+                    placeholder={props.data.fmob}
                   />
                 </Form.Group>
               </Col>
@@ -198,7 +201,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="fadd"
-                    placeholder="Firm Address"
+                    placeholder={props.data.fadd}
                   />
                 </Form.Group>
               </Col>
@@ -210,17 +213,15 @@ const EditVendorModal = (props) => {
                   <option value="Proprietorship">Proprietorship</option>
                 </Form.Select>
               </Col>
+
               <Col xs={6} sm={6} md={6} lg={6}>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Pan No.</Form.Label>
-                  <Form.Control
-                    onChange={(e) => handleChange(e)}
-                    type="tel"
-                    name="panno"
-                    placeholder="Enter Pan Number"
-                    required
-                  />
-                </Form.Group>
+                <Form.Label>GST Reg.</Form.Label>
+                <Form.Select name="gstReg" onChange={(e) => handleChange(e)}>
+                  <option>Select GST Reg.</option>
+                  <option value="Regular GST">Regular GST</option>
+                  <option value="Composite GST">Composite GST</option>
+                  <option value="Unregistered">Unregistered</option>
+                </Form.Select>
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>GST Type</Form.Label>
@@ -238,6 +239,29 @@ const EditVendorModal = (props) => {
                     type="tel"
                     name="gstno"
                     placeholder={props.data.gstno}
+                  />
+                </Form.Group>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Pan No.</Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    type="tel"
+                    name="panno"
+                    placeholder={props.data.panno}
+                  />
+                </Form.Group>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Aadhar No.</Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    type="tel"
+                    name="aadhar"
+                    placeholder="Enter Aadhar"
+                    required
                   />
                 </Form.Group>
               </Col>
@@ -278,8 +302,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="city"
-                    placeholder="Enter City"
-                    required
+                    placeholder={props.data.city}
                   />
                 </Form.Group>
               </Col>
@@ -290,8 +313,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="tel"
                     name="pinno"
-                    placeholder="Enter Pin Code"
-                    required
+                    placeholder={props.data.pinno}
                   />
                 </Form.Group>
               </Col>
@@ -311,7 +333,7 @@ const EditVendorModal = (props) => {
                     <img
                       src={
                         logo === ""
-                          ? "https://img.icons8.com/fluency/512/image.png"
+                          ? `${props.data.fimg}?${Date.now()}`
                           : prevImage
                       }
                       alt=""

@@ -21,6 +21,8 @@ const AddVendor = (props) => {
     fadd: "",
     ftype: "",
     panno: "",
+    aadhar: "",
+    gstReg: "",
     gsttype: "",
     gstno: "",
     state: "",
@@ -76,7 +78,7 @@ const AddVendor = (props) => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
       body.append("vname", allInputs.vname);
-      body.append("fname", allInputs.fname);
+      body.append("father", allInputs.fname);
       body.append("vmob", allInputs.vmob);
       body.append("firm_name", allInputs.firm_name);
       body.append("fmob", allInputs.fmob);
@@ -89,10 +91,13 @@ const AddVendor = (props) => {
       body.append("district", allInputs.district);
       body.append("city", allInputs.city);
       body.append("pinno", allInputs.pinno);
+      body.append("aadhar", allInputs.aadhar);
+      body.append("regtype", allInputs.gstReg);
       const data = await axios.post(
         "https://dstservices.in/api/vendor_add.php",
         body
       );
+      console.log(data);
       if (data?.data?.vendoradd?.response_desc === "Data Saved Successfully") {
         // =============file uplaod ===================
 
@@ -146,13 +151,12 @@ const AddVendor = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Firm Name</Form.Label>
+                  <Form.Label>Father Name</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="fname"
-                    placeholder="Firm Name"
-                    required
+                    placeholder="Father Name"
                   />
                 </Form.Group>
               </Col>
@@ -200,6 +204,7 @@ const AddVendor = (props) => {
                     type="text"
                     name="fadd"
                     placeholder="Firm Address"
+                    required
                   />
                 </Form.Group>
               </Col>
@@ -212,16 +217,16 @@ const AddVendor = (props) => {
                 </Form.Select>
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Pan No.</Form.Label>
-                  <Form.Control
-                    onChange={(e) => handleChange(e)}
-                    type="tel"
-                    name="panno"
-                    placeholder="Enter Pan Number"
-                    required
-                  />
-                </Form.Group>
+                <Form.Label>GST Reg.</Form.Label>
+                <Form.Select
+                  name="gstReg"
+                  required
+                  onChange={(e) => handleChange(e)}>
+                  <option>Select GST Reg.</option>
+                  <option value="Regular GST">Regular GST</option>
+                  <option value="Composite GST">Composite GST</option>
+                  <option value="Unregistered">Unregistered</option>
+                </Form.Select>
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>GST Type</Form.Label>
@@ -238,7 +243,31 @@ const AddVendor = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="tel"
                     name="gstno"
-                    placeholder="Enter GST Number"
+                    placeholder="Enter GST No."
+                  />
+                </Form.Group>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Pan No.</Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    type="tel"
+                    name="panno"
+                    placeholder="Enter Pan No."
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Aadhar No.</Form.Label>
+                  <Form.Control
+                    onChange={(e) => handleChange(e)}
+                    type="tel"
+                    name="aadhar"
+                    placeholder="Enter Aadhar"
+                    required
                   />
                 </Form.Group>
               </Col>
@@ -246,6 +275,7 @@ const AddVendor = (props) => {
                 <Form.Label>State</Form.Label>
                 <Form.Select
                   name="state"
+                  required
                   onChange={(e) => {
                     handleChange(e);
                   }}>
@@ -261,7 +291,10 @@ const AddVendor = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>District</Form.Label>
-                <Form.Select name="district" onChange={(e) => handleChange(e)}>
+                <Form.Select
+                  name="district"
+                  required
+                  onChange={(e) => handleChange(e)}>
                   <option>Select District</option>
                   {district?.data?.distlist?.map((items, index) => {
                     return (

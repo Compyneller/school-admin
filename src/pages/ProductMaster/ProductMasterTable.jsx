@@ -30,7 +30,13 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
               <td>{items.bid}</td>
               <td>{items?.bname}</td>
               <td>
-                <img src={`${items.bimg}?${Date.now()}`} height={50} alt="" />
+                <img
+                  src={`${items.bimg}?${Date.now()}`}
+                  height={50}
+                  width={50}
+                  style={{ objectFit: "cover" }}
+                  alt=""
+                />
               </td>
               <td>
                 <Button

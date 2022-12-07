@@ -30,7 +30,7 @@ const UpdateBrandModal = (props) => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
       body.append("bid", props.detail.bid);
-      body.append("bname", brand);
+      body.append("bname", brand || props.detail.bname);
       const data = await axios.post(
         "https://dstservices.in/api/brand_edit.php",
         body
@@ -42,7 +42,7 @@ const UpdateBrandModal = (props) => {
         const file = new FormData();
         file.append("imagefor", "BRAND");
         file.append("imageid", props.detail.bid);
-        file.append("image", logo);
+        file.append("image", logo || props.detail.img);
         const fileData = await axios.post(
           "https://dstservices.in/api/filesup.php",
           file
@@ -86,7 +86,6 @@ const UpdateBrandModal = (props) => {
                 placeholder={props.detail.bname}
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
-                required
               />
             </Form.Group>
             <Row className="g-3">

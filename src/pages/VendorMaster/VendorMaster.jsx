@@ -42,6 +42,7 @@ const VendorMaster = () => {
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/vendor_list.php");
   }, []);
+  console.log(allMaster);
   const handleDelete = async () => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
@@ -94,6 +95,7 @@ const VendorMaster = () => {
               <th>Vendor Name</th>
               <th>Vendor Mobile</th>
               <th>Firm Name</th>
+              <th>Father Name</th>
               <th>GST Type</th>
               <th>GST No.</th>
               <th>Image</th>
@@ -117,6 +119,7 @@ const VendorMaster = () => {
                   <td>{items.vname}</td>
                   <td>{items.vmob}</td>
                   <td>{items.firm_name}</td>
+                  <td>{items.father_name}</td>
                   <td>{items.gsttype}</td>
                   <td>{items.gstno}</td>
                   <td>
@@ -138,7 +141,18 @@ const VendorMaster = () => {
                           vmob: `${items.vmob}`,
                           firm_name: `${items.firm_name}`,
                           gsttype: `${items.gsttype}`,
+                          ftype: `${items.ftype}`,
                           gstno: `${items.gstno}`,
+                          state: `${items.state}`,
+                          city: `${items.city}`,
+                          district: `${items.district}`,
+                          fadd: `${items.fadd}`,
+                          father_name: `${items.father_name}`,
+                          fmob: `${items.fmob}`,
+                          state: `${items.state}`,
+                          pinno: `${items.pinno}`,
+                          panno: `${items.panno}`,
+                          fimg: `${items.fimg}`,
                         });
                         setEditModal(true);
                       }}>
