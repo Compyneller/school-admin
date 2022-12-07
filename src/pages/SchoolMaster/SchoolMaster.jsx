@@ -99,7 +99,7 @@ const SchoolMaster = () => {
               <th>Contact Person</th>
               <th>Mobile</th>
               <th>School Image</th>
-              <th>Certificate</th>
+              <th>Agreement</th>
               <th>Action</th>
             </tr>
           </thead>

@@ -5,6 +5,7 @@ import { ToggleState } from "../../context/Toggle";
 import AddVendor from "./AddVendor";
 import EditVendorModal from "./EditVendorModal";
 import { motion } from "framer-motion";
+import AddButton from "../../components/AddButton/AddButton";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -34,14 +35,13 @@ const containerVariance = {
 const VendorMaster = () => {
   const [radio, setRadio] = useState({});
   const [detail, setDetail] = useState({});
-  const [modalShow, setModalShow] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const master = useContext(ToggleState);
   const { fetchAllMaster, allMaster } = master;
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/vendor_list.php");
   }, []);
-
   const handleDelete = async () => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
@@ -72,9 +72,7 @@ const VendorMaster = () => {
             <div
               className="d-flex align-items-center"
               style={{ gap: "0.5rem" }}>
-              <Button variant="primary" onClick={() => setModalShow(true)}>
-                <i className="fa-solid fa-plus"></i>
-              </Button>
+              <AddButton setShowAddModal={setShowAddModal} />
               <Button variant="danger" onClick={() => handleDelete()}>
                 <i className="fa-solid fa-trash-can"></i>
               </Button>
@@ -98,6 +96,7 @@ const VendorMaster = () => {
               <th>Firm Name</th>
               <th>GST Type</th>
               <th>GST No.</th>
+              <th>Image</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -121,6 +120,15 @@ const VendorMaster = () => {
                   <td>{items.gsttype}</td>
                   <td>{items.gstno}</td>
                   <td>
+                    <img
+                      src={`${items.fimg}?${Date.now()}`}
+                      height={50}
+                      width={50}
+                      alt=""
+                      style={{ objectFit: "cover" }}
+                    />
+                  </td>
+                  <td>
                     <Button
                       variant="outline-primary"
                       onClick={() => {
@@ -142,7 +150,7 @@ const VendorMaster = () => {
             })}
           </tbody>
         </Table>
-        <AddVendor show={modalShow} onHide={() => setModalShow(false)} />
+        <AddVendor show={showAddModal} onHide={() => setShowAddModal(false)} />
         <EditVendorModal
           data={detail}
           show={editModal}

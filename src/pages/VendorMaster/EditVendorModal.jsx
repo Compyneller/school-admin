@@ -10,6 +10,8 @@ const EditVendorModal = (props) => {
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const [logo, setLogo] = useState("");
+  const [prevImage, setPrevImage] = useState("");
   const [allInputs, setAllInputs] = useState({
     vname: "",
     fname: "",
@@ -31,6 +33,19 @@ const EditVendorModal = (props) => {
   useEffect(() => {
     fetchState();
   }, []);
+  const handleFile = (e) => {
+    if (e.target.files[0].size > 2097152) {
+      window.alert("Image must be under 2 M.B");
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = function () {
+        setPrevImage(reader.result);
+        var strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+        setLogo(strImage);
+      };
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,16 +76,16 @@ const EditVendorModal = (props) => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
       body.append("vid", props.data.vid);
-      body.append("vname", allInputs.vname);
-      body.append("fname", allInputs.fname);
-      body.append("vmob", allInputs.vmob);
+      body.append("vname", allInputs.vname || props.data.vname);
+      body.append("fname", allInputs.fname || props.data.firm_name);
+      body.append("vmob", allInputs.vmob || props.data.vmob);
       body.append("firm_name", allInputs.firm_name);
       body.append("fmob", allInputs.fmob);
       body.append("fadd", allInputs.fadd);
       body.append("ftype", allInputs.ftype);
       body.append("panno", allInputs.panno);
       body.append("gsttype", allInputs.gsttype);
-      body.append("gstno", allInputs.gstno);
+      body.append("gstno", allInputs.gstno || props.data.gstno);
       body.append("state", allInputs.state);
       body.append("district", allInputs.district);
       body.append("city", allInputs.city);
@@ -83,6 +98,15 @@ const EditVendorModal = (props) => {
         data?.data?.vendor_edit?.response_desc === "Data Updated Successfully"
       ) {
         setMsg(data?.data?.vendor_edit?.response_desc);
+        // =============file uplaod ===================
+
+        const file = new FormData();
+        file.append("imagefor", "VENDOR");
+        file.append("imageid", props.data.vid);
+        file.append("image", logo);
+        await axios.post("https://dstservices.in/api/filesup.php", file);
+
+        // ===============file upload end ==================
         fetchAllMaster("https://dstservices.in/api/vendor_list.php");
         props.onHide();
         setSuccess(true);
@@ -118,7 +142,6 @@ const EditVendorModal = (props) => {
                     type="text"
                     name="vname"
                     placeholder={props.data.vname}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -142,7 +165,6 @@ const EditVendorModal = (props) => {
                     type="tel"
                     name="vmob"
                     placeholder={props.data.vmob}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -154,7 +176,6 @@ const EditVendorModal = (props) => {
                     type="text"
                     name="firm_name"
                     placeholder={props.data.firm_name}
-                    required
                   />
                 </Form.Group>
               </Col>
@@ -273,6 +294,33 @@ const EditVendorModal = (props) => {
                     required
                   />
                 </Form.Group>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Row className="g-3">
+                  <Col xs={9} sm={9} md={9} lg={9}>
+                    <Form.Group controlId="formFile" className="mb-3">
+                      <Form.Label>Choose Logo</Form.Label>
+                      <Form.Control
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFile(e)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
+                    <img
+                      src={
+                        logo === ""
+                          ? "https://img.icons8.com/fluency/512/image.png"
+                          : prevImage
+                      }
+                      alt=""
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                      className="w-100 my-auto"
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
             <Button variant="primary" className="mt-3" type="submit">

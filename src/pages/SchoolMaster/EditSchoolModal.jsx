@@ -9,6 +9,11 @@ const EditSchoolModal = (props) => {
   const [district, setDistrict] = useState([]);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const [logo, setLogo] = useState("");
+  const [aggPrev, setAggPrev] = useState("");
+  const [prevImage, setPrevImage] = useState("");
+  const [agreement, setAgreement] = useState("");
+
   const [allInputs, setAllInputs] = useState({
     sch_name: "",
     affno: "",
@@ -35,6 +40,32 @@ const EditSchoolModal = (props) => {
     };
     fetchDistrict();
   }, [allInputs.state]);
+  const handleFile = (e) => {
+    if (e.target.files[0].size > 2097152) {
+      window.alert("Image must be under 2 M.B");
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = function () {
+        setPrevImage(reader.result);
+        var strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+        setLogo(strImage);
+      };
+    }
+  };
+  const handleAgreement = (e) => {
+    if (e.target.files[0].size > 2097152) {
+      window.alert("Image must be under 2 M.B");
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = function () {
+        setAggPrev(reader.result);
+        var strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+        setAgreement(strImage);
+      };
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAllInputs((prev) => {
@@ -66,8 +97,23 @@ const EditSchoolModal = (props) => {
         "https://dstservices.in/api/sch_edit.php",
         body
       );
-      console.log(data);
       if (data?.data?.sch_edit?.response_desc === "Data Updated Successfully") {
+        // ============================file upload ===========================================================
+
+        const file = new FormData();
+        file.append("imagefor", "SCHOOL_PER");
+        file.append("imageid", props.data.sch_id);
+        file.append("image", logo);
+        await axios.post("https://dstservices.in/api/filesup.php", file);
+        const fileAgreement = new FormData();
+        fileAgreement.append("imagefor", "SCHOOL_AGR");
+        fileAgreement.append("imageid", props.data.sch_id);
+        fileAgreement.append("image", agreement);
+        await axios.post(
+          "https://dstservices.in/api/filesup.php",
+          fileAgreement
+        );
+        //  ============file uplaod end ================
         fetchAllMaster("https://dstservices.in/api/sch_list.php");
         setMsg(data?.data?.sch_edit?.response_desc);
         props.onHide();
@@ -75,8 +121,8 @@ const EditSchoolModal = (props) => {
       } else {
         setMsg(data?.data?.sch_edit?.response_desc);
         props.onHide();
+        setSuccess(true);
       }
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +136,7 @@ const EditSchoolModal = (props) => {
         centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Add School Master
+            Edit School Master
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -202,6 +248,60 @@ const EditSchoolModal = (props) => {
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Row className="g-3">
+                  <Col xs={9} sm={9} md={9} lg={9}>
+                    <Form.Group controlId="formFile" className="mb-3">
+                      <Form.Label>Choose Logo</Form.Label>
+                      <Form.Control
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFile(e)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
+                    <img
+                      src={
+                        logo === ""
+                          ? "https://img.icons8.com/fluency/512/image.png"
+                          : prevImage
+                      }
+                      alt=""
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                      className="w-100 my-auto"
+                    />
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={6} sm={6} md={6} lg={6}>
+                <Row className="g-3">
+                  <Col xs={9} sm={9} md={9} lg={9}>
+                    <Form.Group controlId="formFile" className="mb-3">
+                      <Form.Label>Choose Agreement</Form.Label>
+                      <Form.Control
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleAgreement(e)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
+                    <img
+                      src={
+                        agreement === ""
+                          ? "https://img.icons8.com/fluency/512/image.png"
+                          : aggPrev
+                      }
+                      alt=""
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                      className="w-100 my-auto"
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
             <Button variant="primary" className="mt-3" type="submit">
