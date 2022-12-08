@@ -43,14 +43,26 @@ const UserAllocation = () => {
         "https://dstservices.in/api/user_add.php",
         body
       );
-      console.log(data);
-      //   Toastify({
-      //     text: "Done",
 
-      //     duration: 3000,
-      //   }).showToast();
-      userName("");
-      userType("");
+      if (data?.data?.useradd?.response_desc === "Data Saved Successfully") {
+        Toastify({
+          text: data?.data?.useradd?.response_desc,
+
+          duration: 3000,
+        }).showToast();
+        setUserName("");
+        setUserType("");
+        window.location.reload();
+      } else {
+        Toastify({
+          text: data?.data?.useradd?.response_desc,
+
+          duration: 3000,
+        }).showToast();
+        setUserName("");
+        setUserType("");
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error);
       Toastify({
