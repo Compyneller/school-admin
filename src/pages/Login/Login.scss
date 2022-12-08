@@ -2,11 +2,38 @@
     display: flex;
     width: 100%;
     height: 100vh;
-    background-color: #212121;
+    background-color: #EEF1F8;
     align-items: center;
     justify-content: center;
     position: relative;
-  
+    overflow: hidden;
+    .circle{
+        background-color: #E4E9F4;
+
+    }
+    .left-circle{
+        width: 30rem;
+        height: 30rem;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 50%;
+        left: -10rem;
+    }
+
+    .right-circle{
+        width: 30rem;
+        height: 30rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        right: -10rem;
+    }
+    .left-card{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2B5CC4;
+    }
     .login-card{
         width: 50%;
     }
@@ -17,9 +44,14 @@
 @media screen and (max-width : 950px) {
     .login-card{
         width: 100% !important;
+        min-height:  fit-content !important;
+        margin: auto 0 !important;
     }
     .login-heading{
         font-size: 15vw;
+    }
+    .left-card{
+        display: none !important;
     }
     
 }

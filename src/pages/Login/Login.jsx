@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Card, Container, Form } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
 import "./Login.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LeftCardCarousel from "./LeftCardCarousel";
 const Login = () => {
   const [msg, setMsg] = useState({
     state: false,
@@ -45,52 +54,77 @@ const Login = () => {
   };
   return (
     <div className="login-container">
-      <Container className="d-flex justify-content-center align-items-center">
-        <h1
-          className="text-center mx-auto text-light login-heading"
-          style={{
-            fontWeight: "bold",
-            position: "absolute",
-            top: "5rem",
-          }}>
-          Login
-        </h1>
-        <Card className="shadow login-card" style={{ border: "none" }}>
-          {msg.state && (
-            <Alert variant="success" className="text-center">
-              {msg.des}
-            </Alert>
-          )}
-          <Card.Body>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label style={{ fontWeight: "bold" }}>User</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="User"
-                  value={email}
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
+      <div className="left-circle circle"></div>
+      <div className="right-circle circle"></div>
+      <div className="bottom-circle circle"></div>
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "80vh" }}>
+        <Row className="g-0 w-100">
+          <Col
+            xs={12}
+            sm={12}
+            md={6}
+            lg={7}
+            className="left-card"
+            style={{ zIndex: "100" }}>
+            <LeftCardCarousel />
+          </Col>
+          <Col xs={12} sm={12} md={6} lg={5} className="d-flex">
+            <Card
+              className="shadow login-card w-100 "
+              style={{ border: "none", minHeight: "100%" }}>
+              {msg.state && (
+                <Alert variant="success" className="text-center">
+                  {msg.des}
+                </Alert>
+              )}
+              <Card.Body className="d-flex align-items-center">
+                <Container>
+                  <h1
+                    className="text-center mx-auto text-dark "
+                    style={{ fontWeight: "bold" }}>
+                    Login
+                  </h1>
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label style={{ fontWeight: "bold" }}>
+                        User
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="User"
+                        value={email}
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label style={{ fontWeight: "bold" }}>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label style={{ fontWeight: "bold" }}>
+                        Password
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </Form.Group>
 
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Card.Body>
-        </Card>
+                    <Button
+                      className="w-100"
+                      type="submit"
+                      style={{ background: "#2B5CC4" }}>
+                      Login
+                    </Button>
+                  </Form>
+                </Container>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

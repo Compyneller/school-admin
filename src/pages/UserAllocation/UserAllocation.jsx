@@ -117,7 +117,6 @@ const UserAllocation = () => {
                   type="text"
                   disabled
                   value={genPassData?.data?.response_desc}
-                  placeholder="Father Name"
                 />
               </Form.Group>
             </Col>
@@ -128,7 +127,6 @@ const UserAllocation = () => {
                   type="text"
                   disabled
                   value={genPassData?.data?.response_desc}
-                  placeholder="Father Name"
                 />
               </Form.Group>
             </Col>
@@ -160,7 +158,6 @@ const UserAllocation = () => {
               </Button>
             </Col>
             <Col xs={12} sm={12} md={4} lg={4}>
-              <Form.Label>Copy Password </Form.Label>
               <Button
                 variant="primary"
                 className="w-100"
