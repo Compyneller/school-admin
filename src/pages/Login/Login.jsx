@@ -43,10 +43,10 @@ const Login = () => {
         state: true,
         des: data.response_desc,
       });
-      if (data?.uid === "admin") {
+      console.log(data);
+      if (data?.response_desc === "Password Successfull") {
         localStorage.setItem("user", JSON.stringify(data));
-        window.location.href = "/home";
-        // navigate("/dashboard");
+        navigate("/home");
       }
     } catch (error) {
       navigate("/");
@@ -54,9 +54,9 @@ const Login = () => {
   };
   return (
     <div className="login-container">
-      <div className="left-circle circle"></div>
+      {/* <div className="left-circle circle"></div>
       <div className="right-circle circle"></div>
-      <div className="bottom-circle circle"></div>
+      <div className="bottom-circle circle"></div> */}
       <Container
         className="d-flex justify-content-center align-items-center"
         style={{ minHeight: "80vh" }}>
@@ -82,7 +82,7 @@ const Login = () => {
               <Card.Body className="d-flex align-items-center">
                 <Container>
                   <h1
-                    className="text-center mx-auto text-dark "
+                    className="text-center mx-auto  "
                     style={{ fontWeight: "bold" }}>
                     Login
                   </h1>
@@ -100,7 +100,7 @@ const Login = () => {
                       />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-4" controlId="formBasicPassword">
                       <Form.Label style={{ fontWeight: "bold" }}>
                         Password
                       </Form.Label>
@@ -114,11 +114,16 @@ const Login = () => {
                     </Form.Group>
 
                     <Button
-                      className="w-100"
-                      type="submit"
-                      style={{ background: "#2B5CC4" }}>
+                      className="w-100 mb-3"
+                      variant="primary"
+                      type="submit">
                       Login
                     </Button>
+                    <Form.Group className="" controlId="formBasicPassword">
+                      <Form.Label style={{ fontWeight: "bold" }}>
+                        Forgot Password
+                      </Form.Label>
+                    </Form.Group>
                   </Form>
                 </Container>
               </Card.Body>

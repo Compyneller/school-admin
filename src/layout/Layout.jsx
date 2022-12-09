@@ -40,7 +40,7 @@ const Layout = () => {
               duration: 0.5,
             }}
             className="home-container">
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence mode="wait">
               <Routes location={location} key={location.key}>
                 {routes.map((items, index) => {
                   return (

@@ -1,5 +1,7 @@
 import AboutUs from "./pages/AboutUs";
 import CategoryMaster from "./pages/CategoryMaster/CategoryMaster";
+import ChangeLvlPass from "./pages/ChangeLvlPass/ChangeLvlPass";
+import ChangePass from "./pages/ChangePass/ChangePass";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import ProductMaster from "./pages/ProductMaster/ProductMaster";
@@ -44,5 +46,13 @@ export const routes = [
   {
     path: "/user-allocation",
     element: <UserAllocation />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePass />,
+  },
+  {
+    path: "/change-level-password",
+    element: <ChangeLvlPass />,
   },
 ];
