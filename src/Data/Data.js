@@ -4,8 +4,11 @@ import {
   FaBook,
   FaFingerprint,
   FaShoppingCart,
+  FaUpload,
 } from "react-icons/fa";
+import { RiAdminFill, RiLockPasswordFill } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
+import { MdOutlineControlCamera } from "react-icons/md";
 import { HiDocumentReport } from "react-icons/hi";
 export const SideBarData = [
   {
@@ -58,6 +61,10 @@ export const SideBarData = [
       {
         subName: "Brand Master",
         subLink: "/brand-master",
+      },
+      {
+        subName: "Employee Master",
+        subLink: "/employee-master",
       },
     ],
   },
@@ -126,5 +133,47 @@ export const SideBarData = [
   {
     name: "Logout",
     icon: <IoLogOut />,
+  },
+];
+export const vendorMenu = [
+  {
+    icon: <FaHome />,
+    name: "Home",
+    link: "/home",
+  },
+  {
+    icon: <FaTools />,
+    name: "Tools",
+    link: "/vendor-tools",
+  },
+  {
+    icon: <RiLockPasswordFill />,
+    name: "Tools",
+    link: "/vendor-tools",
+  },
+  {
+    icon: <FaUpload />,
+    name: "KYC Upload",
+    link: "/vendor-kyc-upload",
+  },
+  {
+    icon: <RiAdminFill />,
+    name: "Master",
+    link: "/vendor-master",
+  },
+  {
+    icon: <MdOutlineControlCamera />,
+    name: "Product Master",
+    link: "/vendor-product-master",
+  },
+  {
+    icon: <FaShoppingCart />,
+    name: "Orders",
+    link: "/vendor-orders",
+  },
+  {
+    icon: <HiDocumentReport />,
+    name: "Reports",
+    link: "/vendor-reports",
   },
 ];

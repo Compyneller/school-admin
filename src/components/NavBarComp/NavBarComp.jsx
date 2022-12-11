@@ -29,8 +29,8 @@ const NavBarComp = () => {
           />
           <h3
             className="text-light ms-3 my-auto"
-            style={{ fontWeight: "bold" }}>
-            Admin
+            style={{ fontWeight: "bold", textTransform: "capitalize" }}>
+            {JSON.parse(localStorage.getItem("user")).uid}
           </h3>
         </Navbar.Brand>
         <Button

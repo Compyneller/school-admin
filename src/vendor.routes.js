@@ -11,13 +11,13 @@ import UserAllocation from "./pages/UserAllocation/UserAllocation";
 import VendorList from "./pages/VendorList/VendorList";
 import VendorMaster from "./pages/VendorMaster/VendorMaster";
 
-export const routes = [
+export const vendorRoutes = [
   {
     path: "/home",
     element: <Home />,
   },
   {
-    path: "/about-us",
+    path: "/vendor-about-us",
     element: <AboutUs />,
   },
   {
@@ -25,39 +25,39 @@ export const routes = [
     element: <Login />,
   },
   {
-    path: "/category-master",
+    path: "/vendor-category-master",
     element: <CategoryMaster />,
   },
   {
-    path: "/school-master",
+    path: "/vendor-school-master",
     element: <SchoolMaster />,
   },
   {
-    path: "/vendor-master",
+    path: "/vendor-vendor-master",
     element: <VendorMaster />,
   },
   {
-    path: "/product-verification",
+    path: "/vendor-product-verification",
     element: <VendorList />,
   },
   {
-    path: "/brand-master",
+    path: "/vendor-brand-master",
     element: <ProductMaster />,
   },
   {
-    path: "/user-allocation",
+    path: "/vendor-user-allocation",
     element: <UserAllocation />,
   },
   {
-    path: "/change-password",
+    path: "/vendor-change-password",
     element: <ChangePass />,
   },
   {
-    path: "/change-level-password",
+    path: "/vendor-change-level-password",
     element: <ChangeLvlPass />,
   },
   {
-    path: "/employee-master",
+    path: "/vendor-employee-master",
     element: <EmployeeMaster />,
   },
 ];

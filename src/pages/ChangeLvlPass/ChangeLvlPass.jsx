@@ -1,36 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { FaEye } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
 import Toastify from "toastify-js";
-const containerVariance = {
-  ini: {
-    x: "100%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  ani: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  exi: {
-    x: "-85%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-};
+import { containerVariance } from "../../Data/variants";
 const ChangeLvlPass = () => {
   const [userName, setUserName] = useState([]);
+  const [showPass, setShowPass] = useState(false);
   const [user, setUser] = useState("");
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
@@ -102,45 +79,68 @@ const ChangeLvlPass = () => {
         <br />
         <Card>
           <Card.Body>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>User Name</Form.Label>
-                <Form.Select
-                  value={user}
-                  onChange={(e) => setUser(e.target.value)}>
-                  <option>Select User</option>
-                  {userName?.data?.userlist?.map((items, index) => {
-                    return (
-                      <option value={items.userid} key={index}>
-                        {items.userid}
-                      </option>
-                    );
-                  })}
-                </Form.Select>
-              </Form.Group>
+            <Row className="d-flex align-items-center justify-content-center">
+              <Col xs={12} sm={12} md={8} lg={6}>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>User Name</Form.Label>
+                    <Form.Select
+                      value={user}
+                      onChange={(e) => setUser(e.target.value)}>
+                      <option>Select User</option>
+                      {userName?.data?.userlist?.map((items, index) => {
+                        return (
+                          <option value={items.userid} key={index}>
+                            {items.userid}
+                          </option>
+                        );
+                      })}
+                    </Form.Select>
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Old Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Old Password"
-                  value={oldPass}
-                  disabled
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicNewPassword">
-                <Form.Label>New Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter New Password"
-                  value={newPass}
-                  onChange={(e) => setNewPass(e.target.value)}
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Change Password
-              </Button>
-            </Form>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Old Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Old Password"
+                      value={oldPass}
+                      disabled
+                    />
+                  </Form.Group>
+                  <Row className="g-3">
+                    <Col xs={10} sm={10} md={10} lg={10}>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicNewPassword">
+                        <Form.Label>New Password</Form.Label>
+                        <Form.Control
+                          type={showPass ? "text" : "password"}
+                          placeholder="Enter New Password"
+                          value={newPass}
+                          onChange={(e) => setNewPass(e.target.value)}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col
+                      xs={2}
+                      sm={2}
+                      md={2}
+                      lg={2}
+                      className="d-flex align-items-center">
+                      <Button
+                        className="w-100 mt-3"
+                        variant="warning"
+                        onClick={() => setShowPass(!showPass)}>
+                        <FaEye />
+                      </Button>
+                    </Col>
+                  </Row>
+                  <Button variant="primary" type="submit">
+                    Change Password
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
           </Card.Body>
         </Card>
       </Container>
