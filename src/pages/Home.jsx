@@ -40,7 +40,11 @@ const Home = () => {
         <Row className="g-3">
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -53,7 +57,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -66,7 +74,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -79,7 +91,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -92,7 +108,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -105,7 +125,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -118,7 +142,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>
@@ -131,150 +159,11 @@ const Home = () => {
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
             <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs={12} sm={6} md={4} lg={3}>
-            <Card style={{ width: "100%" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img
+                style={{ borderRadius: "0px" }}
+                variant="top"
+                src="https://images.unsplash.com/photo-1670611554834-d7e6e48b7bc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>

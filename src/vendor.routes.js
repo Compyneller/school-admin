@@ -10,6 +10,7 @@ import SchoolMaster from "./pages/SchoolMaster/SchoolMaster";
 import UserAllocation from "./pages/UserAllocation/UserAllocation";
 import VendorList from "./pages/VendorList/VendorList";
 import VendorMaster from "./pages/VendorMaster/VendorMaster";
+import Profile from "./vendor-pages/Profile/Profile";
 
 export const vendorRoutes = [
   {
@@ -59,5 +60,9 @@ export const vendorRoutes = [
   {
     path: "/vendor-employee-master",
     element: <EmployeeMaster />,
+  },
+  {
+    path: "/vendor-profile",
+    element: <Profile />,
   },
 ];

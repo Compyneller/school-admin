@@ -10,6 +10,7 @@ import { RiAdminFill, RiLockPasswordFill } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
 import { MdOutlineControlCamera } from "react-icons/md";
 import { HiDocumentReport } from "react-icons/hi";
+import { BsFillPersonLinesFill } from "react-icons/bs";
 export const SideBarData = [
   {
     name: "Home",
@@ -175,5 +176,10 @@ export const vendorMenu = [
     icon: <HiDocumentReport />,
     name: "Reports",
     link: "/vendor-reports",
+  },
+  {
+    icon: <BsFillPersonLinesFill />,
+    name: "Profile",
+    link: "/vendor-profile",
   },
 ];
