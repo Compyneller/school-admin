@@ -4,11 +4,9 @@ import {
   FaBook,
   FaFingerprint,
   FaShoppingCart,
-  FaUpload,
 } from "react-icons/fa";
-import { RiAdminFill, RiLockPasswordFill } from "react-icons/ri";
+import { RiAdminFill } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
-import { MdOutlineControlCamera } from "react-icons/md";
 import { HiDocumentReport } from "react-icons/hi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 export const SideBarData = [
@@ -146,27 +144,30 @@ export const vendorMenu = [
     icon: <FaTools />,
     name: "Tools",
     link: "/vendor-tools",
+    subMenu: [
+      {
+        subName: "Change Password",
+        subLink: "/change-vendor-password",
+      },
+      {
+        subName: "KYC Upload",
+        subLink: "/vendor-kyc-upload",
+      },
+    ],
   },
-  {
-    icon: <RiLockPasswordFill />,
-    name: "Tools",
-    link: "/vendor-tools",
-  },
-  {
-    icon: <FaUpload />,
-    name: "KYC Upload",
-    link: "/vendor-kyc-upload",
-  },
+
   {
     icon: <RiAdminFill />,
     name: "Master",
     link: "/vendor-master",
+    subMenu: [
+      {
+        subName: "Product Master",
+        subLink: "vendor-product-master",
+      },
+    ],
   },
-  {
-    icon: <MdOutlineControlCamera />,
-    name: "Product Master",
-    link: "/vendor-product-master",
-  },
+
   {
     icon: <FaShoppingCart />,
     name: "Orders",

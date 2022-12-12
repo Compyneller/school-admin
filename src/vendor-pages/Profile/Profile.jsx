@@ -10,8 +10,9 @@ import {
   Row,
   Tooltip,
 } from "react-bootstrap";
-import { BsFillCameraFill } from "react-icons/bs";
+import { containerVariance } from "../../Data/variants";
 import "./Profile.scss";
+import { motion } from "framer-motion";
 const Profile = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
@@ -31,7 +32,12 @@ const Profile = () => {
   console.log(data);
 
   return (
-    <>
+    <motion.div
+      className="w-100"
+      variants={containerVariance}
+      initial="ini"
+      animate="ani"
+      exit="exi">
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -224,7 +230,7 @@ const Profile = () => {
           </Card.Body>
         </Card>
       </Container>
-    </>
+    </motion.div>
   );
 };
 
