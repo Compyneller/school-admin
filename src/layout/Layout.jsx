@@ -14,13 +14,19 @@ const Layout = () => {
   const [condRoutes, setCondRoutes] = useState([]);
   const navigate = useNavigate();
   const [width, setWidth] = useState("");
+  const [scroll, setScroll] = useState(false);
   useEffect(() => {
     setWidth(window.innerWidth);
   }, [window.innerWidth]);
   useEffect(() => {
-    return JSON.parse(localStorage.getItem("user"))?.uid === "admin"
+    return JSON.parse(localStorage.getItem("user"))?.ugroup === "ADMINISTRATOR"
       ? setCondRoutes(routes)
       : setCondRoutes(vendorRoutes);
+  }, []);
+  useEffect(() => {
+    return JSON.parse(localStorage.getItem("user"))?.ugroup === "ADMINISTRATOR"
+      ? setScroll(false)
+      : setScroll(true);
   }, []);
 
   if (localStorage.getItem("user")) {
@@ -48,6 +54,11 @@ const Layout = () => {
               duration: 0.5,
             }}
             className="home-container">
+            {scroll && (
+              <marquee behavior="" direction="" className="pt-5">
+                <h5 className="text-danger">KYC NOT VERIFIED</h5>
+              </marquee>
+            )}
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.key}>
                 {condRoutes.map((items, index) => {
