@@ -141,6 +141,11 @@ export const vendorMenu = [
     link: "/home",
   },
   {
+    icon: <BsFillPersonLinesFill />,
+    name: "Profile",
+    link: "/vendor-profile",
+  },
+  {
     icon: <FaTools />,
     name: "Tools",
     link: "/vendor-tools",
@@ -177,10 +182,5 @@ export const vendorMenu = [
     icon: <HiDocumentReport />,
     name: "Reports",
     link: "/vendor-reports",
-  },
-  {
-    icon: <BsFillPersonLinesFill />,
-    name: "Profile",
-    link: "/vendor-profile",
   },
 ];

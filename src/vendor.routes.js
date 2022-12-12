@@ -11,58 +11,20 @@ import UserAllocation from "./pages/UserAllocation/UserAllocation";
 import VendorList from "./pages/VendorList/VendorList";
 import VendorMaster from "./pages/VendorMaster/VendorMaster";
 import Profile from "./vendor-pages/Profile/Profile";
+import VendorProductMaster from "./vendor-pages/VendorProductMaster/VendorProductMaster";
 
 export const vendorRoutes = [
   {
     path: "/home",
     element: <Home />,
   },
-  {
-    path: "/vendor-about-us",
-    element: <AboutUs />,
-  },
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/vendor-category-master",
-    element: <CategoryMaster />,
-  },
-  {
-    path: "/vendor-school-master",
-    element: <SchoolMaster />,
-  },
-  {
-    path: "/vendor-vendor-master",
-    element: <VendorMaster />,
-  },
-  {
-    path: "/vendor-product-verification",
-    element: <VendorList />,
-  },
-  {
-    path: "/vendor-brand-master",
-    element: <ProductMaster />,
-  },
-  {
-    path: "/vendor-user-allocation",
-    element: <UserAllocation />,
-  },
-  {
-    path: "/vendor-change-password",
-    element: <ChangePass />,
-  },
-  {
-    path: "/vendor-change-level-password",
-    element: <ChangeLvlPass />,
-  },
-  {
-    path: "/vendor-employee-master",
-    element: <EmployeeMaster />,
-  },
+
   {
     path: "/vendor-profile",
     element: <Profile />,
+  },
+  {
+    path: "/vendor-product-master",
+    element: <VendorProductMaster />,
   },
 ];
