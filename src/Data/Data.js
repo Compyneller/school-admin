@@ -129,10 +129,6 @@ export const SideBarData = [
       },
     ],
   },
-  {
-    name: "Logout",
-    icon: <IoLogOut />,
-  },
 ];
 export const vendorMenu = [
   {

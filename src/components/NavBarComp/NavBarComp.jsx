@@ -40,14 +40,6 @@ const NavBarComp = () => {
           </h3>
         </Navbar.Brand>
         {scroll && <h5 className="text-warning">KYC NOT VERIFIED</h5>}
-        <Button
-          variant="outline-danger"
-          onClick={() => {
-            localStorage.removeItem("user");
-            window.location.href = "/";
-          }}>
-          logout
-        </Button>
       </Container>
     </Navbar>
   );
