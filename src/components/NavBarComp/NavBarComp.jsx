@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import { useNavigate } from "react-router-dom";
 const NavBarComp = () => {
   const toggleState = useContext(ToggleState);
+  const [scroll, setScroll] = useState(false);
+
   const { toggleSidebar, setToggleSidebar } = toggleState;
-  const navigate = useNavigate();
+  useEffect(() => {
+    return JSON.parse(localStorage.getItem("user"))?.ugroup === "ADMINISTRATOR"
+      ? setScroll(false)
+      : setScroll(true);
+  }, []);
   return (
     <Navbar
       bg="dark"
@@ -17,7 +22,7 @@ const NavBarComp = () => {
         zIndex: "100",
       }}>
       <Container fluid>
-        <Navbar.Brand className="d-flex align-items-center">
+        <Navbar.Brand className="d-flex align-items-center ">
           <img
             src="https://img.icons8.com/ios-glyphs/344/menu.png"
             width="30"
@@ -27,12 +32,14 @@ const NavBarComp = () => {
             style={{ filter: "invert(1)", cursor: "pointer" }}
             onClick={() => setToggleSidebar(!toggleSidebar)}
           />
+
           <h3
             className="text-light ms-3 my-auto"
             style={{ fontWeight: "bold", textTransform: "capitalize" }}>
             {JSON.parse(localStorage.getItem("user")).uid}
           </h3>
         </Navbar.Brand>
+        {scroll && <h5 className="text-warning">KYC NOT VERIFIED</h5>}
         <Button
           variant="outline-danger"
           onClick={() => {

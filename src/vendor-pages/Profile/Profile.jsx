@@ -66,6 +66,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.vname}
+                      value={data?.data?.vendorprof[0]?.vname}
                     />
                   </Form.Group>
                 </Col>
@@ -76,6 +77,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.father_name}
+                      value={data?.data?.vendorprof[0]?.father_name}
                     />
                   </Form.Group>
                 </Col>
@@ -86,6 +88,7 @@ const Profile = () => {
                       type="text"
                       disabled
                       placeholder={data?.data?.vendorprof[0]?.vmob}
+                      value={data?.data?.vendorprof[0]?.vmob}
                     />
                   </Form.Group>
                 </Col>
@@ -96,6 +99,7 @@ const Profile = () => {
                       type="text"
                       disabled
                       placeholder={data?.data?.vendorprof[0]?.fmob}
+                      value={data?.data?.vendorprof[0]?.fmob}
                     />
                   </Form.Group>
                 </Col>
@@ -106,6 +110,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.state}
+                      value={data?.data?.vendorprof[0]?.state}
                     />
                   </Form.Group>
                 </Col>
@@ -116,6 +121,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.district}
+                      value={data?.data?.vendorprof[0]?.district}
                     />
                   </Form.Group>
                 </Col>
@@ -126,6 +132,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.city}
+                      value={data?.data?.vendorprof[0]?.city}
                     />
                   </Form.Group>
                 </Col>
@@ -136,6 +143,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.pinno}
+                      value={data?.data?.vendorprof[0]?.pinno}
                     />
                   </Form.Group>
                 </Col>
@@ -146,6 +154,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.fadd}
+                      value={data?.data?.vendorprof[0]?.fadd}
                     />
                   </Form.Group>
                 </Col>
@@ -156,6 +165,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.aadharno}
+                      value={data?.data?.vendorprof[0]?.aadharno}
                     />
                   </Form.Group>
                 </Col>
@@ -166,6 +176,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.panno}
+                      value={data?.data?.vendorprof[0]?.panno}
                     />
                   </Form.Group>
                 </Col>
@@ -176,6 +187,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.firm_name}
+                      value={data?.data?.vendorprof[0]?.firm_name}
                     />
                   </Form.Group>
                 </Col>
@@ -186,6 +198,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.ftype}
+                      value={data?.data?.vendorprof[0]?.ftype}
                     />
                   </Form.Group>
                 </Col>
@@ -196,6 +209,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.gst_reg_type}
+                      value={data?.data?.vendorprof[0]?.gst_reg_type}
                     />
                   </Form.Group>
                 </Col>
@@ -206,6 +220,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.gstno}
+                      value={data?.data?.vendorprof[0]?.gstno}
                     />
                   </Form.Group>
                 </Col>
@@ -216,6 +231,7 @@ const Profile = () => {
                       type="text"
                       disabled={update ? false : true}
                       placeholder={data?.data?.vendorprof[0]?.gsttype}
+                      value={data?.data?.vendorprof[0]?.gsttype}
                     />
                   </Form.Group>
                 </Col>
