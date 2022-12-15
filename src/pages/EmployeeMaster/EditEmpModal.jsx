@@ -29,6 +29,7 @@ const EditEmpModal = (props) => {
       };
     }
   };
+
   const [allInputs, setAllInputs] = useState({
     ename: "",
     fname: "",
@@ -86,7 +87,7 @@ const EditEmpModal = (props) => {
       "https://dstservices.in/api/emp_edit.php",
       body
     );
-    console.log(data);
+
     if (data?.data?.emp_edit?.response_desc === "Data Updated Successfully") {
       // =============file uplaod ===================
 

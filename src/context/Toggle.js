@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 export const ToggleState = createContext();
 const Toggle = ({ children }) => {
   const [allMaster, setAllMaster] = useState([]);
+  const [vendorMaster, setVendorMaster] = useState([]);
   const [state, setState] = useState([]);
   const [toggleSidebar, setToggleSidebar] = useState(
     window.innerWidth <= 950 ? true : false
@@ -23,6 +24,13 @@ const Toggle = ({ children }) => {
     );
     setState(data);
   };
+  const fetchVendorMaster = async (api) => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("vmob", JSON.parse(localStorage.getItem("user")).uid);
+    const data = await axios.post(api, body);
+    setVendorMaster(data);
+  };
 
   return (
     <ToggleState.Provider
@@ -35,6 +43,8 @@ const Toggle = ({ children }) => {
         allMaster,
         fetchState,
         state,
+        fetchVendorMaster,
+        vendorMaster,
       }}>
       {children}
     </ToggleState.Provider>

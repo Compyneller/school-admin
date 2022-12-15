@@ -19,7 +19,7 @@ const Sidebar = () => {
       })}
 
       <div
-        className=" w-100 ps-2 d-flex align-items-center"
+        className=" w-100 ps-2 mt-2 d-flex align-items-center"
         onClick={() => {
           localStorage.removeItem("user");
           window.location.href = "/";
