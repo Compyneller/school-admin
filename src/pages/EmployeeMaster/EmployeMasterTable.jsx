@@ -11,7 +11,6 @@ const EmployeMasterTable = ({ setRadio }) => {
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/emp_list.php");
   }, []);
-  console.log(allMaster);
   return (
     <>
       <Table bordered hover responsive>

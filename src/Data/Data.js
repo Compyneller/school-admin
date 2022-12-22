@@ -65,6 +65,14 @@ export const SideBarData = [
         subName: "Employee Master",
         subLink: "/employee-master",
       },
+      {
+        subName: "Courier Master",
+        subLink: "/courier-master",
+      },
+      {
+        subName: "Coupon Master",
+        subLink: "/coupon-master",
+      },
     ],
   },
   {

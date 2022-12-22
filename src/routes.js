@@ -2,6 +2,8 @@ import AboutUs from "./pages/AboutUs";
 import CategoryMaster from "./pages/CategoryMaster/CategoryMaster";
 import ChangeLvlPass from "./pages/ChangeLvlPass/ChangeLvlPass";
 import ChangePass from "./pages/ChangePass/ChangePass";
+import CoupanMaster from "./pages/CoupanMaster/CoupanMaster";
+import CourierMaster from "./pages/CourierMaster/CourierMaster";
 import EmployeeMaster from "./pages/EmployeeMaster/EmployeeMaster";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
@@ -59,5 +61,13 @@ export const routes = [
   {
     path: "/employee-master",
     element: <EmployeeMaster />,
+  },
+  {
+    path: "/courier-master",
+    element: <CourierMaster />,
+  },
+  {
+    path: "/coupon-master",
+    element: <CoupanMaster />,
   },
 ];
