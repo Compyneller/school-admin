@@ -43,7 +43,12 @@ const Login = () => {
         state: true,
         des: data.response_desc,
       });
-      console.log(data);
+      setTimeout(() => {
+        setMsg({
+          state: false,
+          des: "",
+        });
+      }, 5000);
       if (data?.response_desc === "Password Successfull") {
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/home");

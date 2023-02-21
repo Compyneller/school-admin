@@ -5,6 +5,8 @@ const Toggle = ({ children }) => {
   const [allMaster, setAllMaster] = useState([]);
   const [vendorMaster, setVendorMaster] = useState([]);
   const [state, setState] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [city, setCity] = useState([]);
   const [toggleSidebar, setToggleSidebar] = useState(
     window.innerWidth <= 950 ? true : false
   );
@@ -23,6 +25,26 @@ const Toggle = ({ children }) => {
       body
     );
     setState(data);
+  };
+  const fetchDistrict = async (selectedState) => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("state", selectedState);
+    const data = await axios.post(
+      "https://dstservices.in/api/distmaster.php",
+      body
+    );
+    setDistrict(data);
+  };
+  const fetchCity = async (selectedDistrict) => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("state", selectedDistrict);
+    const data = await axios.post(
+      "https://dstservices.in/api/distmaster.php",
+      body
+    );
+    setCity(data);
   };
   const fetchVendorMaster = async (api) => {
     const body = new FormData();
@@ -45,6 +67,10 @@ const Toggle = ({ children }) => {
         state,
         fetchVendorMaster,
         vendorMaster,
+        district,
+        fetchDistrict,
+        fetchCity,
+        city,
       }}>
       {children}
     </ToggleState.Provider>

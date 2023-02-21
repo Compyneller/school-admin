@@ -98,16 +98,12 @@ export const SideBarData = [
     icon: <FaShoppingCart />,
     subMenu: [
       {
-        subName: "Place Order",
-        subLink: "/place-order",
+        subName: "Vendor Vise Order",
+        subLink: "/vendor-order",
       },
       {
-        subName: "Vendor Orders Received",
-        subLink: "/vendor-orders-received",
-      },
-      {
-        subName: "Vendor Orders Placed",
-        subLink: "/vendor-orders-placed",
+        subName: "School Vise Order",
+        subLink: "/school-order",
       },
     ],
   },

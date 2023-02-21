@@ -12,7 +12,8 @@ import SchoolMaster from "./pages/SchoolMaster/SchoolMaster";
 import UserAllocation from "./pages/UserAllocation/UserAllocation";
 import VendorList from "./pages/VendorList/VendorList";
 import VendorMaster from "./pages/VendorMaster/VendorMaster";
-
+import VendorViseOrder from "./pages/VendorViseOrder/VendorViseOrder";
+import ShoolViseOrder from "./pages/SchoolViseOrder/ShoolViseOrder";
 export const routes = [
   {
     path: "/home",
@@ -69,5 +70,13 @@ export const routes = [
   {
     path: "/coupon-master",
     element: <CoupanMaster />,
+  },
+  {
+    path: "/vendor-order",
+    element: <VendorViseOrder />,
+  },
+  {
+    path: "/school-order",
+    element: <ShoolViseOrder />,
   },
 ];
