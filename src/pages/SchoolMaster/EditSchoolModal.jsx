@@ -148,7 +148,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="sch_name"
-                    placeholder={props.data.sch_name}
+                    defaultValue={props.data.sch_name}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -159,7 +159,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="affno"
-                    placeholder={props.data.affno}
+                    defaultValue={props.data.affno}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -170,7 +170,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="contact_person"
-                    placeholder={props.data.contact_person}
+                    defaultValue={props.data.contact_person}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -179,9 +179,9 @@ const EditSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="mob"
-                    placeholder={props.data.mob}
+                    defaultValue={props.data.mob}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -190,9 +190,9 @@ const EditSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Alternate Contact Number</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="alt_mob"
-                    placeholder="Enter Alternate Contact Number"
+                    defaultValue="Enter Alternate Contact Number"
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -205,7 +205,7 @@ const EditSchoolModal = (props) => {
                     handleChange(e);
                   }}>
                   <option>Select State</option>
-                  {state?.data?.statelist?.map((items, index) => {
+                  {state?.data?.stanumberist?.map((items, index) => {
                     return (
                       <option key={index} value={items.state}>
                         {items.state}
@@ -233,7 +233,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="city"
-                    placeholder="Enter City"
+                    defaultValue="Enter City"
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -242,9 +242,9 @@ const EditSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Pin Code</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="pinno"
-                    placeholder="Enter Pin Code"
+                    defaultValue="Enter Pin Code"
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -263,11 +263,7 @@ const EditSchoolModal = (props) => {
                   </Col>
                   <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
                     <img
-                      src={
-                        logo === ""
-                          ? "https://img.icons8.com/fluency/512/image.png"
-                          : prevImage
-                      }
+                      src={logo === "" ? props.data.sch_img : prevImage}
                       alt=""
                       height={50}
                       style={{ objectFit: "cover" }}
@@ -290,11 +286,7 @@ const EditSchoolModal = (props) => {
                   </Col>
                   <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
                     <img
-                      src={
-                        agreement === ""
-                          ? "https://img.icons8.com/fluency/512/image.png"
-                          : aggPrev
-                      }
+                      src={agreement === "" ? props.data.agr_img : aggPrev}
                       alt=""
                       height={50}
                       style={{ objectFit: "cover" }}

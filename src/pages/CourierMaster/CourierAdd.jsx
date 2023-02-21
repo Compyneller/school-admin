@@ -84,7 +84,7 @@ const CourierAdd = (props) => {
                   <Form.Label>Packaging Amount</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="pamt"
                     placeholder="Enter Packaging Amount"
                     required
@@ -96,7 +96,7 @@ const CourierAdd = (props) => {
                   <Form.Label>Courier Amount</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="camt"
                     placeholder="Enter Courier Amount"
                     required
@@ -108,7 +108,7 @@ const CourierAdd = (props) => {
                   <Form.Label>Distance</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="distance"
                     placeholder="Enter Distance"
                     required
@@ -120,7 +120,7 @@ const CourierAdd = (props) => {
                   <Form.Label>Relation</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="relation"
                     placeholder="Enter Relation"
                     required

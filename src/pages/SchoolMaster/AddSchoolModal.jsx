@@ -77,6 +77,7 @@ const AddSchoolModal = (props) => {
       };
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -156,9 +157,9 @@ const AddSchoolModal = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Affiliated Number</Form.Label>
+                  <Form.Label>Affiliation Number</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     name="affno"
                     placeholder="Enter Affiliated Number"
                     onChange={(e) => handleChange(e)}
@@ -182,7 +183,7 @@ const AddSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="mob"
                     placeholder="Enter Contact Number"
                     onChange={(e) => handleChange(e)}
@@ -194,7 +195,7 @@ const AddSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Alternate Contact Number</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="alt_mob"
                     placeholder="Enter Alternate Contact Number"
                     onChange={(e) => handleChange(e)}
@@ -209,7 +210,7 @@ const AddSchoolModal = (props) => {
                     handleChange(e);
                   }}>
                   <option>Select State</option>
-                  {state?.data?.statelist?.map((items, index) => {
+                  {state?.data?.stanumberist?.map((items, index) => {
                     return (
                       <option key={index} value={items.state}>
                         {items.state}
@@ -246,7 +247,7 @@ const AddSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Pin Code</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="pinno"
                     placeholder="Enter Pin Code"
                     onChange={(e) => handleChange(e)}

@@ -60,6 +60,7 @@ const SchoolMaster = () => {
       fetchAllMaster("https://dstservices.in/api/sch_list.php");
     }
   };
+  console.table(allMaster?.data?.schlist);
   return (
     <motion.div
       className="w-100"
@@ -143,16 +144,7 @@ const SchoolMaster = () => {
                     <Button
                       variant="outline-primary"
                       onClick={() => {
-                        setDetail({
-                          sch_id: `${items.sch_id}`,
-                          sch_name: `${items.sch_name}`,
-                          affno: `${items.affno}`,
-                          contact_person: `${items.contact_person}`,
-                          mob: `${items.mob}`,
-                          alt_mob: `${items.alt_mob}`,
-                          city: `${items.city}`,
-                          pinno: `${items.pinno}`,
-                        });
+                        setDetail(items);
                         setEditModal(true);
                       }}>
                       <i className="fa-regular fa-pen-to-square"></i>

@@ -89,7 +89,7 @@ const AddCoupon = (props) => {
                   <Form.Label>Coupon Name</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="cname"
                     placeholder="Enter Name"
                     required
@@ -102,7 +102,7 @@ const AddCoupon = (props) => {
                   <Form.Label>Percentage</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="cper"
                     placeholder="Enter Percentage"
                     required
@@ -114,7 +114,7 @@ const AddCoupon = (props) => {
                   <Form.Label>Max Value</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="cmaxval"
                     placeholder="Max Value"
                     required
@@ -126,7 +126,7 @@ const AddCoupon = (props) => {
                   <Form.Label>Coupon For</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="cfor"
                     placeholder="Coupon For"
                     required

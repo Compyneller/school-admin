@@ -1,9 +1,18 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Card, Container, Form, Table } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Container,
+  Form,
+  OverlayTrigger,
+  Table,
+  Tooltip,
+} from "react-bootstrap";
 import { motion } from "framer-motion";
 import StatusBtn from "./StatusBtn";
 import { ToggleState } from "../../context/Toggle";
+import ViewImage from "./ViewImage";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -32,6 +41,8 @@ const containerVariance = {
 };
 const VendorList = () => {
   const [vendorId, setVendorId] = useState("ALL");
+  const [data, setData] = useState({});
+  const [imageModal, setImageModal] = useState(false);
   const [products, setProducts] = useState([]);
   const AllVendorList = useContext(ToggleState);
   const { fetchAllMaster, allMaster } = AllVendorList;
@@ -93,6 +104,7 @@ const VendorList = () => {
               <th>Brand</th>
               <th>M.R.P</th>
               <th>Rate</th>
+              <th>Image</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -115,6 +127,22 @@ const VendorList = () => {
                   <td>{items.brand}</td>
                   <td>{items.mrp}</td>
                   <td>{items.rate}</td>
+
+                  <td
+                    onClick={() => {
+                      setImageModal(true);
+                      setData(items);
+                    }}
+                    style={{ cursor: "pointer" }}>
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 250, hide: 400 }}
+                      overlay={
+                        <Tooltip id="button-tooltip">View Image</Tooltip>
+                      }>
+                      <img src={items.pimg} height={50} width={50} alt="" />
+                    </OverlayTrigger>
+                  </td>
                   <td>
                     <StatusBtn items={items} />
                   </td>
@@ -124,6 +152,11 @@ const VendorList = () => {
           </tbody>
         </Table>
       </Container>
+      <ViewImage
+        data={data}
+        show={imageModal}
+        onHide={() => setImageModal(false)}
+      />
     </motion.div>
   );
 };

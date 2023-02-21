@@ -89,8 +89,7 @@ const UpdateBrandModal = (props) => {
               <Form.Label>Brand Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder={props.detail.bname}
-                value={brand}
+                defaultValue={props.detail.bname}
                 onChange={(e) => setBrand(e.target.value)}
               />
             </Form.Group>

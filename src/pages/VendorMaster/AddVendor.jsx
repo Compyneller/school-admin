@@ -247,7 +247,7 @@ const AddVendor = (props) => {
                   <Form.Label>GST No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="gstno"
                     placeholder="Enter GST No."
                   />
@@ -258,7 +258,7 @@ const AddVendor = (props) => {
                   <Form.Label>Pan No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="panno"
                     placeholder="Enter Pan No."
                     required
@@ -270,7 +270,7 @@ const AddVendor = (props) => {
                   <Form.Label>Aadhar No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="aadhar"
                     maxLength={12}
                     placeholder="Enter Aadhar"
@@ -329,7 +329,7 @@ const AddVendor = (props) => {
                   <Form.Label>Pin Code</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="pinno"
                     placeholder="Enter Pin Code"
                     required

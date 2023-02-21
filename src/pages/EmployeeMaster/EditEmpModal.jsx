@@ -130,7 +130,7 @@ const EditEmpModal = (props) => {
                     type="text"
                     name="ename"
                     onChange={handleInputChange}
-                    placeholder={props.data.ename}
+                    defaultValue={props.data.ename}
                   />
                 </Form.Group>
               </Col>
@@ -141,7 +141,7 @@ const EditEmpModal = (props) => {
                     type="text"
                     name="fname"
                     onChange={handleInputChange}
-                    placeholder={props.data.fname}
+                    defaultValue={props.data.fname}
                   />
                 </Form.Group>
               </Col>
@@ -162,7 +162,7 @@ const EditEmpModal = (props) => {
                     type="text"
                     name="eadd"
                     onChange={handleInputChange}
-                    placeholder={props.data.eadd}
+                    defaultValue={props.data.eadd}
                   />
                 </Form.Group>
               </Col>
@@ -175,7 +175,7 @@ const EditEmpModal = (props) => {
                     handleInputChange(e);
                   }}>
                   <option>Select State</option>
-                  {state?.data?.statelist?.map((items, index) => {
+                  {state?.data?.stanumberist?.map((items, index) => {
                     return (
                       <option key={index} value={items.state}>
                         {items.state}
@@ -204,10 +204,10 @@ const EditEmpModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Mobile</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="mob"
                     onChange={handleInputChange}
-                    placeholder={props.data.mob}
+                    defaultValue={props.data.mob}
                   />
                 </Form.Group>
               </Col>
@@ -215,10 +215,10 @@ const EditEmpModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Alternate Mobile</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="altmob"
                     onChange={handleInputChange}
-                    placeholder={props.data.altmob}
+                    defaultValue={props.data.altmob}
                   />
                 </Form.Group>
               </Col>
@@ -258,11 +258,11 @@ const EditEmpModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Aadhar Number</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="aadhar"
                     maxLength={12}
                     onChange={handleInputChange}
-                    placeholder={props.data.aadhar}
+                    defaultValue={props.data.aadhar}
                   />
                 </Form.Group>
               </Col>
@@ -273,7 +273,7 @@ const EditEmpModal = (props) => {
                     type="text"
                     name="panno"
                     onChange={handleInputChange}
-                    placeholder={props.data.panno}
+                    defaultValue={props.data.panno}
                   />
                 </Form.Group>
               </Col>
@@ -284,7 +284,7 @@ const EditEmpModal = (props) => {
                     type="text"
                     name="desig"
                     onChange={handleInputChange}
-                    placeholder={props.data.designation}
+                    defaultValue={props.data.designation}
                   />
                 </Form.Group>
               </Col>

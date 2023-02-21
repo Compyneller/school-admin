@@ -173,7 +173,7 @@ const AddEmployee = (props) => {
                     handleInputChange(e);
                   }}>
                   <option>Select State</option>
-                  {state?.data?.statelist?.map((items, index) => {
+                  {state?.data?.stanumberist?.map((items, index) => {
                     return (
                       <option key={index} value={items.state}>
                         {items.state}
@@ -202,7 +202,7 @@ const AddEmployee = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Mobile</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="mob"
                     onChange={handleInputChange}
                     placeholder="Enter Mobile Number"
@@ -213,7 +213,7 @@ const AddEmployee = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Alternate Mobile</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="altmob"
                     onChange={handleInputChange}
                     placeholder="Enter Alternate Number"
@@ -256,7 +256,7 @@ const AddEmployee = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Aadhar Number</Form.Label>
                   <Form.Control
-                    type="tel"
+                    type="number"
                     name="aadhar"
                     maxLength={12}
                     onChange={handleInputChange}

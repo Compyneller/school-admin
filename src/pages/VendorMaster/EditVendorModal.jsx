@@ -152,7 +152,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="vname"
-                    placeholder={props.data.vname}
+                    defaultValue={props.data.vname}
                   />
                 </Form.Group>
               </Col>
@@ -163,7 +163,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="fname"
-                    placeholder={props.data.father_name}
+                    defaultValue={props.data.father_name}
                   />
                 </Form.Group>
               </Col>
@@ -172,9 +172,9 @@ const EditVendorModal = (props) => {
                   <Form.Label>Vendor Mobile</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="vmob"
-                    placeholder={props.data.vmob}
+                    defaultValue={props.data.vmob}
                   />
                 </Form.Group>
               </Col>
@@ -185,7 +185,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="firm_name"
-                    placeholder={props.data.firm_name}
+                    defaultValue={props.data.firm_name}
                   />
                 </Form.Group>
               </Col>
@@ -194,9 +194,9 @@ const EditVendorModal = (props) => {
                   <Form.Label>Firm Mobile</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="fmob"
-                    placeholder={props.data.fmob}
+                    defaultValue={props.data.fmob}
                   />
                 </Form.Group>
               </Col>
@@ -207,7 +207,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="fadd"
-                    placeholder={props.data.fadd}
+                    defaultValue={props.data.fadd}
                   />
                 </Form.Group>
               </Col>
@@ -242,9 +242,9 @@ const EditVendorModal = (props) => {
                   <Form.Label>GST No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="gstno"
-                    placeholder={props.data.gstno}
+                    defaultValue={props.data.gstno}
                   />
                 </Form.Group>
               </Col>
@@ -253,9 +253,9 @@ const EditVendorModal = (props) => {
                   <Form.Label>Pan No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="panno"
-                    placeholder={props.data.panno}
+                    defaultValue={props.data.panno}
                   />
                 </Form.Group>
               </Col>
@@ -264,10 +264,10 @@ const EditVendorModal = (props) => {
                   <Form.Label>Aadhar No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="aadhar"
                     maxLength={12}
-                    placeholder={props.data.aadharno}
+                    defaultValue={props.data.aadharno}
                   />
                 </Form.Group>
               </Col>
@@ -308,7 +308,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="city"
-                    placeholder={props.data.city}
+                    defaultValue={props.data.city}
                   />
                 </Form.Group>
               </Col>
@@ -317,9 +317,9 @@ const EditVendorModal = (props) => {
                   <Form.Label>Pin Code</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="tel"
+                    type="number"
                     name="pinno"
-                    placeholder={props.data.pinno}
+                    defaultValue={props.data.pinno}
                   />
                 </Form.Group>
               </Col>

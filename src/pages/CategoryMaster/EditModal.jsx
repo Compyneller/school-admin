@@ -48,8 +48,7 @@ const EditModal = (props) => {
             <Form.Label>Category</Form.Label>
             <Form.Control
               type="text"
-              placeholder={props.data.cat}
-              value={cat}
+              defaultValue={props.data.cat}
               onChange={(e) => setCat(e.target.value)}
             />
           </Form.Group>
@@ -57,8 +56,7 @@ const EditModal = (props) => {
             <Form.Label>Sort No</Form.Label>
             <Form.Control
               type="text"
-              placeholder={props.data.sortno}
-              value={sortno}
+              defaultValue={props.data.sortno}
               onChange={(e) => setSortno(e.target.value)}
             />
           </Form.Group>
