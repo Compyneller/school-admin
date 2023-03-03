@@ -17,7 +17,7 @@ const Toggle = ({ children }) => {
     const data = await axios.post(api, body);
     setAllMaster(data);
   };
-  const fetchState = async () => {
+  const fetchState = async (test) => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
     const data = await axios.post(

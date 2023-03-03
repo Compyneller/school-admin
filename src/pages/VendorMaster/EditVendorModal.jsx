@@ -63,7 +63,7 @@ const EditVendorModal = (props) => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
 
-      body.append("state", allInputs.state);
+      body.append("state", allInputs.state || props.data.state);
       const data = await axios.post(
         "https://dstservices.in/api/distmaster.php",
         body
@@ -71,7 +71,7 @@ const EditVendorModal = (props) => {
       setDistrict(data);
     };
     fetchDistrict();
-  }, [allInputs.state]);
+  }, [allInputs.state, props.data.state]);
   const handleSubmit = async (e) => {
     console.log(allInputs.gstReg);
     e.preventDefault();
@@ -130,6 +130,7 @@ const EditVendorModal = (props) => {
       console.log(error);
     }
   };
+  console.log(props.data);
   return (
     <>
       <Modal
@@ -213,7 +214,10 @@ const EditVendorModal = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>Firm Type</Form.Label>
-                <Form.Select name="ftype" onChange={(e) => handleChange(e)}>
+                <Form.Select
+                  defaultValue={props.data.ftype}
+                  name="ftype"
+                  onChange={(e) => handleChange(e)}>
                   <option>Select Firm Type</option>
                   <option value="Partnership">Partnership</option>
                   <option value="Proprietorship">Proprietorship</option>
@@ -222,7 +226,10 @@ const EditVendorModal = (props) => {
 
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>GST Reg.</Form.Label>
-                <Form.Select name="gstReg" onChange={(e) => handleChange(e)}>
+                <Form.Select
+                  defaultValue={props.data.gstreg}
+                  name="gstReg"
+                  onChange={(e) => handleChange(e)}>
                   <option>Select GST Reg.</option>
                   <option value="Regular GST">Regular GST</option>
                   <option value="Composite GST">Composite GST</option>
@@ -231,7 +238,10 @@ const EditVendorModal = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>GST Type</Form.Label>
-                <Form.Select name="gsttype" onChange={(e) => handleChange(e)}>
+                <Form.Select
+                  defaultValue={props.data.gsttype}
+                  name="gsttype"
+                  onChange={(e) => handleChange(e)}>
                   <option>Select GST Type</option>
                   <option value="Including">Including</option>
                   <option value="Excluding">Excluding</option>
@@ -281,7 +291,10 @@ const EditVendorModal = (props) => {
                   <option>Select State</option>
                   {state?.data?.statelist?.map((items, index) => {
                     return (
-                      <option key={index} value={items.state}>
+                      <option
+                        selected={props.data.state}
+                        key={index}
+                        value={items.state}>
                         {items.state}
                       </option>
                     );
@@ -294,7 +307,10 @@ const EditVendorModal = (props) => {
                   <option>Select District</option>
                   {district?.data?.distlist?.map((items, index) => {
                     return (
-                      <option key={index} value={items.dist}>
+                      <option
+                        selected={props.data.district}
+                        key={index}
+                        value={items.dist}>
                         {items.dist}
                       </option>
                     );

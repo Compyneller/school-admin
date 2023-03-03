@@ -94,7 +94,9 @@ const Profile = () => {
       );
       body.append("acno", allInputs.acno || data?.data?.vendorprof[0]?.acno);
       body.append("ifsc", allInputs.ifsc || data?.data?.vendorprof[0]?.ifsc);
-
+      for (var pair of body.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
       const res = await axios.post(
         "https://dstservices.in/api/vendor_selfedit.php",
         body

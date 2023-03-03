@@ -175,7 +175,7 @@ const EditEmpModal = (props) => {
                     handleInputChange(e);
                   }}>
                   <option>Select State</option>
-                  {state?.data?.stanumberist?.map((items, index) => {
+                  {state?.data?.statelist?.map((items, index) => {
                     return (
                       <option key={index} value={items.state}>
                         {items.state}
