@@ -149,8 +149,12 @@ const VendorMaster = () => {
                   <td>{items.gstno}</td>
                   <td
                     className={`text-${
-                      items.kycsts === "NOT VERIFIED" ? "danger" : "success"
-                    } fw-bold`}
+                      items.kycsts === "VERIFIED"
+                        ? "success"
+                        : items.kycsts === "NOT VERIFIED"
+                        ? "warning"
+                        : "danger"
+                    } `}
                     onClick={() => {
                       setKycModal(true);
                       setKycData(items);
@@ -163,7 +167,7 @@ const VendorMaster = () => {
                     onClick={() => changeStatus(items.vid, items.blocksts)}
                     className={`text-${
                       items.blocksts === "OPEN" ? "success" : "danger"
-                    } fw-bold`}>
+                    } `}>
                     {items.blocksts}
                   </td>
                   <td>

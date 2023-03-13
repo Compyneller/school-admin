@@ -4,7 +4,7 @@ import { Modal, Button, Row, Col, Card } from "react-bootstrap";
 
 const KYCModal = (props) => {
   const [fetchedData, setFetchedData] = useState([]);
-  console.log(props.data);
+
   useEffect(() => {
     const fetchData = async () => {
       const body = new FormData();
@@ -20,7 +20,24 @@ const KYCModal = (props) => {
     };
     fetchData();
   }, [props.data.vid]);
-  console.log(fetchedData);
+  const handleKYC = async (sts) => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("vid", props.data.vid);
+    body.append("kycsts", sts);
+    const { data } = await axios.post(
+      "https://dstservices.in/api/vendor_verifykyc.php",
+      body
+    );
+    if (data?.vendor_kycsts?.response_desc === "Data Saved Successfully") {
+      props.onHide();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      window.alert(data?.vendor_kycsts?.response_desc);
+    }
+  };
   return (
     <Modal
       {...props}
@@ -114,6 +131,26 @@ const KYCModal = (props) => {
           </Col>
         </Row>
       </Modal.Body>
+      <Modal.Footer>
+        <Row className="g-3 w-100">
+          <Col xs={6} lg={6}>
+            <Button
+              className="w-100"
+              variant="success"
+              onClick={() => handleKYC("VERIFY")}>
+              Verify
+            </Button>
+          </Col>
+          <Col xs={6} lg={6}>
+            <Button
+              className="w-100"
+              variant="outline-danger"
+              onClick={() => handleKYC("CANCEL")}>
+              Reject
+            </Button>
+          </Col>
+        </Row>
+      </Modal.Footer>
     </Modal>
   );
 };
