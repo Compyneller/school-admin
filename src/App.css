@@ -6,6 +6,9 @@
 body{
   overflow-x: hidden;
 }
+.card{
+  height: 100% !important;
+}
 .card, .btn, .modal, input, select{
   border-radius: 0 !important;
 }

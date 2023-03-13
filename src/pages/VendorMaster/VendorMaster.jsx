@@ -6,6 +6,7 @@ import AddVendor from "./AddVendor";
 import EditVendorModal from "./EditVendorModal";
 import { motion } from "framer-motion";
 import AddButton from "../../components/AddButton/AddButton";
+import KYCModal from "./KYCModal";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -38,6 +39,7 @@ const VendorMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [kycModal, setKycModal] = useState(false);
+  const [kycData, setKycData] = useState("");
   const master = useContext(ToggleState);
   const { fetchAllMaster, allMaster } = master;
   useEffect(() => {
@@ -149,7 +151,11 @@ const VendorMaster = () => {
                     className={`text-${
                       items.kycsts === "NOT VERIFIED" ? "danger" : "success"
                     } fw-bold`}
-                    onClick={() => setKycModal(true)}>
+                    onClick={() => {
+                      setKycModal(true);
+                      setKycData(items);
+                    }}
+                    style={{ cursor: "pointer" }}>
                     {items.kycsts}
                   </td>
                   <td
@@ -208,6 +214,11 @@ const VendorMaster = () => {
           data={detail}
           show={editModal}
           onHide={() => setEditModal(false)}
+        />
+        <KYCModal
+          data={kycData}
+          show={kycModal}
+          onHide={() => setKycModal(false)}
         />
       </Container>
     </motion.div>
