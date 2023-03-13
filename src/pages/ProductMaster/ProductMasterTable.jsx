@@ -27,7 +27,7 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
                   onChange={(e) => setRadio(e.target.value)}
                 />
               </td>
-              <td>{items.bid}</td>
+              <td>{index + 1}</td>
               <td>{items?.bname}</td>
               <td>
                 <img

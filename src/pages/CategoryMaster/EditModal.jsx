@@ -1,32 +1,56 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Col, Modal, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { ToggleState } from "../../context/Toggle";
 const EditModal = (props) => {
-  const body = new FormData();
   const [cat, setCat] = useState("");
   const [sortno, setSortno] = useState("");
+  const [logo, setLogo] = useState("");
   const fetchCatList = useContext(ToggleState);
   const { fetchCategoryMaster } = fetchCatList;
-  body.append("api", "sajdh23jd823m023uierur32");
-  body.append("cat", cat);
-  body.append("catid", props.data.catid);
-  body.append("pcatid", props.data.pcatid);
-  body.append("sortno", sortno);
+
+  const handleFile = (e) => {
+    if (e.target.files[0].size > 2097152) {
+      window.alert("Image must be under 2 M.B");
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = function () {
+        var strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+        setLogo(strImage);
+      };
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("cat", cat || props.data.cat);
+    body.append("catid", props.data.catid);
+    body.append("pcatid", props.data.pcatid);
+    body.append("sortno", sortno || props.data.sortno);
     const data = await axios.post(
       "https://dstservices.in/api/categoryedit.php",
       body
     );
-    console.log(data?.data?.catadd?.response_desc);
+    console.log(data);
     if (data?.data?.catadd?.response_desc === "Updated Successfully") {
-      fetchCategoryMaster();
-      setCat("");
-      setSortno("");
+      // ============================file upload ===========================================================
+
+      const file = new FormData();
+      file.append("imagefor", "CAT");
+      file.append("imageid", props.data.catid);
+
+      file.append("image", logo);
+      await axios.post("https://dstservices.in/api/filesup.php", file);
+
+      //  ============file uplaod end ================
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       props.onHide();
     }
   };
@@ -60,6 +84,31 @@ const EditModal = (props) => {
               onChange={(e) => setSortno(e.target.value)}
             />
           </Form.Group>
+          <Row className="g-3">
+            <Col xs={9} sm={9} md={9} lg={9}>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Choose Image</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFile(e)}
+                />
+              </Form.Group>
+            </Col>
+            <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
+              <img
+                src={
+                  logo === ""
+                    ? props.data.image
+                    : `data:image/jpeg;base64,${logo}`
+                }
+                alt=""
+                height={50}
+                style={{ objectFit: "cover" }}
+                className="w-100 my-auto"
+              />
+            </Col>
+          </Row>
 
           <Button variant="primary" type="submit">
             Submit

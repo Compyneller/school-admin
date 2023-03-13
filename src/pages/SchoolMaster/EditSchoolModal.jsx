@@ -13,7 +13,7 @@ const EditSchoolModal = (props) => {
   const [aggPrev, setAggPrev] = useState("");
   const [prevImage, setPrevImage] = useState("");
   const [agreement, setAgreement] = useState("");
-
+  const [schoolMasterDetail, setSchoolMasterDetail] = useState({});
   const [allInputs, setAllInputs] = useState({
     sch_name: "",
     affno: "",
@@ -25,13 +25,14 @@ const EditSchoolModal = (props) => {
     city: "",
     pinno: "",
   });
+
   const { fetchAllMaster, state } = useContext(ToggleState);
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
 
-      body.append("state", allInputs.state);
+      body.append("state", allInputs.state || schoolMasterDetail.state);
       const data = await axios.post(
         "https://dstservices.in/api/distmaster.php",
         body
@@ -39,7 +40,21 @@ const EditSchoolModal = (props) => {
       setDistrict(data);
     };
     fetchDistrict();
-  }, [allInputs.state]);
+    const fetchSchoolMasterDetail = async () => {
+      const body = new FormData();
+      body.append("api", "sajdh23jd823m023uierur32");
+      body.append("schid", 6);
+      const { data } = await axios.post(
+        "https://dstservices.in/api/sch_getinfo.php",
+        body
+      );
+
+      data?.schlist?.map((items) => {
+        setSchoolMasterDetail(items);
+      });
+    };
+    fetchSchoolMasterDetail();
+  }, [allInputs.state, props.data.sch_id, schoolMasterDetail.state]);
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {
       window.alert("Image must be under 2 M.B");
@@ -148,7 +163,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="sch_name"
-                    defaultValue={props.data.sch_name}
+                    defaultValue={schoolMasterDetail?.sch_name}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -159,7 +174,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="affno"
-                    defaultValue={props.data.affno}
+                    defaultValue={schoolMasterDetail?.affno}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -170,7 +185,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="contact_person"
-                    defaultValue={props.data.contact_person}
+                    defaultValue={schoolMasterDetail?.contact_person}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -181,7 +196,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="mob"
-                    defaultValue={props.data.mob}
+                    defaultValue={schoolMasterDetail?.mob}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -201,6 +216,7 @@ const EditSchoolModal = (props) => {
                 <Form.Label>State</Form.Label>
                 <Form.Select
                   name="state"
+                  defaultValue={schoolMasterDetail.state}
                   onChange={(e) => {
                     handleChange(e);
                   }}>
@@ -216,7 +232,10 @@ const EditSchoolModal = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>District</Form.Label>
-                <Form.Select name="district" onChange={(e) => handleChange(e)}>
+                <Form.Select
+                  name="district"
+                  defaultValue={schoolMasterDetail.district}
+                  onChange={(e) => handleChange(e)}>
                   <option>Select District</option>
                   {district?.data?.distlist?.map((items, index) => {
                     return (
@@ -233,7 +252,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="text"
                     name="city"
-                    defaultValue="Enter City"
+                    defaultValue={schoolMasterDetail.city}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -244,7 +263,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="pinno"
-                    defaultValue="Enter Pin Code"
+                    defaultValue={schoolMasterDetail.pinno}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
@@ -263,7 +282,9 @@ const EditSchoolModal = (props) => {
                   </Col>
                   <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
                     <img
-                      src={logo === "" ? props.data.sch_img : prevImage}
+                      src={
+                        logo === "" ? schoolMasterDetail?.sch_img : prevImage
+                      }
                       alt=""
                       height={50}
                       style={{ objectFit: "cover" }}
@@ -286,7 +307,9 @@ const EditSchoolModal = (props) => {
                   </Col>
                   <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
                     <img
-                      src={agreement === "" ? props.data.agr_img : aggPrev}
+                      src={
+                        agreement === "" ? schoolMasterDetail?.agr_img : aggPrev
+                      }
                       alt=""
                       height={50}
                       style={{ objectFit: "cover" }}

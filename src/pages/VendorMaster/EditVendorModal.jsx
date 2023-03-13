@@ -58,6 +58,7 @@ const EditVendorModal = (props) => {
       };
     });
   };
+  console.log(props.data);
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
@@ -263,7 +264,7 @@ const EditVendorModal = (props) => {
                   <Form.Label>Pan No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="number"
+                    type="text"
                     name="panno"
                     defaultValue={props.data.panno}
                   />

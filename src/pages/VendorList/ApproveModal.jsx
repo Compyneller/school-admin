@@ -43,8 +43,8 @@ const ApproveModal = (props) => {
         <Modal.Body className="d-flex flex-column">
           <p className="text-center">
             {props.items.sts === "YES"
-              ? "Do You Want To verify the Product"
-              : "Do You Want To Reject The Product"}
+              ? "Do You Want To Reject the Product"
+              : "Do You Want To Approve The Product"}
           </p>
           <Button
             className="mx-auto"

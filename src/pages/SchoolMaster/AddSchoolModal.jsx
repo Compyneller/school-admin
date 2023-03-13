@@ -159,7 +159,7 @@ const AddSchoolModal = (props) => {
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Affiliation Number</Form.Label>
                   <Form.Control
-                    type="number"
+                    type="text"
                     name="affno"
                     placeholder="Enter Affiliated Number"
                     onChange={(e) => handleChange(e)}

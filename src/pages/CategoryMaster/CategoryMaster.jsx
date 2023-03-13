@@ -114,9 +114,18 @@ const CategoryMaster = () => {
                       onChange={(e) => setRadio(e.target.value)}
                     />
                   </td>
-                  <td>{items.catid}</td>
+                  <td>{index + 1}</td>
                   <td>{items.category}</td>
                   <td>{items.sortno}</td>
+                  <td>
+                    <img
+                      src={items.cat_img}
+                      width={50}
+                      height={50}
+                      style={{ objectFit: "contain" }}
+                      alt=""
+                    />
+                  </td>
                   <td>
                     <Button
                       variant="outline-primary"
@@ -126,6 +135,7 @@ const CategoryMaster = () => {
                           catid: `${items.catid}`,
                           pcatid: `${items.pcatid}`,
                           sortno: `${items.sortno}`,
+                          image: `${items.cat_img}`,
                         });
                         setEditModal(true);
                       }}>

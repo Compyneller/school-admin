@@ -258,7 +258,7 @@ const AddVendor = (props) => {
                   <Form.Label>Pan No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="number"
+                    type="text"
                     name="panno"
                     placeholder="Enter Pan No."
                     required

@@ -60,7 +60,6 @@ const SchoolMaster = () => {
       fetchAllMaster("https://dstservices.in/api/sch_list.php");
     }
   };
-  console.table(allMaster?.data?.schlist);
   return (
     <motion.div
       className="w-100"

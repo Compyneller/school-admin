@@ -104,7 +104,7 @@ const UserAllocation = () => {
                 {userData?.data?.user_slist?.map((items, index) => {
                   return (
                     <option value={items.vid || items.sch_id} key={index}>
-                      {items.vid || items.sch_id}
+                      {`${items.sch_name} (${items.vid || items.sch_id}) `}
                     </option>
                   );
                 })}

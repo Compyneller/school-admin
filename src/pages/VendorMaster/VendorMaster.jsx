@@ -37,10 +37,11 @@ const VendorMaster = () => {
   const [detail, setDetail] = useState({});
   const [showAddModal, setShowAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [kycModal, setKycModal] = useState(false);
   const master = useContext(ToggleState);
   const { fetchAllMaster, allMaster } = master;
   useEffect(() => {
-    fetchAllMaster("https://dstservices.in/api/vendor_list.php");
+    fetchAllMaster("https://dstservices.in/api/vendor_weblist.php");
   }, []);
   const handleDelete = async () => {
     const body = new FormData();
@@ -58,6 +59,23 @@ const VendorMaster = () => {
     }
   };
 
+  const changeStatus = async (id, sts) => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("vid", id);
+    body.append("bsts", sts === "OPEN" ? "CLOSE" : "OPEN");
+    const { data } = await axios.post(
+      "https://dstservices.in/api/vendor_blockupdate.php",
+      body
+    );
+    if (data?.vendor_blocksts?.response_desc === "Data Saved Successfully") {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      window.alert(data?.vendor_blocksts?.response_desc);
+    }
+  };
   return (
     <motion.div
       className="w-100"
@@ -97,6 +115,8 @@ const VendorMaster = () => {
               <th>Father Name</th>
               <th>GST Type</th>
               <th>GST / Certificate No.</th>
+              <th>KYC</th>
+              <th>Status</th>
               <th>Image</th>
               <th>Action</th>
             </tr>
@@ -125,6 +145,21 @@ const VendorMaster = () => {
                       : items.gsttype}
                   </td>
                   <td>{items.gstno}</td>
+                  <td
+                    className={`text-${
+                      items.kycsts === "NOT VERIFIED" ? "danger" : "success"
+                    } fw-bold`}
+                    onClick={() => setKycModal(true)}>
+                    {items.kycsts}
+                  </td>
+                  <td
+                    style={{ cursor: "pointer" }}
+                    onClick={() => changeStatus(items.vid, items.blocksts)}
+                    className={`text-${
+                      items.blocksts === "OPEN" ? "success" : "danger"
+                    } fw-bold`}>
+                    {items.blocksts}
+                  </td>
                   <td>
                     <img
                       src={`${items.fimg}?${Date.now()}`}

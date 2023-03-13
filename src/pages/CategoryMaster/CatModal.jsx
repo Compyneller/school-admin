@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { ToggleState } from "../../context/Toggle";
@@ -11,6 +11,7 @@ const CatModal = (props) => {
   const [pCat, setPCat] = useState("");
   const [pcatList, setPcatList] = useState([]);
   const [sortNo, setSortNo] = useState(0);
+  const [logo, setLogo] = useState("");
   useEffect(() => {
     const fetchPcat = async () => {
       const body = new FormData();
@@ -23,7 +24,18 @@ const CatModal = (props) => {
     };
     fetchPcat();
   }, []);
-
+  const handleFile = (e) => {
+    if (e.target.files[0].size > 2097152) {
+      window.alert("Image must be under 2 M.B");
+    } else {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = function () {
+        var strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+        setLogo(strImage);
+      };
+    }
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const body = new FormData();
@@ -35,9 +47,19 @@ const CatModal = (props) => {
       "https://dstservices.in/api/categoryadd.php",
       body
     );
-
     if (data?.catadd?.response_desc === "Saved Successfully") {
-      fetchCategoryMaster();
+      // ============================file upload ===========================================================
+
+      const file = new FormData();
+      file.append("imagefor", "CAT");
+      file.append("imageid", data?.catadd?.catid);
+      file.append("image", logo);
+      await axios.post("https://dstservices.in/api/filesup.php", file);
+
+      //  ============file uplaod end ================
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       props.onHide();
     }
   };
@@ -70,6 +92,7 @@ const CatModal = (props) => {
               aria-label="Default select example"
               value={pCat}
               onChange={(e) => setPCat(e.target.value)}>
+              <option value="main">Main</option>
               {pcatList?.map((items, index) => {
                 return (
                   <option value={items.pcatid} key={index}>
@@ -88,6 +111,33 @@ const CatModal = (props) => {
               onChange={(e) => setSortNo(e.target.value)}
             />
           </Form.Group>
+
+          <Row className="g-3">
+            <Col xs={9} sm={9} md={9} lg={9}>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Choose Image</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFile(e)}
+                />
+              </Form.Group>
+            </Col>
+            <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
+              <img
+                src={
+                  logo === ""
+                    ? "https://img.icons8.com/fluency/512/image.png"
+                    : `data:image/jpeg;base64,${logo}`
+                }
+                alt=""
+                height={50}
+                style={{ objectFit: "cover" }}
+                className="w-100 my-auto"
+              />
+            </Col>
+          </Row>
+
           <Button variant="primary" type="submit">
             Submit
           </Button>

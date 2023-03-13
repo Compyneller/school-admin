@@ -204,6 +204,7 @@ const AddEmployee = (props) => {
                   <Form.Control
                     type="number"
                     name="mob"
+                    required
                     onChange={handleInputChange}
                     placeholder="Enter Mobile Number"
                   />
