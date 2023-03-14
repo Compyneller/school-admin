@@ -60,6 +60,25 @@ const SchoolMaster = () => {
       fetchAllMaster("https://dstservices.in/api/sch_list.php");
     }
   };
+
+  const changeStatus = async (id, sts) => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    body.append("sch_id", id);
+    body.append("bsts", sts === "OPEN" ? "CLOSE" : "OPEN");
+    const { data } = await axios.post(
+      "https://dstservices.in/api/sch_blockupdate.php",
+      body
+    );
+
+    if (data?.sch_blocksts?.response_desc === "Data Saved Successfully") {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      window.alert(data?.sch_blocksts?.response_desc);
+    }
+  };
   return (
     <motion.div
       className="w-100"
@@ -98,6 +117,7 @@ const SchoolMaster = () => {
               <th>School Name</th>
               <th>Contact Person</th>
               <th>Mobile</th>
+              <th>Status</th>
               <th>School Image</th>
               <th>Agreement</th>
               <th>Action</th>
@@ -121,6 +141,14 @@ const SchoolMaster = () => {
                   <td>{items.sch_name}</td>
                   <td>{items.contact_person}</td>
                   <td>{items.mob}</td>
+                  <td
+                    style={{ cursor: "pointer" }}
+                    onClick={() => changeStatus(items.sch_id, items.blocksts)}
+                    className={`text-${
+                      items.blocksts === "OPEN" ? "success" : "danger"
+                    } `}>
+                    {items.blocksts}
+                  </td>
                   <td>
                     <img
                       src={`${items.sch_img}?${Date.now()}`}

@@ -58,7 +58,6 @@ const EditVendorModal = (props) => {
       };
     });
   };
-  console.log(props.data);
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
@@ -74,7 +73,6 @@ const EditVendorModal = (props) => {
     fetchDistrict();
   }, [allInputs.state, props.data.state]);
   const handleSubmit = async (e) => {
-    console.log(allInputs.gstReg);
     e.preventDefault();
     try {
       const body = new FormData();
@@ -131,7 +129,7 @@ const EditVendorModal = (props) => {
       console.log(error);
     }
   };
-  console.log(props.data);
+
   return (
     <>
       <Modal
