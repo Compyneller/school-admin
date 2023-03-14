@@ -154,8 +154,7 @@ const SchoolMaster = () => {
                       src={`${items.sch_img}?${Date.now()}`}
                       width={50}
                       height={50}
-                      style={{ objectFit: "cover" }}
-                      alt={items.sch_img}
+                      style={{ objectFit: "contain" }}
                     />
                   </td>
                   <td>
@@ -164,7 +163,6 @@ const SchoolMaster = () => {
                       width={50}
                       height={50}
                       style={{ objectFit: "cover" }}
-                      alt={items.sch_img}
                     />
                   </td>
                   <td>

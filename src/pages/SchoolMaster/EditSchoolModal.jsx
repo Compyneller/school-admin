@@ -43,7 +43,7 @@ const EditSchoolModal = (props) => {
     const fetchSchoolMasterDetail = async () => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
-      body.append("schid", 6);
+      body.append("schid", props.data.sch_id);
       const { data } = await axios.post(
         "https://dstservices.in/api/sch_getinfo.php",
         body
@@ -112,22 +112,30 @@ const EditSchoolModal = (props) => {
         "https://dstservices.in/api/sch_edit.php",
         body
       );
+
       if (data?.data?.sch_edit?.response_desc === "Data Updated Successfully") {
         // ============================file upload ===========================================================
+        if (logo === "") {
+          if (agreement === "") {
+            return;
+          } else {
+            const fileAgreement = new FormData();
+            fileAgreement.append("imagefor", "SCHOOL_AGR");
+            fileAgreement.append("imageid", props.data.sch_id);
+            fileAgreement.append("image", agreement);
+            await axios.post(
+              "https://dstservices.in/api/filesup.php",
+              fileAgreement
+            );
+          }
+        } else {
+          const file = new FormData();
+          file.append("imagefor", "SCHOOL_PER");
+          file.append("imageid", props.data.sch_id);
+          file.append("image", logo);
+          await axios.post("https://dstservices.in/api/filesup.php", file);
+        }
 
-        const file = new FormData();
-        file.append("imagefor", "SCHOOL_PER");
-        file.append("imageid", props.data.sch_id);
-        file.append("image", logo);
-        await axios.post("https://dstservices.in/api/filesup.php", file);
-        const fileAgreement = new FormData();
-        fileAgreement.append("imagefor", "SCHOOL_AGR");
-        fileAgreement.append("imageid", props.data.sch_id);
-        fileAgreement.append("image", agreement);
-        await axios.post(
-          "https://dstservices.in/api/filesup.php",
-          fileAgreement
-        );
         //  ============file uplaod end ================
         fetchAllMaster("https://dstservices.in/api/sch_list.php");
         setMsg(data?.data?.sch_edit?.response_desc);
@@ -142,6 +150,7 @@ const EditSchoolModal = (props) => {
       console.log(error);
     }
   };
+
   return (
     <>
       <Modal
@@ -234,7 +243,7 @@ const EditSchoolModal = (props) => {
                 <Form.Label>District</Form.Label>
                 <Form.Select
                   name="district"
-                  defaultValue={schoolMasterDetail.district}
+                  defaultValue={schoolMasterDetail?.district}
                   onChange={(e) => handleChange(e)}>
                   <option>Select District</option>
                   {district?.data?.distlist?.map((items, index) => {
@@ -283,7 +292,9 @@ const EditSchoolModal = (props) => {
                   <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
                     <img
                       src={
-                        logo === "" ? schoolMasterDetail?.sch_img : prevImage
+                        logo === ""
+                          ? `${schoolMasterDetail?.sch_img}?${Date.now()}`
+                          : prevImage
                       }
                       alt=""
                       height={50}
@@ -308,7 +319,9 @@ const EditSchoolModal = (props) => {
                   <Col xs={3} sm={3} md={3} lg={3} className="d-flex">
                     <img
                       src={
-                        agreement === "" ? schoolMasterDetail?.agr_img : aggPrev
+                        agreement === ""
+                          ? `${schoolMasterDetail?.agr_img}?${Date.now()}`
+                          : aggPrev
                       }
                       alt=""
                       height={50}
