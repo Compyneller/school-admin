@@ -14,6 +14,8 @@ import VendorList from "./pages/VendorList/VendorList";
 import VendorMaster from "./pages/VendorMaster/VendorMaster";
 import VendorViseOrder from "./pages/VendorViseOrder/VendorViseOrder";
 import ShoolViseOrder from "./pages/SchoolViseOrder/ShoolViseOrder";
+import ViewProductPage from "./pages/VendorList/ViewProductPage";
+import PayOutSetting from "./pages/PayOutSetting/PayOutSetting";
 export const routes = [
   {
     path: "/home",
@@ -78,5 +80,13 @@ export const routes = [
   {
     path: "/school-order",
     element: <ShoolViseOrder />,
+  },
+  {
+    path: "/view-product:id",
+    element: <ViewProductPage />,
+  },
+  {
+    path: "/payout-setting",
+    element: <PayOutSetting />,
   },
 ];

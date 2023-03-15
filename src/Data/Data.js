@@ -35,6 +35,10 @@ export const SideBarData = [
         subName: "User Priviledges",
         subLink: "/user-priviledge",
       },
+      {
+        subName: "Payout Setting",
+        subLink: "/payout-setting",
+      },
     ],
   },
   {

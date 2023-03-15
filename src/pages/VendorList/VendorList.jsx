@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import StatusBtn from "./StatusBtn";
 import { ToggleState } from "../../context/Toggle";
 import ViewImage from "./ViewImage";
+import { Link } from "react-router-dom";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -106,6 +107,7 @@ const VendorList = () => {
               <th>Rate</th>
               <th>Image</th>
               <th>Status</th>
+              <th>View</th>
             </tr>
           </thead>
           <tbody>
@@ -121,7 +123,7 @@ const VendorList = () => {
                       // onChange={() => setRadio(items)}
                     />
                   </td> */}
-                  <td>{items.pid}</td>
+                  <td>{index + 1}</td>
                   <td>{items.pname}</td>
                   <td>{items.pdesc}</td>
                   <td>{items.brand}</td>
@@ -145,6 +147,11 @@ const VendorList = () => {
                   </td>
                   <td>
                     <StatusBtn items={items} />
+                  </td>
+                  <td>
+                    <Link to={`/view-product:${items.pid}`}>
+                      <Button>View</Button>
+                    </Link>
                   </td>
                 </tr>
               );
