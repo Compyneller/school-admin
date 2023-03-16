@@ -61,11 +61,41 @@ input[type=number] {
 }
 .product-verification-sub-image{
   width: 100%;
-  height: 50px;
+  height: 60px;
   object-fit: contain;
   aspect-ratio: 3/2;
 
 }
+.onHover-edit-image{
+  position: relative;
+  
+}
+.onHover-edit-image:hover .choose-image-label{
+  opacity: 1;
+  transition: 250ms ease-in;
+  cursor: pointer;
+}
+.choose-image-label{
+  position: absolute;
+  right: 2px;
+  top: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: 250ms ease-out;
+  cursor: pointer;
+}
+
+.choose-image{
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+
+}
+
 @media screen and (max-width : 950px) {
   .product-verification-main-image{
     width: 100%;
