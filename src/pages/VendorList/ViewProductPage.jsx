@@ -17,6 +17,7 @@ const ViewProductPage = () => {
   const [sideImages, setSideImages] = useState([]);
   const [chooseMainImage, setChooseMainImage] = useState("");
   const [chooseImage, setChooseImage] = useState([]);
+  const [uploadSts, setUploadSts] = useState(false);
   const { id } = useParams();
   useEffect(() => {
     window.scroll(0, 0);
@@ -74,6 +75,7 @@ const ViewProductPage = () => {
 
   const uploadImage = async () => {
     if (chooseMainImage !== "") {
+      setUploadSts(true);
       const file = new FormData();
       file.append("imageid", id.replace(":", ""));
       file.append("imagefor", "PRODUCT");
@@ -88,8 +90,10 @@ const ViewProductPage = () => {
 
         duration: 3000,
       }).showToast();
+      setUploadSts(false);
       const uploadFourImage = async (num) => {
         if (num >= chooseImage.length) {
+          setUploadSts(false);
           setTimeout(() => {
             window.location.reload();
           }, 3000);
@@ -99,7 +103,7 @@ const ViewProductPage = () => {
         file.append("imageid", id.replace(":", ""));
         file.append("imagefor", chooseImage[num].name);
         file.append("image", chooseImage[num].image);
-
+        setUploadSts(true);
         const data = await axios.post(
           "https://dstservices.in/api/filesup.php",
           file
@@ -115,6 +119,7 @@ const ViewProductPage = () => {
     } else {
       const uploadFourImage = async (num) => {
         if (num >= chooseImage.length) {
+          setUploadSts(false);
           setTimeout(() => {
             window.location.reload();
           }, 3000);
@@ -124,7 +129,7 @@ const ViewProductPage = () => {
         file.append("imageid", id.replace(":", ""));
         file.append("imagefor", chooseImage[num].name);
         file.append("image", chooseImage[num].image);
-
+        setUploadSts(true);
         const data = await axios.post(
           "https://dstservices.in/api/filesup.php",
           file
@@ -154,6 +159,7 @@ const ViewProductPage = () => {
               <Card>
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   <img
+                    loading="lazy"
                     src={
                       mainImage
                         ? `${mainImage}?${Date.now()}`
@@ -195,6 +201,7 @@ const ViewProductPage = () => {
                     </OverlayTrigger>
                     <Card.Body>
                       <img
+                        loading="lazy"
                         src={
                           chooseMainImage === ""
                             ? `${productData.mimg}?${Date.now()}`
@@ -236,6 +243,7 @@ const ViewProductPage = () => {
                         </OverlayTrigger>
                         <Card.Body>
                           <img
+                            loading="lazy"
                             src={
                               chooseImage[index]?.image !== undefined
                                 ? `data:image/jpeg;base64,${chooseImage[index]?.image}`
@@ -283,7 +291,9 @@ const ViewProductPage = () => {
         </Col>
       </Row>
       <br />
-      <Button onClick={() => uploadImage()}>Upload Image</Button>
+      <Button onClick={() => uploadImage()}>
+        {uploadSts ? "Uploading..." : "Upload Image"}
+      </Button>
     </Container>
   );
 };
