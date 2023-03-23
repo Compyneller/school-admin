@@ -48,7 +48,7 @@ const Profile = () => {
     const fetchData = async () => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
-      body.append("vmob", "6745897970");
+      body.append("vmob", JSON.parse(localStorage.getItem("user"))?.mob);
       const data = await axios.post(
         "https://dstservices.in/api/vendor_view.php",
         body
@@ -94,9 +94,6 @@ const Profile = () => {
       );
       body.append("acno", allInputs.acno || data?.data?.vendorprof[0]?.acno);
       body.append("ifsc", allInputs.ifsc || data?.data?.vendorprof[0]?.ifsc);
-      for (var pair of body.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
       const res = await axios.post(
         "https://dstservices.in/api/vendor_selfedit.php",
         body

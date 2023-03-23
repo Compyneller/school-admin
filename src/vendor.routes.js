@@ -1,13 +1,13 @@
-import Home from "./pages/Home";
-
 import Profile from "./vendor-pages/Profile/Profile";
 import KYCUpload from "./vendor-pages/Tools/KYCUpload/KYCUpload";
+import PendingOrderDetail from "./vendor-pages/VendorHome/PendingOrderDetail";
+import VendorHome from "./vendor-pages/VendorHome/VendorHome";
 import VendorProductMaster from "./vendor-pages/VendorProductMaster/VendorProductMaster";
 
 export const vendorRoutes = [
   {
     path: "/home",
-    element: <Home />,
+    element: <VendorHome />,
   },
 
   {
@@ -21,5 +21,9 @@ export const vendorRoutes = [
   {
     path: "/vendor-kyc-upload",
     element: <KYCUpload />,
+  },
+  {
+    path: "/order-detail:id",
+    element: <PendingOrderDetail />,
   },
 ];

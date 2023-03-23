@@ -31,27 +31,54 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const body = new FormData();
-      body.append("uname", email);
-      body.append("pass", password);
+      if (email === "admin") {
+        const body = new FormData();
+        body.append("uname", email);
+        body.append("pass", password);
 
-      const { data } = await axios.post(
-        "https://dstservices.in/api/adlogin.php",
-        body
-      );
-      setMsg({
-        state: true,
-        des: data.response_desc,
-      });
-      setTimeout(() => {
+        const { data } = await axios.post(
+          "https://dstservices.in/api/adlogin.php",
+          body
+        );
         setMsg({
-          state: false,
-          des: "",
+          state: true,
+          des: data.response_desc,
         });
-      }, 5000);
-      if (data?.response_desc === "Password Successfull") {
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/home");
+        setTimeout(() => {
+          setMsg({
+            state: false,
+            des: "",
+          });
+        }, 5000);
+        if (data?.response_desc === "Password Successfull") {
+          localStorage.setItem("user", JSON.stringify(data));
+          navigate("/home");
+        }
+      } else {
+        const body = new FormData();
+        body.append("api", "sajdh23jd823m023uierur32");
+        body.append("mob", email);
+        body.append("pass", password);
+
+        const { data } = await axios.post(
+          "https://dstservices.in/api/login.php",
+          body
+        );
+        console.log(data?.cprofile);
+        setMsg({
+          state: true,
+          des: data.response_desc,
+        });
+        setTimeout(() => {
+          setMsg({
+            state: false,
+            des: "",
+          });
+        }, 5000);
+        if (data?.cprofile?.response_desc === "Password Successfull") {
+          localStorage.setItem("user", JSON.stringify(data?.cprofile));
+          navigate("/home");
+        }
       }
     } catch (error) {
       navigate("/");
