@@ -7,6 +7,7 @@ import {
   Container,
   Form,
   Row,
+  Spinner,
 } from "react-bootstrap";
 import "./Login.scss";
 import axios from "axios";
@@ -17,6 +18,7 @@ const Login = () => {
     state: false,
     des: "",
   });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +32,9 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    navigator.vibrate(500);
     try {
+      setLoading(true);
       if (email === "admin") {
         const body = new FormData();
         body.append("uname", email);
@@ -40,6 +44,7 @@ const Login = () => {
           "https://dstservices.in/api/adlogin.php",
           body
         );
+        setLoading(false);
         setMsg({
           state: true,
           des: data.response_desc,
@@ -64,10 +69,10 @@ const Login = () => {
           "https://dstservices.in/api/login.php",
           body
         );
-        console.log(data?.cprofile);
+        setLoading(false);
         setMsg({
           state: true,
-          des: data.response_desc,
+          des: data?.cprofile?.response_desc,
         });
         setTimeout(() => {
           setMsg({
@@ -81,6 +86,7 @@ const Login = () => {
         }
       }
     } catch (error) {
+      setLoading(false);
       navigate("/");
     }
   };
@@ -107,7 +113,9 @@ const Login = () => {
               className="shadow login-card w-100 "
               style={{ border: "none", minHeight: "100%" }}>
               {msg.state && (
-                <Alert variant="success" className="text-center">
+                <Alert
+                  variant={msg?.des?.includes("Invalid") ? "danger" : "success"}
+                  className="text-center">
                   {msg.des}
                 </Alert>
               )}
@@ -149,7 +157,13 @@ const Login = () => {
                       className="w-100 mb-3"
                       variant="primary"
                       type="submit">
-                      Login
+                      {loading ? (
+                        <Spinner animation="border" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      ) : (
+                        "Login"
+                      )}
                     </Button>
                     <Form.Group className="" controlId="formBasicPassword">
                       <Form.Label style={{ fontWeight: "bold" }}>

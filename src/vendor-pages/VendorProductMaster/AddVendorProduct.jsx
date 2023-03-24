@@ -98,11 +98,12 @@ const AddVendorProduct = (props) => {
     body.append("tax", allInputs.tax);
     body.append("mtag", allInputs.mtag);
     body.append("edate", allInputs.edate);
-    const data = await axios.post(
+    const { data } = await axios.post(
       "https://dstservices.in/api/vendor_productadd.php",
       body
     );
-    if (data?.data?.productadd?.response_desc === "Data Saved Successfully") {
+    console.log(data);
+    if (data?.productadd?.response_desc === "Data Saved Successfully") {
       // =============file uplaoding ===================
       const file = new FormData();
       file.append("imagefor", "PRODUCT");
@@ -113,7 +114,7 @@ const AddVendorProduct = (props) => {
       // ===============file uploading end ==================
 
       Toastify({
-        text: data?.data?.productadd?.response_desc,
+        text: data?.productadd?.response_desc,
 
         duration: 5000,
       }).showToast();

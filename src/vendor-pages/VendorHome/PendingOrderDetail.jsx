@@ -44,7 +44,7 @@ const PendingOrderDetail = () => {
     );
     Toastify({
       text: data?.response_desc,
-
+      position: "center",
       duration: 3000,
     }).showToast();
     console.log(data);
@@ -56,20 +56,22 @@ const PendingOrderDetail = () => {
       </Link>
       <br />
       <br />
-      <Row className="g-3">
-        <Col xs={9} sm={8} md={7} lg={5}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="number"
-              placeholder="Enter Docket Number"
-              onChange={(e) => setDocketNumber(e.target.value)}
-            />
-          </Form.Group>
-        </Col>
-        <Col xs={3} sm={3} md={3} lg={3}>
-          <Button onClick={submitDocket}>Submit</Button>
-        </Col>
-      </Row>
+      {localStorage.getItem("vendor-home") ? (
+        <Row className="g-3">
+          <Col xs={9} sm={8} md={7} lg={5}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control
+                type="number"
+                placeholder="Enter Docket Number"
+                onChange={(e) => setDocketNumber(e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={3} sm={3} md={3} lg={3}>
+            <Button onClick={submitDocket}>Submit</Button>
+          </Col>
+        </Row>
+      ) : null}
 
       {data.length === 0 ? (
         <Spinner animation="border" role="status">
@@ -79,7 +81,9 @@ const PendingOrderDetail = () => {
         <Row className="g-3">
           {data?.map((items, index) => (
             <Col xs={12} sm={6} md={4} lg={4} key={index}>
-              <Card>
+              <Card
+                className="shadow"
+                style={{ background: "#DCEDC8", borderColor: "#9CCC65" }}>
                 <Card.Header as="h5">{items.pname}</Card.Header>
                 <Card.Body>
                   <Form.Group className="mb-3" controlId="formBasicEmail">

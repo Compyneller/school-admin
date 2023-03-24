@@ -9,11 +9,14 @@ const SidebarItems = ({ items }) => {
   const [open, setOpen] = useState(false);
   const toggleState = useContext(ToggleState);
   const { toggleSidebar, setToggleSidebar } = toggleState;
-
+  const handleNonSubMenuClick = () => {
+    return window.innerWidth <= 950 ? setToggleSidebar(!toggleSidebar) : null;
+  };
   if (items.subMenu) {
     const handleLinks = () => {
       return window.innerWidth <= 950 ? setToggleSidebar(!toggleSidebar) : null;
     };
+
     return (
       <>
         <div className="sidebar-items my-1" onClick={() => setOpen(!open)}>
@@ -52,6 +55,7 @@ const SidebarItems = ({ items }) => {
   } else {
     return (
       <Link
+        onClick={handleNonSubMenuClick}
         to={items.link}
         className="sidebar-items"
         style={{ textDecoration: "none", color: "#ffff" }}>
