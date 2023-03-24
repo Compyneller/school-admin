@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ToggleState } from "../context/Toggle";
 import NavBarComp from "../components/NavBarComp/NavBarComp";
 import { vendorRoutes } from "../vendor.routes";
+import { schoolRoutes } from "../school.routes";
 const Layout = () => {
   const location = useLocation();
   const sidebarToggle = useContext(ToggleState);
@@ -20,7 +21,11 @@ const Layout = () => {
   useEffect(() => {
     return JSON.parse(localStorage.getItem("user"))?.ugroup === "ADMINISTRATOR"
       ? setCondRoutes(routes)
-      : setCondRoutes(vendorRoutes);
+      : JSON.parse(localStorage.getItem("user"))?.ugroup === "VENDOR"
+      ? setCondRoutes(vendorRoutes)
+      : JSON.parse(localStorage.getItem("user"))?.ugroup === "SCHOOL"
+      ? setCondRoutes(schoolRoutes)
+      : null;
   }, []);
 
   if (localStorage.getItem("user")) {

@@ -44,6 +44,7 @@ const Login = () => {
           "https://dstservices.in/api/adlogin.php",
           body
         );
+
         setLoading(false);
         setMsg({
           state: true,
@@ -69,6 +70,7 @@ const Login = () => {
           "https://dstservices.in/api/login.php",
           body
         );
+
         setLoading(false);
         setMsg({
           state: true,
@@ -82,7 +84,11 @@ const Login = () => {
         }, 5000);
         if (data?.cprofile?.response_desc === "Password Successfull") {
           localStorage.setItem("user", JSON.stringify(data?.cprofile));
-          navigate("/home");
+          if (data?.cprofile?.ugroup === "VENDOR") {
+            navigate("/vendor-home");
+          } else if (data?.cprofile?.ugroup === "SCHOOL") {
+            navigate("/school-home");
+          }
         }
       }
     } catch (error) {

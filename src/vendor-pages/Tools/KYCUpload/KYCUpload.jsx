@@ -86,7 +86,7 @@ const KYCUpload = () => {
         );
         Toastify({
           text: `${images[num].name} upload Successfully`,
-
+          position: "center",
           duration: 3000,
         }).showToast();
         uploadImage(num + 1);

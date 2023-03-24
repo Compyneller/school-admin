@@ -6,9 +6,11 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
-import { IoLogOut } from "react-icons/io5";
 import { HiDocumentReport } from "react-icons/hi";
-import { BsFillPersonLinesFill } from "react-icons/bs";
+import { BsFillPersonLinesFill, BsViewList } from "react-icons/bs";
+import { MdPassword } from "react-icons/md";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BiHomeAlt } from "react-icons/bi";
 export const SideBarData = [
   {
     name: "Home",
@@ -142,7 +144,7 @@ export const vendorMenu = [
   {
     icon: <FaHome />,
     name: "Home",
-    link: "/home",
+    link: "/vendor-home",
   },
   {
     icon: <BsFillPersonLinesFill />,
@@ -186,5 +188,27 @@ export const vendorMenu = [
     icon: <HiDocumentReport />,
     name: "Reports",
     link: "/vendor-reports",
+  },
+];
+export const schoolMenu = [
+  {
+    icon: <BiHomeAlt />,
+    name: "Home",
+    link: "/school-home",
+  },
+  {
+    icon: <BsViewList />,
+    name: "View Profile",
+    link: "/school-view-profile",
+  },
+  {
+    icon: <MdPassword />,
+    name: "Change Password",
+    link: "/vendor-orders",
+  },
+  {
+    icon: <AiOutlineShoppingCart />,
+    name: "View Orders",
+    link: "/school-view-orders",
   },
 ];

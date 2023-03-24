@@ -22,14 +22,14 @@ const DeleteVedorProduct = ({ radio }) => {
       ) {
         Toastify({
           text: data?.data?.product_del?.response_desc,
-
+          position: "center",
           duration: 3000,
         }).showToast();
         fetchVendorMaster("https://dstservices.in/api/vendor_productlist.php");
       } else {
         Toastify({
           text: data?.data?.product_del?.response_desc,
-
+          position: "center",
           duration: 3000,
         }).showToast();
       }

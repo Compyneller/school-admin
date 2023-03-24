@@ -9,30 +9,35 @@ import {
   Row,
   Spinner,
 } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Toastify from "toastify-js";
 
 const PendingOrderDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [docketNumber, setDocketNumber] = useState("");
   useEffect(() => {
     const fetchData = async () => {
-      const body = new FormData();
-      body.append("api", "sajdh23jd823m023uierur32");
-      body.append("orderno", id.replace(":", ""));
-      const { data } = await axios.post(
-        "https://dstservices.in/api/corderhlist.php",
-        body
-      );
-      setData(data?.osuml);
+      try {
+        const body = new FormData();
+        body.append("api", "sajdh23jd823m023uierur32");
+        body.append("orderno", id.replace(":", ""));
+        const { data } = await axios.post(
+          "https://dstservices.in/api/corderhlist.php",
+          body
+        );
+        setData(data?.osuml);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
 
     return () => {
       fetchData();
     };
-  }, []);
+  }, [id]);
   const submitDocket = async () => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
@@ -51,12 +56,13 @@ const PendingOrderDetail = () => {
   };
   return (
     <Container className="py-5">
-      <Link to="/home">
-        <Button variant="danger">Back</Button>
-      </Link>
+      <Button variant="danger" onClick={() => navigate(-1)}>
+        Back
+      </Button>
+
       <br />
       <br />
-      {localStorage.getItem("vendor-home") ? (
+      {localStorage.getItem("vendor-orders") ? (
         <Row className="g-3">
           <Col xs={9} sm={8} md={7} lg={5}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

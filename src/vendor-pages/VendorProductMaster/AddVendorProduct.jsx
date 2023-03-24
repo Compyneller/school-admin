@@ -115,7 +115,7 @@ const AddVendorProduct = (props) => {
 
       Toastify({
         text: data?.productadd?.response_desc,
-
+        position: "center",
         duration: 5000,
       }).showToast();
       fetchVendorMaster("https://dstservices.in/api/vendor_productlist.php");
@@ -127,6 +127,7 @@ const AddVendorProduct = (props) => {
     } else {
       Toastify({
         text: data?.data?.productadd?.response_desc,
+        position: "center",
         duration: 5000,
       }).showToast();
       props.onHide();

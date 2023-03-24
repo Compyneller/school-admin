@@ -8,7 +8,7 @@ import VendorProductMaster from "./vendor-pages/VendorProductMaster/VendorProduc
 
 export const vendorRoutes = [
   {
-    path: "/home",
+    path: "/vendor-home",
     element: <VendorHome />,
   },
 

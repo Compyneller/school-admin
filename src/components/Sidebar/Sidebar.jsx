@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { SideBarData, vendorMenu } from "../../Data/Data";
+import { schoolMenu, SideBarData, vendorMenu } from "../../Data/Data";
 import "./SideBar.scss";
-import { IoExit } from "react-icons/io5";
+import { IoExitOutline } from "react-icons/io5";
 import SidebarItems from "./SidebarItems";
 const Sidebar = () => {
   const [condSideMenu, setCondSideMenu] = useState([]);
   useEffect(() => {
-    return JSON.parse(localStorage.getItem("user"))?.uid === "admin"
+    return JSON.parse(localStorage.getItem("user"))?.ugroup === "ADMINISTRATOR"
       ? setCondSideMenu(SideBarData)
+      : JSON.parse(localStorage.getItem("user"))?.ugroup === "SCHOOL"
+      ? setCondSideMenu(schoolMenu)
       : setCondSideMenu(vendorMenu);
   }, []);
 
@@ -25,7 +27,7 @@ const Sidebar = () => {
           window.location.href = "/";
         }}
         style={{ cursor: "pointer" }}>
-        <IoExit />
+        <IoExitOutline />
         <p className="my-auto ms-2" onClick={() => navigator.vibrate(100)}>
           Logout
         </p>
