@@ -10,12 +10,11 @@ const VendorHomeCard = ({ items, location }) => {
       localStorage.removeItem("vendor-order");
     }
   }, [location]);
-  console.log(localStorage.getItem("vendor-order"));
   return (
     <Link
       to={`/order-detail:${items.orderno}`}
       style={{ textDecoration: "none" }}
-      onClick={() => navigator.vibrate(500)}>
+      onClick={() => navigator.vibrate(100)}>
       <Card
         className="shadow"
         style={{ background: "#DCEDC8", borderColor: "#9CCC65" }}>

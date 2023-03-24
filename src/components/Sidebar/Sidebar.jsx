@@ -26,7 +26,9 @@ const Sidebar = () => {
         }}
         style={{ cursor: "pointer" }}>
         <IoExit />
-        <p className="my-auto ms-2">Logout</p>
+        <p className="my-auto ms-2" onClick={() => navigator.vibrate(100)}>
+          Logout
+        </p>
       </div>
     </div>
   );

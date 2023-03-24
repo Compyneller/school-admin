@@ -32,7 +32,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    navigator.vibrate(500);
+    navigator.vibrate(100);
     try {
       setLoading(true);
       if (email === "admin") {

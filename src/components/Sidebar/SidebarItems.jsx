@@ -19,7 +19,12 @@ const SidebarItems = ({ items }) => {
 
     return (
       <>
-        <div className="sidebar-items my-1" onClick={() => setOpen(!open)}>
+        <div
+          className="sidebar-items my-1"
+          onClick={() => {
+            setOpen(!open);
+            navigator.vibrate(100);
+          }}>
           <div className="sidebar-label-name d-flex align-items-center">
             {items.icon}
 
@@ -41,6 +46,7 @@ const SidebarItems = ({ items }) => {
               return (
                 <li className="my-2" key={index} onClick={() => handleLinks()}>
                   <Link
+                    onClick={() => navigator.vibrate(100)}
                     style={{ textDecoration: "none", color: "#ffff" }}
                     to={items.subLink}>
                     {items.subName}
