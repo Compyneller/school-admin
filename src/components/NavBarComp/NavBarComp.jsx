@@ -36,10 +36,10 @@ const NavBarComp = () => {
           <h3
             className="text-light ms-3 my-auto"
             style={{ fontWeight: "bold", textTransform: "capitalize" }}>
-            {JSON.parse(localStorage.getItem("user")).username}
+            {JSON.parse(localStorage.getItem("user")).uname}
           </h3>
         </Navbar.Brand>
-        {scroll && <h5 className="text-warning">KYC NOT VERIFIED</h5>}
+        {scroll && <p className="text-warning my-auto">KYC NOT VERIFIED</p>}
       </Container>
     </Navbar>
   );

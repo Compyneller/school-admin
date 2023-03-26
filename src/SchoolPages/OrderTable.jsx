@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { Card, Table } from "react-bootstrap";
+import { Card, Col, Row, Table } from "react-bootstrap";
+import VendorHomeCard from "../components/VendorHomeCard/VendorHomeCard";
 
 const OrderTable = ({ data }) => {
   return (
@@ -10,35 +11,15 @@ const OrderTable = ({ data }) => {
           <h5 className="my-auto ms-3">Order List</h5>
         </Card.Body>
       </Card>
-
-      <Table responsive bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Order No.</th>
-            <th>Order From</th>
-            <th>Order Date</th>
-            <th>Net Amount</th>
-            <th>Delivery Address</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((items, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{items.orderno}</td>
-                <td>{items.orderfrom}</td>
-                <td>{new Date(items.orderdate).toDateString()}</td>
-                <td>{items.netamt}</td>
-                <td>{items.deladdress}</td>
-                <td>{items.orderstatus}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <Row className="g-3">
+        {data?.map((items, index) => {
+          return (
+            <Col xs={12} sm={6} md={4} lg={3} key={index}>
+              <VendorHomeCard items={items} location="home" />
+            </Col>
+          );
+        })}
+      </Row>
     </Fragment>
   );
 };

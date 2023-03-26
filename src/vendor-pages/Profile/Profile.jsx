@@ -53,6 +53,7 @@ const Profile = () => {
         "https://dstservices.in/api/vendor_view.php",
         body
       );
+
       setData(data);
     };
     fetchData();
