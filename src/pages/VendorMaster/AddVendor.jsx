@@ -164,8 +164,9 @@ const AddVendor = (props) => {
                   <Form.Label>Vendor Mobile</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="text"
+                    type="number"
                     name="vmob"
+                    maxLength={10}
                     placeholder="Vendor Mobile"
                     required
                   />
@@ -188,7 +189,7 @@ const AddVendor = (props) => {
                   <Form.Label>Firm Mobile</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="text"
+                    type="number"
                     name="fmob"
                     placeholder="Firm Mobile"
                     required

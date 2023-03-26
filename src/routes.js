@@ -16,7 +16,12 @@ import VendorViseOrder from "./pages/VendorViseOrder/VendorViseOrder";
 import ShoolViseOrder from "./pages/SchoolViseOrder/ShoolViseOrder";
 import ViewProductPage from "./pages/VendorList/ViewProductPage";
 import PayOutSetting from "./pages/PayOutSetting/PayOutSetting";
+import ErrorPage from "./components/ErrorPage";
 export const routes = [
+  {
+    path: "/*",
+    element: <ErrorPage />,
+  },
   {
     path: "/home",
     element: <Home />,

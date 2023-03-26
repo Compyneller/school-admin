@@ -34,7 +34,7 @@ const ProductMasterTable = ({ data, setRadio, setUpdateBrand, setDetail }) => {
                   src={`${items.bimg}?${Date.now()}`}
                   height={50}
                   width={50}
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                   alt=""
                 />
               </td>

@@ -97,22 +97,10 @@ const Login = () => {
   };
   return (
     <div className="login-container">
-      {/* <div className="left-circle circle"></div>
-      <div className="right-circle circle"></div>
-      <div className="bottom-circle circle"></div> */}
       <Container
         className="d-flex justify-content-center align-items-center"
         style={{ minHeight: "80vh" }}>
-        <Row className="g-0 w-100">
-          <Col
-            xs={12}
-            sm={12}
-            md={6}
-            lg={7}
-            className="left-card"
-            style={{ zIndex: "100" }}>
-            <LeftCardCarousel />
-          </Col>
+        <Row className="g-0 d-flex justify-content-center w-100 align-items-center">
           <Col xs={12} sm={12} md={6} lg={5} className="d-flex">
             <Card
               className="shadow login-card w-100 "

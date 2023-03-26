@@ -185,8 +185,11 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="mob"
+                    pattern="\d{10}"
                     placeholder="Enter Contact Number"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
                     required
                   />
                 </Form.Group>

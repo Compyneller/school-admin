@@ -14,6 +14,8 @@ import StatusBtn from "./StatusBtn";
 import { ToggleState } from "../../context/Toggle";
 import ViewImage from "./ViewImage";
 import { Link } from "react-router-dom";
+import SpinnerComp from "../../components/SpinnerComp";
+import NoRecordFound from "../../components/NoRecordFound";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -46,7 +48,7 @@ const VendorList = () => {
   const [imageModal, setImageModal] = useState(false);
   const [products, setProducts] = useState([]);
   const AllVendorList = useContext(ToggleState);
-  const { fetchAllMaster, allMaster } = AllVendorList;
+  const { fetchAllMaster, allMaster, loading } = AllVendorList;
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/ven_slist.php");
   }, []);
@@ -95,26 +97,29 @@ const VendorList = () => {
             <h5 className="my-auto ms-3">Product List</h5>
           </Card.Body>
         </Card>
-        <Table responsive bordered hover>
-          <thead>
-            <tr>
-              {/* <th></th> */}
-              <th>#</th>
-              <th>Product Name</th>
-              <th>Description</th>
-              <th>Brand</th>
-              <th>M.R.P</th>
-              <th>Rate</th>
-              <th>Image</th>
-              <th>Status</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products?.prodlist?.map((items, index) => {
-              return (
-                <tr key={index}>
-                  {/* <td>
+        {loading ? (
+          <SpinnerComp />
+        ) : products?.prodlist?.length > 0 ? (
+          <Table responsive bordered hover>
+            <thead>
+              <tr>
+                {/* <th></th> */}
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Brand</th>
+                <th>M.R.P</th>
+                <th>Rate</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products?.prodlist?.map((items, index) => {
+                return (
+                  <tr key={index}>
+                    {/* <td>
                     <Form.Check
                       inline
                       name="group1"
@@ -123,41 +128,44 @@ const VendorList = () => {
                       // onChange={() => setRadio(items)}
                     />
                   </td> */}
-                  <td>{index + 1}</td>
-                  <td>{items.pname}</td>
-                  <td>{items.pdesc}</td>
-                  <td>{items.brand}</td>
-                  <td>{items.mrp}</td>
-                  <td>{items.rate}</td>
+                    <td>{index + 1}</td>
+                    <td>{items.pname}</td>
+                    <td>{items.pdesc}</td>
+                    <td>{items.brand}</td>
+                    <td>{items.mrp}</td>
+                    <td>{items.rate}</td>
 
-                  <td
-                    onClick={() => {
-                      setImageModal(true);
-                      setData(items);
-                    }}
-                    style={{ cursor: "pointer" }}>
-                    <OverlayTrigger
-                      placement="top"
-                      delay={{ show: 250, hide: 400 }}
-                      overlay={
-                        <Tooltip id="button-tooltip">View Image</Tooltip>
-                      }>
-                      <img src={items.pimg} height={50} width={50} alt="" />
-                    </OverlayTrigger>
-                  </td>
-                  <td>
-                    <StatusBtn items={items} />
-                  </td>
-                  <td>
-                    <Link to={`/view-product:${items.pid}`}>
-                      <Button>View</Button>
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+                    <td
+                      onClick={() => {
+                        setImageModal(true);
+                        setData(items);
+                      }}
+                      style={{ cursor: "pointer" }}>
+                      <OverlayTrigger
+                        placement="top"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={
+                          <Tooltip id="button-tooltip">View Image</Tooltip>
+                        }>
+                        <img src={items.pimg} height={50} width={50} alt="" />
+                      </OverlayTrigger>
+                    </td>
+                    <td>
+                      <StatusBtn items={items} />
+                    </td>
+                    <td>
+                      <Link to={`/view-product:${items.pid}`}>
+                        <Button>View</Button>
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        ) : (
+          <NoRecordFound />
+        )}
       </Container>
       <ViewImage
         data={data}

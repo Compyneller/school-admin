@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Container, Form, Table, Button } from "react-bootstrap";
+import { Card, Container, Form, Table, Button, Spinner } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
 import AddVendor from "./AddVendor";
 import EditVendorModal from "./EditVendorModal";
 import { motion } from "framer-motion";
 import AddButton from "../../components/AddButton/AddButton";
 import KYCModal from "./KYCModal";
+import VendorMasterTable from "./VendorMasterTable";
 const containerVariance = {
   ini: {
     x: "100%",
@@ -41,7 +42,7 @@ const VendorMaster = () => {
   const [kycModal, setKycModal] = useState(false);
   const [kycData, setKycData] = useState("");
   const master = useContext(ToggleState);
-  const { fetchAllMaster, allMaster } = master;
+  const { fetchAllMaster, allMaster, loading } = master;
   useEffect(() => {
     fetchAllMaster("https://dstservices.in/api/vendor_weblist.php");
   }, []);
@@ -78,6 +79,7 @@ const VendorMaster = () => {
       window.alert(data?.vendor_blocksts?.response_desc);
     }
   };
+
   return (
     <motion.div
       className="w-100"
@@ -106,113 +108,25 @@ const VendorMaster = () => {
             <h5 className="my-auto ms-3">Vendor List</h5>
           </Card.Body>
         </Card>
-        <Table responsive bordered hover>
-          <thead>
-            <tr>
-              <th></th>
-              <th>#</th>
-              <th>Vendor Name</th>
-              <th>Vendor Mobile</th>
-              <th>Firm Name</th>
-              <th>Father Name</th>
-              <th>GST Type</th>
-              <th>GST / Certificate No.</th>
-              <th>KYC</th>
-              <th>Status</th>
-              <th>Image</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allMaster?.data?.vendorlist?.map((items, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <Form.Check
-                      inline
-                      name="group1"
-                      type="radio"
-                      id={`${items.vid}`}
-                      onChange={() => setRadio(items)}
-                    />
-                  </td>
-                  <td>{items.vid}</td>
-                  <td>{items.vname}</td>
-                  <td>{items.vmob}</td>
-                  <td>{items.firm_name}</td>
-                  <td>{items.father_name}</td>
-                  <td>
-                    {items.gst_reg_type === "Unregistered"
-                      ? "Nill"
-                      : items.gsttype}
-                  </td>
-                  <td>{items.gstno}</td>
-                  <td
-                    className={`text-${
-                      items.kycsts === "VERIFIED"
-                        ? "success"
-                        : items.kycsts === "NOT VERIFIED"
-                        ? "warning"
-                        : "danger"
-                    } `}
-                    onClick={() => {
-                      setKycModal(true);
-                      setKycData(items);
-                    }}
-                    style={{ cursor: "pointer" }}>
-                    {items.kycsts}
-                  </td>
-                  <td
-                    style={{ cursor: "pointer" }}
-                    onClick={() => changeStatus(items.vid, items.blocksts)}
-                    className={`text-${
-                      items.blocksts === "OPEN" ? "success" : "danger"
-                    } `}>
-                    {items.blocksts}
-                  </td>
-                  <td>
-                    <img
-                      src={`${items.fimg}?${Date.now()}`}
-                      height={50}
-                      width={50}
-                      alt=""
-                      style={{ objectFit: "cover" }}
-                    />
-                  </td>
-                  <td>
-                    <Button
-                      variant="outline-primary"
-                      onClick={() => {
-                        setDetail({
-                          vid: `${items.vid}`,
-                          vname: `${items.vname}`,
-                          vmob: `${items.vmob}`,
-                          firm_name: `${items.firm_name}`,
-                          gsttype: `${items.gsttype}`,
-                          ftype: `${items.ftype}`,
-                          gstno: `${items.gstno}`,
-                          state: `${items.state}`,
-                          city: `${items.city}`,
-                          district: `${items.district}`,
-                          fadd: `${items.fadd}`,
-                          father_name: `${items.father_name}`,
-                          fmob: `${items.fmob}`,
-                          state: `${items.state}`,
-                          pinno: `${items.pinno}`,
-                          panno: `${items.panno}`,
-                          fimg: `${items.fimg}`,
-                          aadharno: `${items.aadharno}`,
-                        });
-                        setEditModal(true);
-                      }}>
-                      <i className="fa-regular fa-pen-to-square"></i>
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        {loading ? (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        ) : allMaster?.data?.response_desc === "No Record Found" ? (
+          <h3 className="text-danger text-center mt-4">
+            {allMaster?.data?.response_desc}
+          </h3>
+        ) : (
+          <VendorMasterTable
+            data={allMaster?.data?.vendorlist}
+            setRadio={setRadio}
+            setKycData={setKycData}
+            setKycModal={setKycModal}
+            setDetail={setDetail}
+            setEditModal={setEditModal}
+            changeStatus={changeStatus}
+          />
+        )}
         <AddVendor show={showAddModal} onHide={() => setShowAddModal(false)} />
         <EditVendorModal
           data={detail}

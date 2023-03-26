@@ -1,25 +1,25 @@
-import {
-  FaHome,
-  FaTools,
-  FaBook,
-  FaFingerprint,
-  FaShoppingCart,
-} from "react-icons/fa";
+import { FaHome, FaTools, FaFingerprint, FaShoppingCart } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { HiDocumentReport } from "react-icons/hi";
-import { BsFillPersonLinesFill, BsViewList } from "react-icons/bs";
+import {
+  BsFillPersonLinesFill,
+  BsJournalBookmark,
+  BsViewList,
+} from "react-icons/bs";
 import { MdPassword } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiHomeAlt } from "react-icons/bi";
+import { VscTools } from "react-icons/vsc";
+import { GoReport } from "react-icons/go";
 export const SideBarData = [
   {
     name: "Home",
     link: "/home",
-    icon: <FaHome />,
+    icon: <BiHomeAlt />,
   },
   {
     name: "Tools",
-    icon: <FaTools />,
+    icon: <VscTools />,
     subMenu: [
       {
         subName: "Change Password",
@@ -45,7 +45,7 @@ export const SideBarData = [
   },
   {
     name: "Master",
-    icon: <FaBook />,
+    icon: <BsJournalBookmark />,
     subMenu: [
       {
         subName: "School Master",
@@ -101,7 +101,7 @@ export const SideBarData = [
   },
   {
     name: "Orders",
-    icon: <FaShoppingCart />,
+    icon: <AiOutlineShoppingCart />,
     subMenu: [
       {
         subName: "Vendor Vise Order",
@@ -115,7 +115,7 @@ export const SideBarData = [
   },
   {
     name: "Report",
-    icon: <HiDocumentReport />,
+    icon: <GoReport />,
     subMenu: [
       {
         subName: "Sale Report",

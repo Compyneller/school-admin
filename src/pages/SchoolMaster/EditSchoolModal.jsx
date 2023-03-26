@@ -225,14 +225,16 @@ const EditSchoolModal = (props) => {
                 <Form.Label>State</Form.Label>
                 <Form.Select
                   name="state"
-                  defaultValue={schoolMasterDetail.state}
                   onChange={(e) => {
                     handleChange(e);
                   }}>
                   <option>Select State</option>
                   {state?.data?.statelist?.map((items, index) => {
                     return (
-                      <option key={index} value={items.state}>
+                      <option
+                        key={index}
+                        selected={schoolMasterDetail.state}
+                        value={items.state}>
                         {items.state}
                       </option>
                     );
@@ -241,14 +243,14 @@ const EditSchoolModal = (props) => {
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>
                 <Form.Label>District</Form.Label>
-                <Form.Select
-                  name="district"
-                  defaultValue={schoolMasterDetail?.district}
-                  onChange={(e) => handleChange(e)}>
+                <Form.Select name="district" onChange={(e) => handleChange(e)}>
                   <option>Select District</option>
                   {district?.data?.distlist?.map((items, index) => {
                     return (
-                      <option key={index} value={items.dist}>
+                      <option
+                        selected={schoolMasterDetail.district}
+                        key={index}
+                        value={items.dist}>
                         {items.dist}
                       </option>
                     );

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import ToastifyComp from "../components/ToastifyComp";
 export const ToggleState = createContext();
 const Toggle = ({ children }) => {
   const [allMaster, setAllMaster] = useState([]);
@@ -7,15 +8,23 @@ const Toggle = ({ children }) => {
   const [state, setState] = useState([]);
   const [district, setDistrict] = useState([]);
   const [city, setCity] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(
     window.innerWidth <= 950 ? true : false
   );
   const [auth, setAuth] = useState(false);
   const fetchAllMaster = async (api) => {
-    const body = new FormData();
-    body.append("api", "sajdh23jd823m023uierur32");
-    const data = await axios.post(api, body);
-    setAllMaster(data);
+    try {
+      setLoading(true);
+      const body = new FormData();
+      body.append("api", "sajdh23jd823m023uierur32");
+      const data = await axios.post(api, body);
+      setLoading(false);
+      setAllMaster(data);
+    } catch (error) {
+      setLoading(false);
+      ToastifyComp(error);
+    }
   };
   const fetchState = async (test) => {
     const body = new FormData();
@@ -71,6 +80,7 @@ const Toggle = ({ children }) => {
         fetchDistrict,
         fetchCity,
         city,
+        loading,
       }}>
       {children}
     </ToggleState.Provider>

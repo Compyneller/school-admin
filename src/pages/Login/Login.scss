@@ -36,24 +36,30 @@
         align-items: center;
         justify-content: center;
         background-color: #2B5CC4;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
+        
     }
     .login-card{
-        background: rgba( 255, 255, 255, 0.25 );
+        background:  #0A1E33;
+        border-top-left-radius: 20px !important;
+        border-bottom-right-radius: 20px !important;
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 3.5px );
         -webkit-backdrop-filter: blur( 3.5px );
-        border-radius: 10px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+        border: 2px solid #12365B !important;
 
 input{
-    background: rgba( 255, 255, 255, 0.25 );
+    background: transparent !important;
+    border: 2px solid #12365B !important;
+   color: #ffff;
+    border-top-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
    
-    backdrop-filter: blur( 3.5px );
-    -webkit-backdrop-filter: blur( 3.5px );
-    border-radius: 10px;
     
+}
+button{
+    border-top-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
 }
     }
 }
