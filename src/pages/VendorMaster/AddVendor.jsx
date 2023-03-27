@@ -51,12 +51,25 @@ const AddVendor = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAllInputs((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+
+    if (e.target.type === "number") {
+      if (e.target.value.length > e.target.maxLength) {
+        e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      }
+    } else {
+      setAllInputs((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
   useEffect(() => {
     const fetchDistrict = async () => {
@@ -190,6 +203,7 @@ const AddVendor = (props) => {
                   <Form.Control
                     onChange={(e) => handleChange(e)}
                     type="number"
+                    maxLength={10}
                     name="fmob"
                     placeholder="Firm Mobile"
                     required
@@ -248,7 +262,8 @@ const AddVendor = (props) => {
                   <Form.Label>GST No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="number"
+                    type="text"
+                    maxLength={15}
                     name="gstno"
                     placeholder="Enter GST No."
                   />
@@ -262,6 +277,7 @@ const AddVendor = (props) => {
                     type="text"
                     name="panno"
                     placeholder="Enter Pan No."
+                    maxLength={10}
                     required
                   />
                 </Form.Group>
@@ -332,6 +348,7 @@ const AddVendor = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="number"
                     name="pinno"
+                    maxLength={6}
                     placeholder="Enter Pin Code"
                     required
                   />

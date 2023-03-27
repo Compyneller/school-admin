@@ -45,13 +45,27 @@ const EditEmpModal = (props) => {
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAllInputs((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+
+    if (e.target.type === "number") {
+      if (e.target.value.length > e.target.maxLength) {
+        e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      }
+    } else {
+      setAllInputs((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
+
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
@@ -206,6 +220,7 @@ const EditEmpModal = (props) => {
                   <Form.Control
                     type="number"
                     name="mob"
+                    maxLength={10}
                     onChange={handleInputChange}
                     defaultValue={props.data.mob}
                   />
@@ -217,6 +232,7 @@ const EditEmpModal = (props) => {
                   <Form.Control
                     type="number"
                     name="altmob"
+                    maxLength={10}
                     onChange={handleInputChange}
                     defaultValue={props.data.altmob}
                   />
@@ -272,6 +288,7 @@ const EditEmpModal = (props) => {
                   <Form.Control
                     type="text"
                     name="panno"
+                    maxLength={10}
                     onChange={handleInputChange}
                     defaultValue={props.data.panno}
                   />

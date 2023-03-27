@@ -70,14 +70,26 @@ const AddSchoolModal = (props) => {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAllInputs((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
-  };
 
+    if (e.target.type === "number") {
+      if (e.target.value.length > e.target.maxLength) {
+        e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      }
+    } else {
+      setAllInputs((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -185,11 +197,9 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="mob"
-                    pattern="\d{10}"
+                    maxLength={10}
                     placeholder="Enter Contact Number"
-                    onChange={(e) => {
-                      handleChange(e);
-                    }}
+                    onChange={(e) => handleChange(e)}
                     required
                   />
                 </Form.Group>
@@ -200,6 +210,7 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="alt_mob"
+                    maxLength={10}
                     placeholder="Enter Alternate Contact Number"
                     onChange={(e) => handleChange(e)}
                   />
@@ -252,6 +263,7 @@ const AddSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="pinno"
+                    maxLength={6}
                     placeholder="Enter Pin Code"
                     onChange={(e) => handleChange(e)}
                   />

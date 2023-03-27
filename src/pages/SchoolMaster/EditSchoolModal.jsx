@@ -83,12 +83,25 @@ const EditSchoolModal = (props) => {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAllInputs((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+
+    if (e.target.type === "number") {
+      if (e.target.value.length > e.target.maxLength) {
+        e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      }
+    } else {
+      setAllInputs((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -205,6 +218,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="mob"
+                    maxLength={10}
                     defaultValue={schoolMasterDetail?.mob}
                     onChange={(e) => handleChange(e)}
                   />
@@ -216,6 +230,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="alt_mob"
+                    maxLength={10}
                     defaultValue="Enter Alternate Contact Number"
                     onChange={(e) => handleChange(e)}
                   />
@@ -274,6 +289,7 @@ const EditSchoolModal = (props) => {
                   <Form.Control
                     type="number"
                     name="pinno"
+                    maxLength={6}
                     defaultValue={schoolMasterDetail.pinno}
                     onChange={(e) => handleChange(e)}
                   />

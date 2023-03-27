@@ -51,12 +51,25 @@ const EditVendorModal = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAllInputs((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+
+    if (e.target.type === "number") {
+      if (e.target.value.length > e.target.maxLength) {
+        e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      }
+    } else {
+      setAllInputs((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
   useEffect(() => {
     const fetchDistrict = async () => {
@@ -174,6 +187,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="number"
                     name="vmob"
+                    maxLength={10}
                     defaultValue={props.data.vmob}
                   />
                 </Form.Group>
@@ -196,6 +210,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="number"
                     name="fmob"
+                    maxLength={10}
                     defaultValue={props.data.fmob}
                   />
                 </Form.Group>
@@ -251,7 +266,8 @@ const EditVendorModal = (props) => {
                   <Form.Label>GST No.</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="number"
+                    type="text"
+                    maxLength={15}
                     name="gstno"
                     defaultValue={props.data.gstno}
                   />
@@ -264,6 +280,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="text"
                     name="panno"
+                    maxLength={10}
                     defaultValue={props.data.panno}
                   />
                 </Form.Group>
@@ -334,6 +351,7 @@ const EditVendorModal = (props) => {
                     onChange={(e) => handleChange(e)}
                     type="number"
                     name="pinno"
+                    maxLength={6}
                     defaultValue={props.data.pinno}
                   />
                 </Form.Group>

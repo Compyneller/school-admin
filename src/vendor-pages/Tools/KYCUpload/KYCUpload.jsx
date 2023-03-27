@@ -11,6 +11,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import Toastify from "toastify-js";
+import NoRecordFound from "../../../components/NoRecordFound";
 
 const KYCUpload = () => {
   const [kycData, setKycData] = useState([]);
@@ -171,23 +172,29 @@ const KYCUpload = () => {
                             <Card style={{ height: "100%" }}>
                               <Card.Header as="b">Aadhar Image</Card.Header>
                               <Card.Body>
-                                <img
-                                  src={
-                                    aadharImage
-                                      ? `data:image/jpeg;base64,${aadharImage}`
-                                      : `${items.aadharimg}?${Date.now}`
-                                  }
-                                  className="w-100"
-                                  height={200}
-                                  alt=""
-                                  style={{ objectFit: "contain" }}
-                                />
+                                {items.aadharimg === null &&
+                                aadharImage === "" ? (
+                                  <NoRecordFound />
+                                ) : (
+                                  <img
+                                    src={
+                                      aadharImage
+                                        ? `data:image/jpeg;base64,${aadharImage}`
+                                        : `${items.aadharimg}?${Date.now}`
+                                    }
+                                    className="w-100"
+                                    height={200}
+                                    alt=""
+                                    style={{ objectFit: "contain" }}
+                                  />
+                                )}
                               </Card.Body>
                               <Card.Footer>
                                 <input
                                   className="custom-file-input"
                                   type="file"
                                   data-parent="Choose Image"
+                                  accept="image/*"
                                   onChange={(e) =>
                                     handleAadharFile(e, "AADHAR")
                                   }
@@ -199,22 +206,27 @@ const KYCUpload = () => {
                             <Card style={{ height: "100%" }}>
                               <Card.Header as="b">PAN Image</Card.Header>
                               <Card.Body>
-                                <img
-                                  src={
-                                    panImage
-                                      ? `data:image/jpeg;base64,${panImage}`
-                                      : `${items.panimg}?${Date.now}`
-                                  }
-                                  className="w-100 object-fit-contain"
-                                  height={200}
-                                  alt=""
-                                  style={{ objectFit: "contain" }}
-                                />
+                                {items.panimg === null && panImage === "" ? (
+                                  <NoRecordFound />
+                                ) : (
+                                  <img
+                                    src={
+                                      panImage
+                                        ? `data:image/jpeg;base64,${panImage}`
+                                        : `${items.panimg}?${Date.now}`
+                                    }
+                                    className="w-100 object-fit-contain"
+                                    height={200}
+                                    alt=""
+                                    style={{ objectFit: "contain" }}
+                                  />
+                                )}
                               </Card.Body>
                               <Card.Footer>
                                 <input
                                   className="custom-file-input"
                                   type="file"
+                                  accept="image/*"
                                   data-parent="Choose Image"
                                   onChange={(e) => handleAadharFile(e, "PAN")}
                                 />
@@ -225,22 +237,27 @@ const KYCUpload = () => {
                             <Card style={{ height: "100%" }}>
                               <Card.Header as="b">GST Image</Card.Header>
                               <Card.Body>
-                                <img
-                                  src={
-                                    gstImage
-                                      ? `data:image/jpeg;base64,${gstImage}`
-                                      : `${items.gstimg}?${Date.now}`
-                                  }
-                                  className="w-100 object-fit-contain"
-                                  height={200}
-                                  alt=""
-                                  style={{ objectFit: "contain" }}
-                                />
+                                {items.gstimg === null && gstImage === "" ? (
+                                  <NoRecordFound />
+                                ) : (
+                                  <img
+                                    src={
+                                      gstImage
+                                        ? `data:image/jpeg;base64,${gstImage}`
+                                        : `${items.gstimg}?${Date.now}`
+                                    }
+                                    className="w-100 object-fit-contain"
+                                    height={200}
+                                    alt=""
+                                    style={{ objectFit: "contain" }}
+                                  />
+                                )}
                               </Card.Body>
                               <Card.Footer>
                                 <input
                                   className="custom-file-input"
                                   type="file"
+                                  accept="image/*"
                                   data-parent="Choose Image"
                                   onChange={(e) => handleAadharFile(e, "GST")}
                                 />
@@ -251,22 +268,28 @@ const KYCUpload = () => {
                             <Card style={{ height: "100%" }}>
                               <Card.Header as="b">Passbook Image</Card.Header>
                               <Card.Body>
-                                <img
-                                  src={
-                                    passImage
-                                      ? `data:image/jpeg;base64,${passImage}`
-                                      : `${items.passbookimg}?${Date.now}`
-                                  }
-                                  className="w-100 object-fit-contain"
-                                  height={200}
-                                  alt=""
-                                  style={{ objectFit: "contain" }}
-                                />
+                                {items.passbookimg === null &&
+                                passImage === "" ? (
+                                  <NoRecordFound />
+                                ) : (
+                                  <img
+                                    src={
+                                      passImage
+                                        ? `data:image/jpeg;base64,${passImage}`
+                                        : `${items.passbookimg}?${Date.now}`
+                                    }
+                                    className="w-100 object-fit-contain"
+                                    height={200}
+                                    alt=""
+                                    style={{ objectFit: "contain" }}
+                                  />
+                                )}
                               </Card.Body>
                               <Card.Footer>
                                 <input
                                   className="custom-file-input"
                                   type="file"
+                                  accept="image/*"
                                   data-parent="Choose Image"
                                   onChange={(e) =>
                                     handleAadharFile(e, "PASSBOOK")

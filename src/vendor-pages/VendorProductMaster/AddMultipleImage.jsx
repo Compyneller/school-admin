@@ -20,7 +20,7 @@ const AddMultipleImage = (props) => {
     };
     fetchAllImages();
   }, [props.data.pid]);
-  console.log(allImage?.data?.dprodlist);
+
   return (
     <Modal
       {...props}

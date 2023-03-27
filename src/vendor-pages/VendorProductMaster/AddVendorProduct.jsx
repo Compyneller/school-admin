@@ -102,7 +102,7 @@ const AddVendorProduct = (props) => {
       "https://dstservices.in/api/vendor_productadd.php",
       body
     );
-    console.log(data);
+
     if (data?.productadd?.response_desc === "Data Saved Successfully") {
       // =============file uplaoding ===================
       const file = new FormData();

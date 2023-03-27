@@ -44,13 +44,27 @@ const AddEmployee = (props) => {
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAllInputs((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+
+    if (e.target.type === "number") {
+      if (e.target.value.length > e.target.maxLength) {
+        e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      }
+    } else {
+      setAllInputs((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
+
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
@@ -205,6 +219,7 @@ const AddEmployee = (props) => {
                     type="number"
                     name="mob"
                     required
+                    maxLength={10}
                     onChange={handleInputChange}
                     placeholder="Enter Mobile Number"
                   />
@@ -215,6 +230,7 @@ const AddEmployee = (props) => {
                   <Form.Label>Alternate Mobile</Form.Label>
                   <Form.Control
                     type="number"
+                    maxLength={10}
                     name="altmob"
                     onChange={handleInputChange}
                     placeholder="Enter Alternate Number"
@@ -271,6 +287,7 @@ const AddEmployee = (props) => {
                   <Form.Control
                     type="text"
                     name="panno"
+                    maxLength={10}
                     onChange={handleInputChange}
                     placeholder="Enter Pan Number"
                   />

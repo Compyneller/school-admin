@@ -18,6 +18,7 @@ import EditVendorProduct from "./EditVendorProduct";
 import { useContext } from "react";
 import { ToggleState } from "../../context/Toggle";
 import AddMultipleImage from "./AddMultipleImage";
+import NoRecordFound from "../../components/NoRecordFound";
 
 const VendorProductMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -60,86 +61,90 @@ const VendorProductMaster = () => {
             <h5 className="my-auto ms-3">Product List</h5>
           </Card.Body>
         </Card>
-        <Table responsive bordered hover className="text-center">
-          <thead>
-            <tr>
-              <th></th>
-              <th>#</th>
-              <th>Product Name</th>
-              <th>Product Description</th>
-              <th>Brand</th>
-              <th>MRP Name</th>
-              <th>Rate</th>
-              <th>Verified Status</th>
-              <th>Status</th>
-              <th>Image</th>
+        {vendorMaster?.data?.vprodlist?.length > 0 ? (
+          <Table responsive bordered hover className="text-center">
+            <thead>
+              <tr>
+                <th></th>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Brand</th>
+                <th>MRP Name</th>
+                <th>Rate</th>
+                <th>Verified Status</th>
+                <th>Status</th>
+                <th>Image</th>
 
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {vendorMaster?.data?.vprodlist?.map((items, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <Form.Check
-                      inline
-                      name="group1"
-                      type="radio"
-                      id={`${items.vid}`}
-                      onChange={() => setRadio(items)}
-                    />
-                  </td>
-                  <td>{index + 1}</td>
-                  <td>{items.pname}</td>
-                  <td>{items.pdesc}</td>
-                  <td>{items.brand}</td>
-                  <td>{items.mrp}</td>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {vendorMaster?.data?.vprodlist?.map((items, index) => {
+                return (
+                  <tr key={index}>
+                    <td>
+                      <Form.Check
+                        inline
+                        name="group1"
+                        type="radio"
+                        id={`${items.vid}`}
+                        onChange={() => setRadio(items)}
+                      />
+                    </td>
+                    <td>{index + 1}</td>
+                    <td>{items.pname}</td>
+                    <td>{items.pdesc}</td>
+                    <td>{items.brand}</td>
+                    <td>{items.mrp}</td>
 
-                  <td>{items.rate}</td>
-                  <td
-                    className={
-                      items.sts === "YES" ? "text-success" : "text-danger"
-                    }>
-                    {items.sts}
-                  </td>
-                  <td
-                    className={
-                      items.p_sts === "OPEN" ? "text-success" : "text-danger"
-                    }>
-                    {items.p_sts}
-                  </td>
-                  <td>
-                    <img
-                      src={`${items.mimg}?${Date.now()}`}
-                      height={50}
-                      width={50}
-                      style={{ objectFit: "cover" }}
-                      alt=""
-                    />
-                  </td>
-
-                  <td>
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id={`tooltip-top`}>Edit Product</Tooltip>
+                    <td>{items.rate}</td>
+                    <td
+                      className={
+                        items.sts === "YES" ? "text-success" : "text-danger"
                       }>
-                      <Button
-                        variant="outline-primary"
-                        onClick={() => {
-                          setDetail(items);
-                          setShowEditModal(true);
-                        }}>
-                        <i className="fa-regular fa-pen-to-square"></i>
-                      </Button>
-                    </OverlayTrigger>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+                      {items.sts}
+                    </td>
+                    <td
+                      className={
+                        items.p_sts === "OPEN" ? "text-success" : "text-danger"
+                      }>
+                      {items.p_sts}
+                    </td>
+                    <td>
+                      <img
+                        src={`${items.mimg}?${Date.now()}`}
+                        height={50}
+                        width={50}
+                        style={{ objectFit: "cover" }}
+                        alt=""
+                      />
+                    </td>
+
+                    <td>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>Edit Product</Tooltip>
+                        }>
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => {
+                            setDetail(items);
+                            setShowEditModal(true);
+                          }}>
+                          <i className="fa-regular fa-pen-to-square"></i>
+                        </Button>
+                      </OverlayTrigger>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        ) : (
+          <NoRecordFound />
+        )}
       </Container>
       <AddVendorProduct
         show={showAddModal}
