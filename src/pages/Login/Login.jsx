@@ -70,6 +70,7 @@ const Login = () => {
           "https://dstservices.in/api/login.php",
           body
         );
+        console.log(data);
         setLoading(false);
         setMsg({
           state: true,

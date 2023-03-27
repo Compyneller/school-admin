@@ -109,18 +109,24 @@ const EditSchoolModal = (props) => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
       body.append("sch_id", props.data.sch_id);
-      body.append("sch_name", allInputs.sch_name || props.data.sch_name);
-      body.append("affno", allInputs.affno || props.data.affno);
+      body.append(
+        "sch_name",
+        allInputs.sch_name || schoolMasterDetail?.sch_name
+      );
+      body.append("affno", allInputs.affno || schoolMasterDetail?.affno);
       body.append(
         "contact_person",
-        allInputs.contact_person || props.data.contact_person
+        allInputs.contact_person || schoolMasterDetail?.contact_person
       );
-      body.append("mob", allInputs.mob || props.data.mob);
-      body.append("alt_mob", allInputs.alt_mob);
-      body.append("state", allInputs.state);
-      body.append("district", allInputs.district);
-      body.append("city", allInputs.city);
-      body.append("pinno", allInputs.pinno);
+      body.append("mob", allInputs.mob || schoolMasterDetail?.mob);
+      body.append("alt_mob", allInputs.alt_mob || schoolMasterDetail?.alt_mob);
+      body.append("state", allInputs.state || schoolMasterDetail?.state);
+      body.append(
+        "district",
+        allInputs.district || schoolMasterDetail?.district
+      );
+      body.append("city", allInputs.city || schoolMasterDetail?.city);
+      body.append("pinno", allInputs.pinno || schoolMasterDetail?.pinno);
       const data = await axios.post(
         "https://dstservices.in/api/sch_edit.php",
         body
@@ -163,7 +169,6 @@ const EditSchoolModal = (props) => {
       console.log(error);
     }
   };
-
   return (
     <>
       <Modal
@@ -231,7 +236,7 @@ const EditSchoolModal = (props) => {
                     type="number"
                     name="alt_mob"
                     maxLength={10}
-                    defaultValue="Enter Alternate Contact Number"
+                    defaultValue={schoolMasterDetail?.alt_mob}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>

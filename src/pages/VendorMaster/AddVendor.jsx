@@ -34,7 +34,10 @@ const AddVendor = (props) => {
   const { fetchAllMaster, fetchState, state } = stateContext;
   useEffect(() => {
     fetchState();
-  }, []);
+    return () => {
+      fetchState();
+    };
+  }, [state]);
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {
       window.alert("Image must be under 2 M.B");
@@ -51,10 +54,16 @@ const AddVendor = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (e.target.type === "number") {
       if (e.target.value.length > e.target.maxLength) {
         e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      } else {
         setAllInputs((prev) => {
           return {
             ...prev,
@@ -84,6 +93,9 @@ const AddVendor = (props) => {
       setDistrict(data);
     };
     fetchDistrict();
+    return () => {
+      fetchDistrict();
+    };
   }, [allInputs.state]);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -134,6 +146,7 @@ const AddVendor = (props) => {
       console.log(error);
     }
   };
+
   return (
     <>
       <Modal

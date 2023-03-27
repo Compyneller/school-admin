@@ -51,10 +51,16 @@ const EditVendorModal = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (e.target.type === "number") {
       if (e.target.value.length > e.target.maxLength) {
         e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      } else {
         setAllInputs((prev) => {
           return {
             ...prev,
@@ -85,6 +91,7 @@ const EditVendorModal = (props) => {
     };
     fetchDistrict();
   }, [allInputs.state, props.data.state]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -94,7 +101,7 @@ const EditVendorModal = (props) => {
       body.append("vname", allInputs.vname || props.data.vname);
       body.append("father", allInputs.fname || props.data.father_name);
       body.append("vmob", allInputs.vmob || props.data.vmob);
-      body.append("firm_name", allInputs.firm_name);
+      body.append("firm_name", allInputs.firm_name || props.data.firm_name);
       body.append("fmob", allInputs.fmob || props.data.fmob);
       body.append("fadd", allInputs.fadd || props.data.fadd);
       body.append("ftype", allInputs.ftype || props.data.ftype);
@@ -142,7 +149,6 @@ const EditVendorModal = (props) => {
       console.log(error);
     }
   };
-
   return (
     <>
       <Modal

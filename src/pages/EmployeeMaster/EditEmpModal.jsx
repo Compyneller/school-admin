@@ -45,10 +45,16 @@ const EditEmpModal = (props) => {
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     if (e.target.type === "number") {
       if (e.target.value.length > e.target.maxLength) {
         e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      } else {
         setAllInputs((prev) => {
           return {
             ...prev,

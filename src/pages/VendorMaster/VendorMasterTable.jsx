@@ -63,7 +63,7 @@ const VendorMasterTable = ({
                   setKycData(items);
                 }}
                 style={{ cursor: "pointer" }}>
-                {items.kycsts}
+                {items?.kycsts}
               </td>
               <td
                 style={{ cursor: "pointer" }}
@@ -71,7 +71,7 @@ const VendorMasterTable = ({
                 className={`text-${
                   items.blocksts === "OPEN" ? "success" : "danger"
                 } `}>
-                {items.blocksts}
+                {items?.blocksts}
               </td>
               <td>
                 <img

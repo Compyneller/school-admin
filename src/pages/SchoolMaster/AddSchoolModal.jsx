@@ -27,7 +27,10 @@ const AddSchoolModal = (props) => {
   const { fetchAllMaster, fetchState, state } = stateContext;
   useEffect(() => {
     fetchState();
-  }, []);
+    return () => {
+      fetchState();
+    };
+  }, [state]);
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();
@@ -70,10 +73,16 @@ const AddSchoolModal = (props) => {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (e.target.type === "number") {
       if (e.target.value.length > e.target.maxLength) {
         e.target.value = e.target.value.slice(0, e.target.maxLength);
+        setAllInputs((prev) => {
+          return {
+            ...prev,
+            [name]: e.target.value,
+          };
+        });
+      } else {
         setAllInputs((prev) => {
           return {
             ...prev,
