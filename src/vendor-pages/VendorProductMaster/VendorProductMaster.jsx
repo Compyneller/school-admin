@@ -29,8 +29,8 @@ const VendorProductMaster = () => {
   const { fetchVendorMaster, vendorMaster } = useContext(ToggleState);
   useEffect(() => {
     fetchVendorMaster("https://dstservices.in/api/vendor_productlist.php");
-  }, []);
-
+  }, [fetchVendorMaster]);
+  console.log(vendorMaster);
   return (
     <motion.div
       className="w-100"

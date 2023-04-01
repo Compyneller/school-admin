@@ -82,7 +82,7 @@ const EditVendorProduct = (props) => {
     body.append("api", "sajdh23jd823m023uierur32");
     body.append("pid", props.data.pid);
     body.append("pname", allInputs.pname || props.data.pname);
-    body.append("vmob", JSON.parse(localStorage.getItem("user")).uid);
+    body.append("vmob", JSON.parse(localStorage.getItem("user")).mob);
     body.append("sku", allInputs.sku || props.data.sku);
     body.append("brand", allInputs.brand || props.data.brand);
     body.append("manufac", allInputs.manufac || props.data.manufac);
@@ -93,13 +93,11 @@ const EditVendorProduct = (props) => {
     body.append("mtag", allInputs.mtag || props.data.mtag);
     body.append("edate", allInputs.edate || props.data.edate);
     body.append("psts", allInputs.psts);
-    const data = await axios.post(
+    const { data } = await axios.post(
       "https://dstservices.in/api/vendor_productedit.php",
       body
     );
-    if (
-      data?.data?.vendor_edit?.response_desc === "Data Updated Successfully"
-    ) {
+    if (data?.vendor_edit?.response_desc === "Data Updated Successfully") {
       // =============file uplaoding ===================
 
       const file = new FormData();
@@ -111,7 +109,7 @@ const EditVendorProduct = (props) => {
       // ===============file uploading end ==================
 
       Toastify({
-        text: data?.data?.vendor_edit?.response_desc,
+        text: data?.vendor_edit?.response_desc,
         position: "center",
         duration: 5000,
       }).showToast();
@@ -120,13 +118,14 @@ const EditVendorProduct = (props) => {
       props.onHide();
     } else {
       Toastify({
-        text: data?.data?.vendor_edit?.response_desc,
+        text: data?.vendor_edit?.response_desc,
         position: "center",
         duration: 5000,
       }).showToast();
       props.onHide();
     }
   };
+  console.log(props.data);
   return (
     <>
       <Modal
@@ -160,7 +159,7 @@ const EditVendorProduct = (props) => {
                   <Form.Control
                     type="tel"
                     disabled
-                    placeholder={JSON.parse(localStorage.getItem("user")).uid}
+                    placeholder={JSON.parse(localStorage.getItem("user")).mob}
                   />
                 </Form.Group>
               </Col>
@@ -177,7 +176,10 @@ const EditVendorProduct = (props) => {
               </Col>
               <Col xs={12} sm={12} md={6} lg={6}>
                 <Form.Label>Brand</Form.Label>
-                <Form.Select name="brand" onChange={handleChange}>
+                <Form.Select
+                  defaultValue={props.data.brand}
+                  name="brand"
+                  onChange={handleChange}>
                   <option>Select Brand</option>
                   {brandData?.data?.brand_slist.map((items, index) => {
                     return (
@@ -223,7 +225,10 @@ const EditVendorProduct = (props) => {
               </Col>
               <Col xs={12} sm={12} md={6} lg={6}>
                 <Form.Label>Aff No.</Form.Label>
-                <Form.Select name="affno" onChange={handleChange}>
+                <Form.Select
+                  defaultValue={props.data.affno}
+                  name="affno"
+                  onChange={handleChange}>
                   <option>Select Aff No.</option>
                   {affnodata?.data?.sch_slist.map((items, index) => {
                     return (
@@ -251,6 +256,7 @@ const EditVendorProduct = (props) => {
                   <Form.Control
                     type="text"
                     name="mtag"
+                    defaultValue={props.data.metatags}
                     placeholder={props.data.mtag}
                     onChange={handleChange}
                   />

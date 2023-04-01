@@ -89,14 +89,6 @@ export const SideBarData = [
         subName: "Product Verification",
         subLink: "/product-verification",
       },
-      {
-        subName: "Vendor Verification",
-        subLink: "/vendor-verification",
-      },
-      {
-        subName: "School Verification",
-        subLink: "/school-verification",
-      },
     ],
   },
   {

@@ -3,26 +3,29 @@ import React, { useContext, useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import ToastifyComp from "../../components/ToastifyComp";
 import { ToggleState } from "../../context/Toggle";
 const CatModal = (props) => {
-  const fetchCatList = useContext(ToggleState);
-  const { fetchCategoryMaster } = fetchCatList;
+  const { fetchAllMaster } = useContext(ToggleState);
   const [cat, setCat] = useState("");
   const [pCat, setPCat] = useState("");
   const [pcatList, setPcatList] = useState([]);
   const [sortNo, setSortNo] = useState(0);
   const [logo, setLogo] = useState("");
+  const fetchPcat = async () => {
+    const body = new FormData();
+    body.append("api", "sajdh23jd823m023uierur32");
+    const { data } = await axios.post(
+      "https://dstservices.in/api/pcategorylist.php",
+      body
+    );
+    setPcatList(data?.parentcatlist);
+  };
   useEffect(() => {
-    const fetchPcat = async () => {
-      const body = new FormData();
-      body.append("api", "sajdh23jd823m023uierur32");
-      const { data } = await axios.post(
-        "https://dstservices.in/api/pcategorylist.php",
-        body
-      );
-      setPcatList(data?.parentcatlist);
-    };
     fetchPcat();
+    return () => {
+      fetchPcat();
+    };
   }, []);
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {
@@ -57,9 +60,11 @@ const CatModal = (props) => {
       await axios.post("https://dstservices.in/api/filesup.php", file);
 
       //  ============file uplaod end ================
+      ToastifyComp(data?.catadd?.response_desc);
+      fetchAllMaster("https://dstservices.in/api/categorylist.php");
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 3000);
       props.onHide();
     }
   };

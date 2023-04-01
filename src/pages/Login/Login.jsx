@@ -12,7 +12,7 @@ import {
 import "./Login.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LeftCardCarousel from "./LeftCardCarousel";
+import ToastifyComp from "../../components/ToastifyComp";
 const Login = () => {
   const [msg, setMsg] = useState({
     state: false,
@@ -28,7 +28,7 @@ const Login = () => {
     } else {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -93,6 +93,7 @@ const Login = () => {
       }
     } catch (error) {
       setLoading(false);
+      ToastifyComp(error?.message);
       navigate("/");
     }
   };

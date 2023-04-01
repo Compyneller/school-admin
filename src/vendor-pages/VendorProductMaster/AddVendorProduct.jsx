@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import Toastify from "toastify-js";
+import ToastifyComp from "../../components/ToastifyComp";
 import { ToggleState } from "../../context/Toggle";
 const AddVendorProduct = (props) => {
   // =============================================all state =====================================================
@@ -85,52 +86,57 @@ const AddVendorProduct = (props) => {
   // ===============================================submit form funtion =========================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = new FormData();
-    body.append("api", "sajdh23jd823m023uierur32");
-    body.append("pname", allInputs.pname);
-    body.append("vmob", JSON.parse(localStorage.getItem("user")).uid);
-    body.append("sku", allInputs.sku);
-    body.append("brand", allInputs.brand);
-    body.append("manufac", allInputs.manufac);
-    body.append("mrp", allInputs.mrp);
-    body.append("rate", allInputs.rate);
-    body.append("affno", allInputs.affno);
-    body.append("tax", allInputs.tax);
-    body.append("mtag", allInputs.mtag);
-    body.append("edate", allInputs.edate);
-    const { data } = await axios.post(
-      "https://dstservices.in/api/vendor_productadd.php",
-      body
-    );
+    try {
+      const body = new FormData();
+      body.append("api", "sajdh23jd823m023uierur32");
+      body.append("pname", allInputs.pname);
+      body.append("vmob", JSON.parse(localStorage.getItem("user")).mob);
+      body.append("sku", allInputs.sku);
+      body.append("brand", allInputs.brand);
+      body.append("manufac", allInputs.manufac);
+      body.append("mrp", allInputs.mrp);
+      body.append("rate", allInputs.rate);
+      body.append("affno", allInputs.affno);
+      body.append("tax", allInputs.tax);
+      body.append("mtag", allInputs.mtag);
+      body.append("edate", allInputs.edate);
+      const { data } = await axios.post(
+        "https://dstservices.in/api/vendor_productadd.php",
+        body
+      );
+      console.log(data);
 
-    if (data?.productadd?.response_desc === "Data Saved Successfully") {
-      // =============file uplaoding ===================
-      const file = new FormData();
-      file.append("imagefor", "PRODUCT");
-      file.append("imageid", data?.data?.productadd?.pid);
-      file.append("image", logo);
-      await axios.post("https://dstservices.in/api/filesup.php", file);
+      if (data?.productadd?.response_desc === "Data Saved Successfully") {
+        // =============file uplaoding ===================
+        const file = new FormData();
+        file.append("imagefor", "PRODUCT");
+        file.append("imageid", data?.productadd?.pid);
+        file.append("image", logo);
+        await axios.post("https://dstservices.in/api/filesup.php", file);
 
-      // ===============file uploading end ==================
+        // ===============file uploading end ==================
 
-      Toastify({
-        text: data?.productadd?.response_desc,
-        position: "center",
-        duration: 5000,
-      }).showToast();
-      fetchVendorMaster("https://dstservices.in/api/vendor_productlist.php");
+        Toastify({
+          text: data?.productadd?.response_desc,
+          position: "center",
+          duration: 5000,
+        }).showToast();
+        fetchVendorMaster("https://dstservices.in/api/vendor_productlist.php");
 
-      props.onHide();
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    } else {
-      Toastify({
-        text: data?.data?.productadd?.response_desc,
-        position: "center",
-        duration: 5000,
-      }).showToast();
-      props.onHide();
+        props.onHide();
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      } else {
+        Toastify({
+          text: data?.productadd?.response_desc,
+          position: "center",
+          duration: 5000,
+        }).showToast();
+        props.onHide();
+      }
+    } catch (error) {
+      ToastifyComp(error?.message);
     }
   };
 
@@ -168,7 +174,7 @@ const AddVendorProduct = (props) => {
                   <Form.Control
                     type="tel"
                     disabled
-                    placeholder={JSON.parse(localStorage.getItem("user")).uid}
+                    placeholder={JSON.parse(localStorage.getItem("user")).mob}
                   />
                 </Form.Group>
               </Col>

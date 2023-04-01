@@ -58,7 +58,7 @@ const Toggle = ({ children }) => {
   const fetchVendorMaster = async (api) => {
     const body = new FormData();
     body.append("api", "sajdh23jd823m023uierur32");
-    body.append("vmob", JSON.parse(localStorage.getItem("user")).uid);
+    body.append("vmob", JSON.parse(localStorage.getItem("user")).mob);
     const data = await axios.post(api, body);
     setVendorMaster(data);
   };
