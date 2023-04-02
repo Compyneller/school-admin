@@ -97,10 +97,10 @@ const CatModal = (props) => {
               aria-label="Default select example"
               value={pCat}
               onChange={(e) => setPCat(e.target.value)}>
-              <option value="main">Main</option>
+              <option value="0">Main</option>
               {pcatList?.map((items, index) => {
                 return (
-                  <option value={items.pcatid} key={index}>
+                  <option value={items.catid} key={index}>
                     {items.category}
                   </option>
                 );
