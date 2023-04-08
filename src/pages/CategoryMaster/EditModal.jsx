@@ -3,13 +3,10 @@ import React, { useContext, useState } from "react";
 import { Col, Modal, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { ToggleState } from "../../context/Toggle";
 const EditModal = (props) => {
   const [cat, setCat] = useState("");
   const [sortno, setSortno] = useState("");
   const [logo, setLogo] = useState("");
-  const fetchCatList = useContext(ToggleState);
-  const { fetchCategoryMaster } = fetchCatList;
 
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {

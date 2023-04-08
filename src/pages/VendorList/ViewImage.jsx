@@ -1,16 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Card, Col, Modal, Row } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Card, Col, Modal, Row } from "react-bootstrap";
 
 const ViewImage = (props) => {
   const [selectedImage, setSelectedImage] = useState("");
   const [imageList, setImageList] = useState([]);
+  const imageRef = useRef();
   useEffect(() => {
-    const fetchImageList = async (id) => {
-      console.log(props.data.pid);
+    const fetchImageList = async () => {
       const body = new FormData();
       body.append("api", "sajdh23jd823m023uierur32");
-      body.append("pid", 1);
+      body.append("pid", props.data.pid);
       const { data } = await axios.post(
         "https://dstservices.in/api/vendor_getprod_photo.php",
         body
@@ -20,6 +20,19 @@ const ViewImage = (props) => {
     fetchImageList();
   }, [props.data.pid]);
 
+  const downloadImage = () => {
+    fetch(imageRef?.current?.src)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "image.png");
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+      });
+  };
   return (
     <Modal
       {...props}
@@ -33,6 +46,7 @@ const ViewImage = (props) => {
             <Card style={{ height: "100%" }}>
               <Card.Body className="d-flex justify-content-center align-items-center">
                 <img
+                  ref={imageRef}
                   src={selectedImage ? selectedImage : props.data.pimg}
                   height={400}
                   style={{ objectFit: "contain", aspectRatio: 3 / 2 }}
@@ -40,6 +54,9 @@ const ViewImage = (props) => {
                   className="w-100"
                 />
               </Card.Body>
+              <Card.Footer>
+                <Button onClick={downloadImage}>Download Image</Button>
+              </Card.Footer>
             </Card>
           </Col>
           <Col xs={12} sm={12} lg={3}>

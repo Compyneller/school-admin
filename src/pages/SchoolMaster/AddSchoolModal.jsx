@@ -30,7 +30,7 @@ const AddSchoolModal = (props) => {
     return () => {
       fetchState();
     };
-  }, [state]);
+  }, []);
   useEffect(() => {
     const fetchDistrict = async () => {
       const body = new FormData();

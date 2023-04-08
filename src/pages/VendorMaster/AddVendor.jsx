@@ -37,7 +37,7 @@ const AddVendor = (props) => {
     return () => {
       fetchState();
     };
-  }, [state]);
+  }, []);
   const handleFile = (e) => {
     if (e.target.files[0].size > 2097152) {
       window.alert("Image must be under 2 M.B");

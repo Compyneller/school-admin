@@ -8,7 +8,7 @@ import { ToggleState } from "../../context/Toggle";
 const CatModal = (props) => {
   const { fetchAllMaster } = useContext(ToggleState);
   const [cat, setCat] = useState("");
-  const [pCat, setPCat] = useState("");
+  const [pCat, setPCat] = useState(0);
   const [pcatList, setPcatList] = useState([]);
   const [sortNo, setSortNo] = useState(0);
   const [logo, setLogo] = useState("");
@@ -41,31 +41,36 @@ const CatModal = (props) => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const body = new FormData();
-    body.append("api", "sajdh23jd823m023uierur32");
-    body.append("cat", cat);
-    body.append("pcat", pCat);
-    body.append("sortno", sortNo);
-    const { data } = await axios.post(
-      "https://dstservices.in/api/categoryadd.php",
-      body
-    );
-    if (data?.catadd?.response_desc === "Saved Successfully") {
-      // ============================file upload ===========================================================
+    try {
+      const body = new FormData();
+      body.append("api", "sajdh23jd823m023uierur32");
+      body.append("cat", cat);
+      body.append("pcat", pCat);
+      body.append("sortno", sortNo);
+      const { data } = await axios.post(
+        "https://dstservices.in/api/categoryadd.php",
+        body
+      );
+      if (data?.catadd?.response_desc === "Saved Successfully") {
+        // ============================file upload ===========================================================
 
-      const file = new FormData();
-      file.append("imagefor", "CAT");
-      file.append("imageid", data?.catadd?.catid);
-      file.append("image", logo);
-      await axios.post("https://dstservices.in/api/filesup.php", file);
+        const file = new FormData();
+        file.append("imagefor", "CAT");
+        file.append("imageid", data?.catadd?.catid);
+        file.append("image", logo);
+        await axios.post("https://dstservices.in/api/filesup.php", file);
 
-      //  ============file uplaod end ================
-      ToastifyComp(data?.catadd?.response_desc);
-      fetchAllMaster("https://dstservices.in/api/categorylist.php");
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+        //  ============file uplaod end ================
+        ToastifyComp(data?.catadd?.response_desc);
+        fetchAllMaster("https://dstservices.in/api/categorylist.php");
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+        props.onHide();
+      }
+    } catch (error) {
       props.onHide();
+      ToastifyComp(error.message);
     }
   };
   return (
@@ -97,7 +102,7 @@ const CatModal = (props) => {
               aria-label="Default select example"
               value={pCat}
               onChange={(e) => setPCat(e.target.value)}>
-              <option value="0">Main</option>
+              <option value={0}>Main</option>
               {pcatList?.map((items, index) => {
                 return (
                   <option value={items.catid} key={index}>
