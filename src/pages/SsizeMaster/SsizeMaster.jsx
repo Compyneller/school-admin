@@ -47,7 +47,7 @@ const SsizeMaster = () => {
         ToastifyComp(error.message);
       }
     };
-
+    fetchData();
     return () => {
       fetchData();
     };
