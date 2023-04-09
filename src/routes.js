@@ -17,6 +17,7 @@ import ShoolViseOrder from "./pages/SchoolViseOrder/ShoolViseOrder";
 import ViewProductPage from "./pages/VendorList/ViewProductPage";
 import PayOutSetting from "./pages/PayOutSetting/PayOutSetting";
 import ErrorPage from "./components/ErrorPage";
+import SsizeMaster from "./pages/SsizeMaster/SsizeMaster";
 export const routes = [
   {
     path: "/*",
@@ -93,5 +94,9 @@ export const routes = [
   {
     path: "/payout-setting",
     element: <PayOutSetting />,
+  },
+  {
+    path: "/size-master",
+    element: <SsizeMaster />,
   },
 ];

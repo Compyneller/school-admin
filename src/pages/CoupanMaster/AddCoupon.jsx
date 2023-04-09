@@ -89,7 +89,7 @@ const AddCoupon = (props) => {
                   <Form.Label>Coupon Name</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="number"
+                    type="text"
                     name="cname"
                     placeholder="Enter Name"
                     required
@@ -126,7 +126,7 @@ const AddCoupon = (props) => {
                   <Form.Label>Coupon For</Form.Label>
                   <Form.Control
                     onChange={(e) => handleChange(e)}
-                    type="number"
+                    type="text"
                     name="cfor"
                     placeholder="Coupon For"
                     required

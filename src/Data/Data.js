@@ -52,6 +52,10 @@ export const SideBarData = [
         subLink: "/school-master",
       },
       {
+        subName: "Ssize Master",
+        subLink: "/size-master",
+      },
+      {
         subName: "Vendor Master",
         subLink: "/vendor-master",
       },
