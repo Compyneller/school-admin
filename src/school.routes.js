@@ -1,7 +1,11 @@
-import Home from "./SchoolPages/Home/Home";
-import ViewOrder from "./SchoolPages/ViewOrder";
-import ViewProfile from "./SchoolPages/ViewProfile/ViewProfile";
-import PendingOrderDetail from "./vendor-pages/VendorHome/PendingOrderDetail";
+import { lazy } from "react";
+
+const Home = lazy(() => import("./SchoolPages/Home/Home"));
+const ViewOrder = lazy(() => import("./SchoolPages/ViewOrder"));
+const ViewProfile = lazy(() => import("./SchoolPages/ViewProfile/ViewProfile"));
+const PendingOrderDetail = lazy(() =>
+  import("./vendor-pages/VendorHome/PendingOrderDetail")
+);
 
 export const schoolRoutes = [
   {

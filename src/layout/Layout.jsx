@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { routes } from "../routes";
@@ -8,6 +8,7 @@ import { ToggleState } from "../context/Toggle";
 import NavBarComp from "../components/NavBarComp/NavBarComp";
 import { vendorRoutes } from "../vendor.routes";
 import { schoolRoutes } from "../school.routes";
+import LoadingPage from "../pages/LoadingPage/LoadingPage";
 const Layout = () => {
   const location = useLocation();
   const sidebarToggle = useContext(ToggleState);
@@ -54,17 +55,19 @@ const Layout = () => {
             }}
             className="home-container">
             <AnimatePresence mode="wait">
-              <Routes location={location} key={location.key}>
-                {condRoutes.map((items, index) => {
-                  return (
-                    <Route
-                      path={items.path}
-                      element={items.element}
-                      key={index}
-                    />
-                  );
-                })}
-              </Routes>
+              <Suspense fallback={<LoadingPage />}>
+                <Routes location={location} key={location.key}>
+                  {condRoutes.map((items, index) => {
+                    return (
+                      <Route
+                        path={items.path}
+                        element={items.element}
+                        key={index}
+                      />
+                    );
+                  })}
+                </Routes>
+              </Suspense>
             </AnimatePresence>
           </motion.div>
         </div>

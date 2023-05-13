@@ -1,15 +1,19 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./layout/Layout";
+import { Suspense, lazy } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Login from "./pages/Login/Login";
+import LoadingPage from "./pages/LoadingPage/LoadingPage";
+const Layout = lazy(() => import("./layout/Layout"));
+const Login = lazy(() => import("./pages/Login/Login"));
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/*" element={<Layout />} />
-      </Routes>
+      <Suspense fallback={<LoadingPage />}>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/*" element={<Layout />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

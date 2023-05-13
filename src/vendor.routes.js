@@ -1,10 +1,18 @@
-import Order from "./vendor-pages/Order/Order";
-import Profile from "./vendor-pages/Profile/Profile";
-import Reports from "./vendor-pages/Reports/Reports";
-import KYCUpload from "./vendor-pages/Tools/KYCUpload/KYCUpload";
-import PendingOrderDetail from "./vendor-pages/VendorHome/PendingOrderDetail";
-import VendorHome from "./vendor-pages/VendorHome/VendorHome";
-import VendorProductMaster from "./vendor-pages/VendorProductMaster/VendorProductMaster";
+import { lazy } from "react";
+
+const Order = lazy(() => import("./vendor-pages/Order/Order"));
+const Profile = lazy(() => import("./vendor-pages/Profile/Profile"));
+const Reports = lazy(() => import("./vendor-pages/Reports/Reports"));
+const KYCUpload = lazy(() =>
+  import("./vendor-pages/Tools/KYCUpload/KYCUpload")
+);
+const PendingOrderDetail = lazy(() =>
+  import("./vendor-pages/VendorHome/PendingOrderDetail")
+);
+const VendorHome = lazy(() => import("./vendor-pages/VendorHome/VendorHome"));
+const VendorProductMaster = lazy(() =>
+  import("./vendor-pages/VendorProductMaster/VendorProductMaster")
+);
 
 export const vendorRoutes = [
   {

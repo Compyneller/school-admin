@@ -1,23 +1,36 @@
-import AboutUs from "./pages/AboutUs";
-import CategoryMaster from "./pages/CategoryMaster/CategoryMaster";
-import ChangeLvlPass from "./pages/ChangeLvlPass/ChangeLvlPass";
-import ChangePass from "./pages/ChangePass/ChangePass";
-import CoupanMaster from "./pages/CoupanMaster/CoupanMaster";
-import CourierMaster from "./pages/CourierMaster/CourierMaster";
-import EmployeeMaster from "./pages/EmployeeMaster/EmployeeMaster";
-import Home from "./pages/Home";
-import Login from "./pages/Login/Login";
-import ProductMaster from "./pages/ProductMaster/ProductMaster";
-import SchoolMaster from "./pages/SchoolMaster/SchoolMaster";
-import UserAllocation from "./pages/UserAllocation/UserAllocation";
-import VendorList from "./pages/VendorList/VendorList";
-import VendorMaster from "./pages/VendorMaster/VendorMaster";
-import VendorViseOrder from "./pages/VendorViseOrder/VendorViseOrder";
-import ShoolViseOrder from "./pages/SchoolViseOrder/ShoolViseOrder";
-import ViewProductPage from "./pages/VendorList/ViewProductPage";
-import PayOutSetting from "./pages/PayOutSetting/PayOutSetting";
-import ErrorPage from "./components/ErrorPage";
-import SsizeMaster from "./pages/SsizeMaster/SsizeMaster";
+import { lazy } from "react";
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const CategoryMaster = lazy(() =>
+  import("./pages/CategoryMaster/CategoryMaster")
+);
+const ChangeLvlPass = lazy(() => import("./pages/ChangeLvlPass/ChangeLvlPass"));
+const ChangePass = lazy(() => import("./pages/ChangePass/ChangePass"));
+const CoupanMaster = lazy(() => import("./pages/CoupanMaster/CoupanMaster"));
+const CourierMaster = lazy(() => import("./pages/CourierMaster/CourierMaster"));
+const EmployeeMaster = lazy(() =>
+  import("./pages/EmployeeMaster/EmployeeMaster")
+);
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const ProductMaster = lazy(() => import("./pages/ProductMaster/ProductMaster"));
+const SchoolMaster = lazy(() => import("./pages/SchoolMaster/SchoolMaster"));
+const UserAllocation = lazy(() =>
+  import("./pages/UserAllocation/UserAllocation")
+);
+const VendorList = lazy(() => import("./pages/VendorList/VendorList"));
+const VendorMaster = lazy(() => import("./pages/VendorMaster/VendorMaster"));
+const VendorViseOrder = lazy(() =>
+  import("./pages/VendorViseOrder/VendorViseOrder")
+);
+const ShoolViseOrder = lazy(() =>
+  import("./pages/SchoolViseOrder/ShoolViseOrder")
+);
+const ViewProductPage = lazy(() =>
+  import("./pages/VendorList/ViewProductPage")
+);
+const PayOutSetting = lazy(() => import("./pages/PayOutSetting/PayOutSetting"));
+const ErrorPage = lazy(() => import("./components/ErrorPage"));
+const SsizeMaster = lazy(() => import("./pages/SsizeMaster/SsizeMaster"));
 export const routes = [
   {
     path: "/*",
