@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { lazy, useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { Button, Card, Container, Table, Form, Spinner } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import AddSchoolModal from "./AddSchoolModal";
 import { motion } from "framer-motion";
-import axios from "axios";
-import EditSchoolModal from "./EditSchoolModal";
+const AddSchoolModal = lazy(() => import("./AddSchoolModal"));
+const EditSchoolModal = lazy(() => import("./EditSchoolModal"));
 const containerVariance = {
   ini: {
     x: "100%",
@@ -79,6 +79,7 @@ const SchoolMaster = () => {
       window.alert(data?.sch_blocksts?.response_desc);
     }
   };
+
   return (
     <motion.div
       className="w-100"
@@ -186,8 +187,8 @@ const SchoolMaster = () => {
             </tbody>
           </Table>
         )}
-        <AddSchoolModal show={modalShow} onHide={() => setModalShow(false)} />
       </Container>
+      <AddSchoolModal show={modalShow} onHide={() => setModalShow(false)} />
       <EditSchoolModal
         data={detail}
         show={editModal}

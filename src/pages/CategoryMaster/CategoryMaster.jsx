@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { lazy, useContext, useEffect, useState } from "react";
 import { Button, Card, Container, Form, Spinner, Table } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import CatModal from "./CatModal";
-import EditModal from "./EditModal";
 import { motion } from "framer-motion";
+const CatModal = lazy(() => import("./CatModal"));
+const EditModal = lazy(() => import("./EditModal"));
 const containerVariance = {
   ini: {
     x: "100%",

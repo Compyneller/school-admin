@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { useContext } from "react";
 import { Button, Form, Spinner, Table } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import EditEmpModal from "./EditEmpModal";
+const EditEmpModal = lazy(() => import("./EditEmpModal"));
 
 const EmployeMasterTable = ({ setRadio }) => {
   const [editModal, setEditModal] = useState(false);
@@ -70,7 +70,6 @@ const EmployeMasterTable = ({ setRadio }) => {
                           district: `${items.district}`,
                           eadd: `${items.eadd}`,
                           fname: `${items.fname}`,
-                          state: `${items.state}`,
                           pinno: `${items.pinno}`,
                           panno: `${items.panno}`,
                           eimg: `${items.eimg}`,

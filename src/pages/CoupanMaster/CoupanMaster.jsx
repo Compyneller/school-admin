@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { motion } from "framer-motion";
 import { Button, Card, Container } from "react-bootstrap";
 import CouponTable from "./CouponTable";
 import { containerVariance } from "../../Data/variants";
-import CouponDelete from "./CouponDelete";
-import AddCoupon from "./AddCoupon";
+const AddCoupon = lazy(() => import("./AddCoupon"));
+const CouponDelete = lazy(() => import("./CouponDelete"));
 const CoupanMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [radio, setRadio] = useState({});

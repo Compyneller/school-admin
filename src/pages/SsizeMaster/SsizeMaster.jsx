@@ -77,7 +77,7 @@ const SsizeMaster = () => {
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
-            <h1>Ssize Master</h1>
+            <h1>Size Master</h1>
           </Card.Body>
         </Card>
         <Card>
@@ -90,7 +90,7 @@ const SsizeMaster = () => {
                     <option>Select Category</option>
                     {menuData?.map((items, index) => (
                       <option value={items.catid} key={index}>
-                        {items.category}t
+                        {items.category}
                       </option>
                     ))}
                   </Form.Select>

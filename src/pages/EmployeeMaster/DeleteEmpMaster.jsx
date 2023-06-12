@@ -13,7 +13,6 @@ const DeleteEmpMaster = ({ radio }) => {
       body.append("eid", radio.eid);
       body.append("ename", radio.ename);
       await axios.post("https://dstservices.in/api/emp_del.php", body);
-
       fetchAllMaster("https://dstservices.in/api/emp_list.php");
     } catch (error) {
       console.log(error);

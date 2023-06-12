@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { containerVariance } from "../../Data/variants";
 import { motion } from "framer-motion";
 import { Card, Container, Button } from "react-bootstrap";
 import CourierTable from "./CourierTable";
-import CourierAdd from "./CourierAdd";
 import CourierDelete from "./CourierDelete";
+const CourierAdd = lazy(() => import(() => "./CourierAdd"));
 const CourierMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [radio, setRadio] = useState({});

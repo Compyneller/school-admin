@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { containerVariance } from "../../Data/variants";
 import { motion } from "framer-motion";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import EmployeMasterTable from "./EmployeMasterTable";
 import AddButton from "../../components/AddButton/AddButton";
-import AddEmployee from "./AddEmployee";
 import DeleteEmpMaster from "./DeleteEmpMaster";
+const AddEmployee = lazy(() => import("./AddEmployee"));
 const EmployeeMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [radio, setRadio] = useState({});
