@@ -1,21 +1,14 @@
 import React, { lazy, useState } from "react";
-import { containerVariance } from "../../Data/variants";
-import { motion } from "framer-motion";
 import { Card, Container, Button } from "react-bootstrap";
 import CourierTable from "./CourierTable";
 import CourierDelete from "./CourierDelete";
-const CourierAdd = lazy(() => import(() => "./CourierAdd"));
+const CourierAdd = lazy(() => import("./CourierAdd"));
 const CourierMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [radio, setRadio] = useState({});
   console.log(radio);
   return (
-    <motion.div
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      className="w-100 "
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -40,7 +33,7 @@ const CourierMaster = () => {
         <CourierTable setRadio={setRadio} />
       </Container>
       <CourierAdd show={showAddModal} onHide={() => setShowAddModal(false)} />
-    </motion.div>
+    </>
   );
 };
 

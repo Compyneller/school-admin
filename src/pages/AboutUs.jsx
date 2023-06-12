@@ -1,9 +1,8 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { motion } from "framer-motion";
 const AboutUs = () => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <>
       <Container>
         <Row className="g-3">
           <Col xs={12} sm={6} md={4} lg={3}>
@@ -60,7 +59,7 @@ const AboutUs = () => {
           </Col>
         </Row>
       </Container>
-    </motion.div>
+    </>
   );
 };
 

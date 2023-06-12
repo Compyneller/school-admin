@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import VendorHomeCard from "../../components/VendorHomeCard/VendorHomeCard";
 
 const VendorHome = () => {

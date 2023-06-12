@@ -34,7 +34,7 @@ const AddMultipleImage = (props) => {
       </Modal.Header>
       <Modal.Body>
         <Row className="g-3">
-          {allImage?.data?.dprodlist == undefined
+          {allImage?.data?.dprodlist === undefined
             ? mapArray.map((items, index) => {
                 return (
                   <Col xs={12} sm={12} md={6} lg={6} key={index}>

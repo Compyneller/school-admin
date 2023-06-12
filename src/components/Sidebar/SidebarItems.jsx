@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { IoLogOut, IoCaretDownOutline, IoCaretUp } from "react-icons/io5";
+import { IoCaretDownOutline, IoCaretUp } from "react-icons/io5";
 import "./SideBar.scss";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ToggleState } from "../../context/Toggle";
@@ -33,15 +32,7 @@ const SidebarItems = ({ items }) => {
           {!open ? <IoCaretDownOutline /> : <IoCaretUp />}
         </div>
         {open ? (
-          <motion.ul
-            className="w-100"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "fit-content", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{
-              type: "tween",
-              duration: 0.5,
-            }}>
+          <ul className="w-100" style={{ transition: "250ms ease-in-out" }}>
             {items.subMenu.map((items, index) => {
               return (
                 <li className="my-2" key={index} onClick={() => handleLinks()}>
@@ -54,7 +45,7 @@ const SidebarItems = ({ items }) => {
                 </li>
               );
             })}
-          </motion.ul>
+          </ul>
         ) : null}
       </>
     );

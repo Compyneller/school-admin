@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { Button } from "react-bootstrap";
-import ApproveModal from "./ApproveModal";
+const ApproveModal = lazy(() => import("./ApproveModal"));
 
 const StatusBtn = ({ items }) => {
   const [modalShow, setModalShow] = React.useState(false);

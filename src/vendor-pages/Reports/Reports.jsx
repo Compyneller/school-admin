@@ -1,14 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Col,
-  Container,
-  Form,
-  InputGroup,
-  Row,
-  Spinner,
-} from "react-bootstrap";
+import { Card, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import VendorHomeCard from "../../components/VendorHomeCard/VendorHomeCard";
 
 const Reports = () => {

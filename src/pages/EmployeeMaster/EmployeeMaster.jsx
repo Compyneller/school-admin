@@ -1,6 +1,4 @@
 import React, { lazy, useState } from "react";
-import { containerVariance } from "../../Data/variants";
-import { motion } from "framer-motion";
 import { Card, Container } from "react-bootstrap";
 import EmployeMasterTable from "./EmployeMasterTable";
 import AddButton from "../../components/AddButton/AddButton";
@@ -11,12 +9,7 @@ const EmployeeMaster = () => {
   const [radio, setRadio] = useState({});
 
   return (
-    <motion.div
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      className="w-100 "
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -39,7 +32,7 @@ const EmployeeMaster = () => {
         <EmployeMasterTable setRadio={setRadio} />
       </Container>
       <AddEmployee show={showAddModal} onHide={() => setShowAddModal(false)} />
-    </motion.div>
+    </>
   );
 };
 

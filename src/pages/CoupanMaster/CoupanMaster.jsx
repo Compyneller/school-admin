@@ -1,20 +1,13 @@
 import React, { lazy, useState } from "react";
-import { motion } from "framer-motion";
 import { Button, Card, Container } from "react-bootstrap";
 import CouponTable from "./CouponTable";
-import { containerVariance } from "../../Data/variants";
 const AddCoupon = lazy(() => import("./AddCoupon"));
 const CouponDelete = lazy(() => import("./CouponDelete"));
 const CoupanMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [radio, setRadio] = useState({});
   return (
-    <motion.div
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      className="w-100 "
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -39,7 +32,7 @@ const CoupanMaster = () => {
         <CouponTable setRadio={setRadio} />
       </Container>
       <AddCoupon show={showAddModal} onHide={() => setShowAddModal(false)} />
-    </motion.div>
+    </>
   );
 };
 

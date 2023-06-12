@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
-import { motion } from "framer-motion";
 import axios from "axios";
 import Toastify from "toastify-js";
-import { containerVariance } from "../../Data/variants";
 const ChangeLvlPass = () => {
   const [userName, setUserName] = useState([]);
   const [showPass, setShowPass] = useState(false);
@@ -64,12 +62,7 @@ const ChangeLvlPass = () => {
     }
   };
   return (
-    <motion.div
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      className="w-100 "
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body>
@@ -144,7 +137,7 @@ const ChangeLvlPass = () => {
           </Card.Body>
         </Card>
       </Container>
-    </motion.div>
+    </>
   );
 };
 

@@ -2,35 +2,9 @@ import React, { lazy, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Card, Container, Table, Form, Spinner } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import { motion } from "framer-motion";
 const AddSchoolModal = lazy(() => import("./AddSchoolModal"));
 const EditSchoolModal = lazy(() => import("./EditSchoolModal"));
-const containerVariance = {
-  ini: {
-    x: "100%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  ani: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  exi: {
-    x: "-85%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-};
+
 const SchoolMaster = () => {
   const [modalShow, setModalShow] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -81,12 +55,7 @@ const SchoolMaster = () => {
   };
 
   return (
-    <motion.div
-      className="w-100"
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -194,7 +163,7 @@ const SchoolMaster = () => {
         show={editModal}
         onHide={() => setEditModal(false)}
       />
-    </motion.div>
+    </>
   );
 };
 

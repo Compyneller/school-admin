@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { Card, Container, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { ToggleState } from "../../context/Toggle";
@@ -9,32 +8,7 @@ import DeleteBrandModal from "./DeleteBrandModal";
 import UpdateBrandModal from "./UpdateBrandModal";
 import NoRecordFound from "../../components/NoRecordFound";
 import SpinnerComp from "../../components/SpinnerComp";
-const containerVariance = {
-  ini: {
-    x: "100%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  ani: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  exi: {
-    x: "-85%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-};
+
 const ProductMaster = () => {
   const { fetchAllMaster, allMaster, loading } = useContext(ToggleState);
   const [modalShow, setModalShow] = useState(false);
@@ -46,12 +20,7 @@ const ProductMaster = () => {
     fetchAllMaster("https://dstservices.in/api/brand_list.php");
   }, []);
   return (
-    <motion.div
-      className="w-100"
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -95,7 +64,7 @@ const ProductMaster = () => {
         detail={detail}
         onHide={() => setUpdateBrand(false)}
       />
-    </motion.div>
+    </>
   );
 };
 

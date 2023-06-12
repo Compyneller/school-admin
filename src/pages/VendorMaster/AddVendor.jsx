@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { useContext } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
-import SuccessfullModal from "../../components/SuccessfullModal/SuccessfullModal";
 import { ToggleState } from "../../context/Toggle";
+const SuccessfullModal = lazy(() =>
+  import("../../components/SuccessfullModal/SuccessfullModal")
+);
 
 const AddVendor = (props) => {
   const [district, setDistrict] = useState([]);

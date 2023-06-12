@@ -1,34 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import { motion } from "framer-motion";
 import axios from "axios";
 import ToastifyComp from "../../components/ToastifyComp";
-const containerVariance = {
-  ini: {
-    x: "100%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  ani: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  exi: {
-    x: "-85%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-};
+
 const SsizeMaster = () => {
   const [menuData, setMenuData] = useState([]);
   const [value, setValue] = useState("");
@@ -68,12 +42,7 @@ const SsizeMaster = () => {
     }
   };
   return (
-    <motion.div
-      className="w-100"
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -109,7 +78,7 @@ const SsizeMaster = () => {
           </Card.Body>
         </Card>
       </Container>
-    </motion.div>
+    </>
   );
 };
 

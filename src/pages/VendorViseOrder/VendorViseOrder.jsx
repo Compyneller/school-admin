@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { containerVariance } from "../../Data/variants";
 import { Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import VendorTable from "./VendorTable";
@@ -55,12 +53,7 @@ const VendorViseOrder = () => {
     filterInputs.tdate,
   ]);
   return (
-    <motion.div
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      className="w-100 "
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body>
@@ -119,7 +112,7 @@ const VendorViseOrder = () => {
         <br />
         <VendorTable data={vendorData} />
       </Container>
-    </motion.div>
+    </>
   );
 };
 

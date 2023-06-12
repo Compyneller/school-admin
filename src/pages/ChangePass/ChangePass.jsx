@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
-import { motion } from "framer-motion";
 import axios from "axios";
 import Toastify from "toastify-js";
-import { containerVariance } from "../../Data/variants";
 const ChangePass = () => {
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
@@ -35,12 +33,7 @@ const ChangePass = () => {
     }
   };
   return (
-    <motion.div
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      className="w-100 "
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body>
@@ -108,7 +101,7 @@ const ChangePass = () => {
           </Card.Body>
         </Card>
       </Container>
-    </motion.div>
+    </>
   );
 };
 

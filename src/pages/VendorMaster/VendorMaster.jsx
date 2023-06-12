@@ -1,39 +1,13 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Card, Container, Form, Table, Button, Spinner } from "react-bootstrap";
+import React, { lazy, useContext, useEffect, useState } from "react";
+import { Card, Container, Button, Spinner } from "react-bootstrap";
 import { ToggleState } from "../../context/Toggle";
-import AddVendor from "./AddVendor";
-import EditVendorModal from "./EditVendorModal";
-import { motion } from "framer-motion";
 import AddButton from "../../components/AddButton/AddButton";
-import KYCModal from "./KYCModal";
 import VendorMasterTable from "./VendorMasterTable";
-const containerVariance = {
-  ini: {
-    x: "100%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  ani: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-  exi: {
-    x: "-85%",
-    opacity: 0,
-    transition: {
-      type: "spring",
-      duration: 1,
-    },
-  },
-};
+const AddVendor = lazy(() => import("./AddVendor"));
+const EditVendorModal = lazy(() => import("./EditVendorModal"));
+const KYCModal = lazy(() => import("./KYCModal"));
+
 const VendorMaster = () => {
   const [radio, setRadio] = useState({});
   const [detail, setDetail] = useState({});
@@ -81,12 +55,7 @@ const VendorMaster = () => {
   };
 
   return (
-    <motion.div
-      className="w-100"
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -139,7 +108,7 @@ const VendorMaster = () => {
           onHide={() => setKycModal(false)}
         />
       </Container>
-    </motion.div>
+    </>
   );
 };
 

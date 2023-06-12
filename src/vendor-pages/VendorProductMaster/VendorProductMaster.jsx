@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { lazy, useEffect, useState } from "react";
 import {
   Card,
   Container,
@@ -9,16 +8,15 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
-import { containerVariance } from "../../Data/variants";
-import AddButton from "../../components/AddButton/AddButton";
-import DeleteVedorProduct from "./DeleteVedorProduct";
-import UploadImage from "./UploadImage";
-import AddVendorProduct from "./AddVendorProduct";
-import EditVendorProduct from "./EditVendorProduct";
 import { useContext } from "react";
 import { ToggleState } from "../../context/Toggle";
-import AddMultipleImage from "./AddMultipleImage";
-import NoRecordFound from "../../components/NoRecordFound";
+const AddButton = lazy(() => import("../../components/AddButton/AddButton"));
+const DeleteVedorProduct = lazy(() => import("./DeleteVedorProduct"));
+const UploadImage = lazy(() => import("./UploadImage"));
+const AddVendorProduct = lazy(() => import("./AddVendorProduct"));
+const EditVendorProduct = lazy(() => import("./EditVendorProduct"));
+const AddMultipleImage = lazy(() => import("./AddMultipleImage"));
+const NoRecordFound = lazy(() => import("../../components/NoRecordFound"));
 
 const VendorProductMaster = () => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -30,14 +28,8 @@ const VendorProductMaster = () => {
   useEffect(() => {
     fetchVendorMaster("https://dstservices.in/api/vendor_productlist.php");
   }, [fetchVendorMaster]);
-  console.log(vendorMaster);
   return (
-    <motion.div
-      className="w-100"
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -160,7 +152,7 @@ const VendorProductMaster = () => {
         data={radio}
         onHide={() => setShowUploadFileModal(false)}
       />
-    </motion.div>
+    </>
   );
 };
 

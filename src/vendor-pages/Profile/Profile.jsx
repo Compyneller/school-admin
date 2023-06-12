@@ -10,9 +10,7 @@ import {
   Row,
   Tooltip,
 } from "react-bootstrap";
-import { containerVariance } from "../../Data/variants";
 import "./Profile.scss";
-import { motion } from "framer-motion";
 import { ToggleState } from "../../context/Toggle";
 const Profile = () => {
   const [allInputs, setAllInputs] = useState({
@@ -104,12 +102,7 @@ const Profile = () => {
   };
 
   return (
-    <motion.div
-      className="w-100"
-      variants={containerVariance}
-      initial="ini"
-      animate="ani"
-      exit="exi">
+    <>
       <Container className="py-5">
         <Card>
           <Card.Body className="d-flex justify-content-between align-items-center">
@@ -440,7 +433,7 @@ const Profile = () => {
           </Card.Body>
         </Card>
       </Container>
-    </motion.div>
+    </>
   );
 };
 
