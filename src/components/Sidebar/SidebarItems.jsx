@@ -32,7 +32,7 @@ const SidebarItems = ({ items }) => {
           {!open ? <IoCaretDownOutline /> : <IoCaretUp />}
         </div>
         {open ? (
-          <ul className="w-100" style={{ transition: "250ms ease-in-out" }}>
+          <ul className="w-100">
             {items.subMenu.map((items, index) => {
               return (
                 <li className="my-2" key={index} onClick={() => handleLinks()}>

@@ -1,5 +1,5 @@
 import Toastify from "toastify-js";
-
+import "toastify-js/src/toastify.css";
 const ToastifyComp = (text) => {
   console.log(text);
   Toastify({

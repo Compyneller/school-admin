@@ -67,7 +67,7 @@ const SsizeMaster = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Size</Form.Label>
                   <Form.Control
-                    type="number"
+                    type="text"
                     placeholder="Enter size"
                     onChange={(e) => setSize(e.target.value)}
                   />
